@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Member() {
+function MemberC() {
   return (
     <>
       <div className="">big <br/>Member</div>
@@ -8,4 +8,4 @@ function Member() {
   )
 }
 
-export default Member
+export default MemberC
