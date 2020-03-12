@@ -78,7 +78,7 @@ function Header() {
             <li className="nav-item">
               <NavLink
                 activeClassName="active"
-                className="nav-link"
+                className="nav-linkgit"
                 to="/profile"
               >
                 新聞公告
