@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Activity() {
+function activity() {
   return (
     <>
       <div className="">big <br/>Activity</div>
@@ -8,4 +8,4 @@ function Activity() {
   )
 }
 
-export default Activity
+export default activity
