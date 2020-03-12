@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-bootstrap'
+// import { NavLink } from 'react-router-dom'
 import logo from '../logoV1.svg'
 // import { ReactComponent as Logo } from '../logo.svg'
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
-// import '../css/headerfooter.css'
 
 function Header() {
   const headerheight = {
@@ -40,10 +40,9 @@ function Header() {
             <li className="nav-item">
               {/* 特別注意：要加上exact屬性，首頁的樣式才會正常被套用，不然就會一直有被按到的樣式 */}
               <NavLink
-                exact
                 activeClassName="active"
                 className="nav-link"
-                to="/"
+                href="/cart"
               >
                 遊戲庫
               </NavLink>
@@ -52,7 +51,7 @@ function Header() {
               <NavLink
                 activeClassName="active"
                 className="nav-link"
-                to="/login"
+                href="/community"
               >
                 社群探索
               </NavLink>
@@ -61,7 +60,7 @@ function Header() {
               <NavLink
                 activeClassName="active"
                 className="nav-link"
-                to="/logout"
+                href="/activity"
               >
                 活動揪團
               </NavLink>
@@ -70,7 +69,7 @@ function Header() {
               <NavLink
                 activeClassName="active"
                 className="nav-link"
-                to="/register"
+                href="/forum"
               >
                 開發論壇
               </NavLink>
@@ -79,7 +78,7 @@ function Header() {
               <NavLink
                 activeClassName="active"
                 className="nav-linkgit"
-                to="/profile"
+                href="/bulletin"
               >
                 新聞公告
               </NavLink>
@@ -93,22 +92,16 @@ function Header() {
           <NavLink>
             <AiOutlineShoppingCart />
           </NavLink>
-          <NavLink>
+          <NavLink
+            activeClassName="active"
+            className="nav-linkgit"
+            href="/member"
+          >
             <AiOutlineUser />
           </NavLink>
         </div>
         </div>
       </nav>
-      
-      
-              
-            
-      {/* <div>
-        <img src="" alt="" className=""/>
-        <img src="" alt="" className=""/>
-        <img src="" alt="" className=""/>
-      </div> */}
-
 
     </>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Forum() {
+function ForumC() {
   return (
     <>
       <div className="">big <br/>Forum</div>
@@ -8,4 +8,4 @@ function Forum() {
   )
 }
 
-export default Forum
+export default ForumC
