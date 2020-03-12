@@ -1,0 +1,16 @@
+//修改變數專用
+
+$navinfo: #79cee2;
+$navbar-dark-color: $navinfo;
+
+$navhover: #007bff;
+$navbar-dark-hover-color: $navhover;
+
+//import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+* {
+  font-size: 10px;
+  font-family: 'Noto Sans TC', sans-serif;
+  //   font-family: 'Ubuntu', sans-serif;
+}
