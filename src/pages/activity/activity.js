@@ -9,7 +9,7 @@ function Activity() {
   return (
     <>
       <div className="container">
-        <h1 className="py-2">熱門活動</h1>
+        <h1 className="py-2">熱門活動123</h1>
       </div>
       <div className="aKV d-flex justify-content-between position-relative">
         <NavLink className="aSideCarousel ascLeft text-center border" to="/activitycontentpage">
