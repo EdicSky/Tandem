@@ -1,0 +1,36 @@
+  .aKV {
+    /* background: lightpink; */
+    min-height: 60vh;
+    /* width: 100vw; */
+    align-items: flex-end;
+    margin-bottom: 30px;
+  }
+  .ascLeft{
+    margin-left: 60px;
+  }
+  .ascRight{
+    margin-right: 60px;
+  }
+  .aSideCarousel{
+    height: 200px;
+    width: 300px;
+    overflow: hidden;
+    object-fit: cover;
+    /* filter: hue-rotate(130deg); */
+    filter: saturate(50%);
+  }
+  .aMainCarousel{
+    height: 500px;
+    width: 750px;
+    overflow: hidden;
+    object-fit: cover;
+    /* position: absolute; */
+    /* left: 50vw; */
+  }
+  .aSearchbar{
+    margin: auto;
+    width: 600px;
+    height: 50px;
+    border: solid 2px #79CEE2;
+    border-radius: 20px;
+  }
