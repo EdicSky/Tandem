@@ -21,12 +21,11 @@ import Cart from './pages/shop/Cart'
 function App() {
   return (
     <Router>
-      <>          
+      <>
         <Header />
-          <div className="container mt-30">
+        <div className="container mt-30">
           {/* <Home className="mt-3"/> */}
           <Switch>
-
             <Route path="/activity">
               <Activity />
             </Route>
@@ -49,9 +48,8 @@ function App() {
               <Home />
             </Route>
           </Switch>
-
-          </div>
-        <Footer/>
+        </div>
+        <Footer />
       </>
     </Router>
   )
