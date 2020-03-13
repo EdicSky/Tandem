@@ -1,0 +1,161 @@
+/* Cart */
+.circle {
+  width: 80px;
+  height: 80px;
+  background: lightgray;
+  color: white;
+  border-radius: 50%;
+  h1 {
+    position: relative;
+    left: 38%;
+    top: 20%;
+  }
+}
+.circleActive {
+  @extend .circle;
+  background: lightblue;
+}
+.line {
+  margin-top: 35px;
+  width: 150px;
+  height: 10px;
+  background: lightgray;
+}
+.btn {
+  border-radius: 0;
+  border: 1px solid rgb(67, 67, 236);
+  color: rgb(67, 67, 236);
+  &:hover {
+    background: rgb(67, 67, 236);
+    border: 1px solid rgb(67, 67, 236);
+  }
+}
+
+.shoppingList {
+  width: 80%;
+  border: 2px solid lightblue;
+  margin: 0 10%;
+}
+
+.columnWidth1 {
+  width: 50%;
+}
+.columnWidth2 {
+  width: 30%;
+}
+.couponActive {
+  border: 5px solid orange;
+  box-shadow: 2px 2px gray;
+}
+.post {
+  /* width: 70%; */
+  height: 150px;
+
+  background: lightgrey;
+}
+.avator {
+  /* width: 30%; */
+  border-radius: 50%;
+}
+.ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: #ddd; /*背景星星顏色*/
+  overflow: hidden;
+  font-size: 20px; /*調整字體大小可放大縮小星星*/
+  text-shadow: 0px 1px 0 #999;
+}
+.full_star {
+  width: 90%; /*調整寬度可變更星等*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #d56a16; /*前景星星顏色*/
+}
+.s-searchicon {
+  position: relative;
+  bottom: 45px;
+  left: 5px;
+}
+
+/* slider.css */
+.box {
+  width: 100%;
+  min-height: 500px;
+  background-image: url('/images/shop/bigImage/1_MONSTER HUNTER_ WORLD_0.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: grayscale(50%);
+  transition: 0.5s;
+
+  flex-wrap: wrap;
+}
+
+.sbox {
+  /* width: 200px; */
+  height: 50%;
+  /* background: white; */
+  /* transition:.5s; */
+  flex: 1 1 33.33%;
+  /* border:1px solid green; */
+}
+
+.sbox-s {
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: 0.5s;
+  border: 2px solid lightgrey;
+}
+.sbox-s h2 {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+/* .sbox1:hover,.sbox2:hover{
+      width: 80%;
+      height: 80%;
+      margin: 10%;
+      border-radius: 20px;
+      opacity: 50%;
+  
+  } */
+.box:hover .sbox-s {
+  /* width: 80%;
+    height: 70%; */
+  /* margin: 10%; */
+  border-radius: 20px;
+  /* opacity: 50%; */
+  /* transform: scale(0.7); */
+}
+//Filterbar
+.s-filterbar {
+  height: 45px;
+}
+.s-filterbar-btn {
+  border-radius: 25px;
+  border: 1px solid lightblue;
+  color: lightblue;
+  width: 150px;
+  &:hover {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+  }
+}
+.s-filterbar-search {
+  @extend .s-filterbar-btn;
+  margin-top: 7px;
+  &:hover {
+    background-color: white;
+  }
+}
+
+//頁數
+.s-page-item {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

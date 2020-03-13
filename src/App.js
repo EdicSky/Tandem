@@ -11,6 +11,10 @@ import Community from './pages/community/Community'
 import Forum from './pages/forum/Forum'
 import Member from './pages/member/Member'
 import Cart from './pages/shop/Cart'
+import ProductList from './pages/shop/ProductList'
+import Product from './pages/shop/Product'
+import Payment from './pages/shop/Payment'
+import Order from './pages/shop/Order'
 
 //選單
 // import Menu from './components/Menu'
@@ -44,6 +48,18 @@ function App() {
             </Route>
             <Route path="/cart">
               <Cart />
+            </Route>
+            <Route path="/productlist/:type?/:page?">
+              <ProductList />
+            </Route>
+            <Route path="/product/:type?/:id?">
+              <Product />
+            </Route>
+            <Route path="/payment">
+              <Payment />
+            </Route>
+            <Route path="/order">
+              <Order />
             </Route>
             <Route exact path="/">
               <Home />
