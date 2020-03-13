@@ -23,17 +23,6 @@ body {
   line-height: inherit;
 }
 
-img,
-svg {
-  vertical-align: middle;
-}
-
-img {
-  border: 0;
-  max-width: 100%;
-  height: auto;
-}
-
 ol,
 ul {
   list-style: none;
@@ -48,9 +37,6 @@ nav {
 /* ------------------------
 	Base
 ------------------------ */
-html {
-  font-size: 62.5%;
-}
 
 body {
   min-width: 320px;
@@ -58,16 +44,9 @@ body {
   /* color: #000; */
   font-size: 1.4em;
   line-height: 1.8;
-
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
-}
-
-@media print, screen and (min-width: 768px) {
-  body {
-    font-size: 1.6em;
-  }
 }
 
 a {
@@ -79,23 +58,6 @@ a:hover,
 a:active {
   text-decoration: underline;
   color: #007bff;
-}
-
-a[href^='tel:'] {
-  cursor: text;
-  text-decoration: none;
-}
-
-::-moz-selection {
-  background-color: #007bff;
-  color: #fff;
-  text-shadow: none;
-}
-
-::selection {
-  background-color: #007bff;
-  color: #fff;
-  text-shadow: none;
 }
 
 /* ------------------------
@@ -351,13 +313,9 @@ a[href^='tel:'] {
 
 .l-footer_function_row-01 {
   margin: 29px 0 0;
-
   -webkit-box-ordinal-group: 2;
-
   -webkit-order: 1;
-
   -ms-flex-order: 1;
-
   order: 1;
 }
 @media print, screen and (min-width: 768px) {
@@ -438,9 +396,7 @@ a[href^='tel:'] {
   height: 34px;
   background-color: #fff;
 }
-.l-footer_service_item .m-icon-mail:before {
-  content: url(https://d2utiq8et4vl56.cloudfront.net/files/user/img/common/icon_mail_black.svg);
-}
+
 @media print, screen and (min-width: 768px) {
   .l-footer_service_item {
     margin: 0 9px;
@@ -623,7 +579,7 @@ a[href^='tel:'] {
   /* position: absolute; */
   /* left: -101%; */
   bottom: 0;
-  box-shadow: 0 0 0 3px inset #007bff;
+  /* box-shadow: 0 0 0 3px inset #007bff; */
   transition: 0.5s;
 }
 
