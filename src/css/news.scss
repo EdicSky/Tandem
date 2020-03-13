@@ -3,6 +3,7 @@ $main_color: #79cee2;
 $icon_color: #f9a451;
 $gray: #adb6bd;
 $btn_weight: bold;
+$shadow: 0px 0px 4px $gray;
 .btn {
   background: #fff;
   border: 2px solid $main_color;
@@ -19,18 +20,28 @@ a.btn:hover {
   background: $main_color;
   border: none;
 }
+.icon {
+  font-size: 20px;
+  color: $icon_color;
+  margin: 0 5px;
+}
 h2 {
+  font-size: 2rem;
   font-family: $font-family;
   letter-spacing: 3px;
+  font-weight: bold;
+}
+h4 {
+  font-family: $font-family;
+  letter-spacing: 3px;
+  font-weight: bold;
 }
 p {
   letter-spacing: 1px;
   font-family: $font-family;
   line-height: 28px;
 }
-a {
-  text-decoration: none;
-}
+
 .carousell_wrapper {
   margin: auto;
   .carousell {
@@ -59,7 +70,7 @@ a {
 }
 .card {
   border: 1px solid $gray;
-  box-shadow: 0px 0px 4px $gray;
+  box-shadow: $shadow;
 }
 .news_index_detail {
   padding-top: 40px;
@@ -80,10 +91,10 @@ a {
   a:hover {
     color: $icon_color;
   }
-  i {
-    font-size: 20px;
-    color: $icon_color;
-    margin: 0 5px;
+}
+.time_group {
+  p {
+    line-height: 20px;
   }
 }
 a.btn {
@@ -101,15 +112,89 @@ a.btn {
   padding: 10px;
   text-align: center;
   position: absolute;
+  font-size: 18px;
 }
 .input-icons {
   width: 100%;
   margin-bottom: 10px;
+}
+.icon_s {
+  font-size: 25px;
 
-  .icon i {
-    left: 30;
-    top: 20;
-    padding: 10px;
-    min-width: 40px;
+  left: 20px;
+  top: 8px;
+  z-index: 1;
+  color: $main_color;
+}
+.latest_news {
+  border: 1px solid $gray;
+  margin: 80px 0 50px 0;
+  padding: 0 20px;
+  box-shadow: $shadow;
+  .latest_news_group {
+    margin: 20px 0;
+  }
+  h4 {
+    margin-bottom: 10px;
+  }
+  h2 {
+    padding: 20px 0;
+    color: #333;
+  }
+  .latest_news_img {
+    width: 120px;
+  }
+  a {
+    text-decoration: none;
+    color: #212529;
+  }
+  a:hover {
+    color: $icon_color;
+  }
+}
+.category_section {
+  height: 300px;
+  border: 1px solid $gray;
+  padding: 0 20px;
+  box-shadow: $shadow;
+  h2 {
+    padding: 20px 0;
+    color: #333;
+  }
+  .news,
+  .sales {
+    border-bottom: 1px solid $gray;
+    a {
+      text-decoration: none;
+      display: block;
+      padding: 15px;
+      color: #000000;
+      transition: 0.5s;
+    }
+    a:hover {
+      color: $icon_color;
+    }
+  }
+}
+.pagination {
+  ul {
+    margin: 0 auto;
+  }
+  li {
+    width: 50px;
+    height: 50px;
+    border: 1.5px solid $main_color;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 47px;
+    color: $main_color;
+    margin-right: 15px;
+    font-weight: bold;
+  }
+  li:hover {
+    background: $main_color;
+    border: none;
+    color: #fff;
+    cursor: pointer;
   }
 }

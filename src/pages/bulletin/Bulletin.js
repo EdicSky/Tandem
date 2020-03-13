@@ -1,15 +1,21 @@
 import React from 'react'
-import '../../css/activity.css'
+import '../../css/news.scss'
+import {
+  AiOutlineClockCircle,
+  AiOutlineFolderOpen,
+  AiOutlineDoubleLeft,
+  AiOutlineDoubleRight,
+  AiOutlineSearch,
+  AiOutlineCaretLeft,
+  AiOutlineCaretRight,
+} from 'react-icons/ai'
 function Bulletin() {
   return (
     <>
       <div className="container">
         <section className="carousell_wrapper d-flex justify-content-between">
           <div className="carousell">
-            <img
-              src={require('../images/Diesel_blog_the_cycle_season_2.jpg')}
-              alt=""
-            />
+            <img src={'news_images/hades.jpg'} alt="" />
           </div>
         </section>
         <div className="category d-flex">
@@ -18,16 +24,16 @@ function Bulletin() {
           <a className="btn">促銷</a>
         </div>
         <div className="row d-flex justify-content-between ">
-          <div className="col-8 ">
+          <div className="col-7 ">
             <div className="card news_introduction">
               <img
-                src={require('../images/Diesel_blog_mtga_starter_guide.png')}
+                src="news_images/hades.jpg"
                 className="card-img-top"
                 alt="..."
               />
               <div className="news card-body">
                 <div className="news_index_title">
-                  <h4 className="card-title">《萬智牌：競技場》——新手指南</h4>
+                  <h2 className="card-title">《萬智牌：競技場》——新手指南</h2>
                 </div>
                 <div className="news_index_content">
                   <p className="card-text">
@@ -43,11 +49,11 @@ function Bulletin() {
                       世嘉(SEGA)
                     </a>
                     <div className="category_group d-flex">
-                      <i className="far fa-folder-open "></i>
+                      <AiOutlineFolderOpen className="icon" />
                       <a href="#">新聞</a>
                     </div>
                     <div className="time_group d-flex">
-                      <i className="far fa-clock fa-3x"></i>
+                      <AiOutlineClockCircle className="icon" />
                       <p className=" d-flex">2019.11.1</p>
                     </div>
                   </div>
@@ -57,13 +63,13 @@ function Bulletin() {
             </div>
             <div className="card news_introduction">
               <img
-                src={require('../images/Diesel_blog_mtga_starter_guide.png')}
+                src={'news_images/hades.jpg'}
                 className="card-img-top"
                 alt="..."
               />
               <div className="news card-body">
                 <div className="news_index_title">
-                  <h4 className="card-title">《萬智牌：競技場》——新手指南</h4>
+                  <h2 className="card-title">《萬智牌：競技場》——新手指南</h2>
                 </div>
                 <div className="news_index_content">
                   <p className="card-text">
@@ -79,11 +85,11 @@ function Bulletin() {
                       世嘉(SEGA)
                     </a>
                     <div className="category_group d-flex">
-                      <i className="far fa-folder-open "></i>
+                      <AiOutlineFolderOpen className="icon" />
                       <a href="#">新聞</a>
                     </div>
                     <div className="time_group d-flex">
-                      <i className="far fa-clock fa-3x"></i>
+                      <AiOutlineClockCircle className="icon" />
                       <p className=" d-flex">2019.11.1</p>
                     </div>
                   </div>
@@ -92,16 +98,129 @@ function Bulletin() {
               </div>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-5 ">
             <div className="input_icons position-relative">
-              <i className="fas fa-search icon position-absolute"></i>
+              <AiOutlineSearch className="icon_s position-absolute"></AiOutlineSearch>
               <input
                 type="text"
                 placeholder="搜尋"
                 className="form-control news_search"
               />
             </div>
+            <div className="latest_news">
+              <h2>最新消息</h2>
+              <div className="latest_news_group d-flex justify-content-between align-items-start">
+                <div className="latest_news_img">
+                  <img src="news_images/starter_guide.png" alt="" />
+                </div>
+                <div className="latest_news_title">
+                  <a href="">
+                    <h4>《萬智牌：競技場》——新手指南</h4>
+                  </a>
+                  <div className="time_group d-flex">
+                    <AiOutlineClockCircle className="icon" />
+                    <p className=" d-flex">2019.11.1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="latest_news_group d-flex justify-content-between align-items-start">
+                <div className="latest_news_img">
+                  <img src="news_images/starter_guide.png" alt="" />
+                </div>
+                <div className="latest_news_title">
+                  <a href="">
+                    <h4>《萬智牌：競技場》——新手指南</h4>
+                  </a>
+                  <div className="time_group d-flex">
+                    <AiOutlineClockCircle className="icon" />
+                    <p className=" d-flex">2019.11.1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="latest_news_group d-flex justify-content-between align-items-start">
+                <div className="latest_news_img">
+                  <img src="news_images/starter_guide.png" alt="" />
+                </div>
+                <div className="latest_news_title">
+                  <a href="">
+                    <h4>《萬智牌：競技場》——新手指南</h4>
+                  </a>
+                  <div className="time_group d-flex">
+                    <AiOutlineClockCircle className="icon" />
+                    <p className=" d-flex">2019.11.1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="latest_news_group d-flex justify-content-between align-items-start">
+                <div className="latest_news_img">
+                  <img src="news_images/starter_guide.png" alt="" />
+                </div>
+                <div className="latest_news_title">
+                  <a href="">
+                    <h4>《萬智牌：競技場》——新手指南</h4>
+                  </a>
+                  <div className="time_group d-flex">
+                    <AiOutlineClockCircle className="icon" />
+                    <p className=" d-flex">2019.11.1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="latest_news_group d-flex justify-content-between align-items-start">
+                <div className="latest_news_img">
+                  <img src="news_images/starter_guide.png" alt="" />
+                </div>
+                <div className="latest_news_title">
+                  <a href="">
+                    <h4>《萬智牌：競技場》——新手指南</h4>
+                  </a>
+                  <div className="time_group d-flex">
+                    <AiOutlineClockCircle className="icon" />
+                    <p className=" d-flex">2019.11.1</p>
+                  </div>
+                </div>
+              </div>
+              <div className="latest_news_group d-flex justify-content-between align-items-start">
+                <div className="latest_news_img">
+                  <img src="news_images/starter_guide.png" alt="" />
+                </div>
+                <div className="latest_news_title">
+                  <a href="">
+                    <h4>《萬智牌：競技場》——新手指南</h4>
+                  </a>
+                  <div className="time_group d-flex">
+                    <AiOutlineClockCircle className="icon" />
+                    <p className=" d-flex">2019.11.1</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="category_section">
+              <h2>分類</h2>
+              <div className="news">
+                <a href="">
+                  <h4>新聞公告(5)</h4>
+                </a>
+              </div>
+              <div className="sales">
+                <a href="">
+                  <h4>優惠公告(4)</h4>
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+        <div className="pagination">
+          <ul className="d-flex">
+            <li>
+              <AiOutlineCaretLeft />
+            </li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>
+              <AiOutlineCaretRight />
+            </li>
+          </ul>
         </div>
       </div>
     </>
