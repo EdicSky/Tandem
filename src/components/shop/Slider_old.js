@@ -59,28 +59,28 @@ function Slider(props) {
       <div className="box d-flex">
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-            <Link onClick={()=>props.handletype(5)} >運動</Link>
-            
+            <Link onClick={()=>props.handletype(2)} to={{ search: `type=2` }}>運動</Link>
+            <h2>運動</h2>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(1)} >休閒</Link>
+            <h2>休閒</h2>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(3)} >血腥</Link>
+            <h2>血腥</h2>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(4)} >冒險</Link>
+            <h2>冒險</h2>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(2)} >動作</Link>
+            <h2>動作</h2>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">

@@ -14,7 +14,16 @@ function ProductList(props) {
   const [type, setType] = useState(0)
   const [totalpage, setTotalpage] = useState(0)
   const [currentpage, setCurrentpage] = useState(1)
+  const [typeURL,setTypeURL]=useState(0)
+  const [vendor,setVendor]=useState(0)
 
+  const searchParams = new URLSearchParams(props.location.search)
+  //如果url有type的話就抓下來
+  // if(searchParams.get('type')){
+  //   let typeURL = searchParams.get('type')
+  //   console.log('typeURL',typeURL)
+  //   setType(typeURL)
+  // }
   //   const [search_query, setSearch_query] = useState('456')
   //  加入購物車
   async function updateCartToLocalStorage(value) {
@@ -47,9 +56,24 @@ function ProductList(props) {
     // 利用內建的API來得到URLSearchParams物件
     const searchParams = new URLSearchParams(props.location.search)
     let request = undefined
-    if (searchParams.get('type') && type !== 0) {
+    // if (searchParams.get('type') && type !== 0) {
+    //   request = new Request(
+    //     'http://localhost:3300/product/search/' + type + '/' + currentpage,
+    //     {
+    //       method: 'GET',
+    //       credentials: 'include',
+    //     }
+    //   )
+    // } else {
+    //   request = new Request('http://localhost:3300/product/list/' + page, {
+    //     method: 'GET',
+    //     credentials: 'include',
+    //   })
+    // }
+    //新分業方法
+    if ( type !== 0) {
       request = new Request(
-        'http://localhost:3300/product/list/' + type + '/' + page,
+        'http://localhost:3300/product/search/' + type + '/' + currentpage,
         {
           method: 'GET',
           credentials: 'include',
@@ -61,7 +85,6 @@ function ProductList(props) {
         credentials: 'include',
       })
     }
-
     const response = await fetch(request)
     const data = await response.json()
 
@@ -99,13 +122,17 @@ function ProductList(props) {
     setCurrentpage(value)
   }
   //切換Type
-  const handletype = value => {
+  // const handletype = value => {
+  //   setType(value)
+  //   setCurrentpage(1)
+  // }
+  function handletype(value){
     setType(value)
     setCurrentpage(1)
   }
-
+  console.log('type=',type)
   // 利用內建的API來得到URLSearchParams物件
-  const searchParams = new URLSearchParams(props.location.search)
+  // const searchParams = new URLSearchParams(props.location.search)
   console.log(props)
   let search = props.location.search
   console.log('search= ', search)
@@ -184,6 +211,58 @@ function ProductList(props) {
       {totalpage} */}
       <div className="row">
         <div className="col">
+        {/* 新的頁數bar開始 */}
+        <ul className="d-flex">
+              <li className="s-pageItem">
+                <Link
+                  className=""
+                  onClick={() => paginate(currentpage - 1)}
+                >
+                 <AiOutlineCaretLeft/>
+                </Link>
+              </li>
+        {pageNumbers.map((number, index) => {
+          const data = {
+            type,
+            page:number
+          }
+                return (
+                  <li
+                    key={index}
+                    className={
+                      's-pageItem ' + (number === currentpage ? 's-pageItem-Active' : '')
+                    }
+                  >
+                    <Link
+                      className=""
+                      //   to={{
+                      //     search: searchParams.get('page')
+                      //       ? `page=${number}`
+                      //       : search + `page=${number}`,
+                      //   }}
+                      // to={{ search: `type=${type}` + `&&page=${number}` }}
+                      //頁數資訊可以不要顯示在url
+                      // onClick={() => {paginate(number);setType(type)}}
+                      onClick={()=>{setCurrentpage(number)}}
+                    >
+                      {number}
+                    </Link>
+                  </li>
+                )
+              })}
+              <li className="s-pageItem">
+                <Link
+                  className=""
+                  onClick={() => paginate(currentpage + 1)}
+                >
+                  <AiOutlineCaretRight/>
+                </Link>
+              </li>
+          
+
+        </ul>
+        {/* 新的頁數bar結束 */}
+
           <nav aria-label="Page navigation example">
             <ul className="pagination">
               <li className="s-page-item">
@@ -257,8 +336,11 @@ function ProductList(props) {
         類別2
       </Link>
       <h3>產品類型 = {searchParams.get('type')}</h3> */}
-      <Slider />
-      <Filterbar setMyproduct={setMyproduct} setTotalpage={setTotalpage} />
+      <Slider handletype={function (value){
+        handletype(value)
+      }}/>
+      <button className="s-clearFilterBtn" onClick={()=>setType(0)}>X</button><h5>目前篩選:類別{type}</h5>
+      <Filterbar setMyproduct={setMyproduct} setTotalpage={setTotalpage} setVendor={setVendor}/>
       <div className="container">{dataLoading ? loading : display}</div>
     </>
   )

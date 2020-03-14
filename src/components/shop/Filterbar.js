@@ -80,8 +80,8 @@ function Filterbar(props) {
             發行商
           </button>
           <div className="dropdown-menu">
-            <Link className="dropdown-item" to="#">
-              Action
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor(2)}>
+              1
             </Link>
             <Link className="dropdown-item" to="#">
               Action

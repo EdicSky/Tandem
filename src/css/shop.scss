@@ -1,3 +1,18 @@
+//整體共用
+p {
+  font-size: 16px;
+}
+a:hover {
+  text-decoration: none;
+}
+h2 {
+  // font-size: 16px;
+}
+.s-clearFilterBtn {
+  //清除篩選功能
+  width: 50px;
+  height: 50px;
+}
 /* Cart */
 .circle {
   width: 80px;
@@ -82,6 +97,7 @@
 }
 
 /* slider.css */
+
 .box {
   width: 100%;
   min-height: 500px;
@@ -109,6 +125,11 @@
   background: white;
   transition: 0.5s;
   border: 2px solid lightgrey;
+  a {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
 }
 .sbox-s h2 {
   position: absolute;
@@ -153,9 +174,24 @@
   }
 }
 
-//頁數
-.s-page-item {
-  width: 30px;
-  height: 30px;
+//頁數element
+.s-pageItem {
+  width: 50px;
+  height: 50px;
+  border: 2px solid lightblue;
   border-radius: 50%;
+  margin: 5px;
+  a {
+    text-decoration: none;
+    color: lightblue;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+  }
+}
+.s-pageItem-Active {
+  background-color: lightblue;
+  a {
+    color: white;
+  }
 }

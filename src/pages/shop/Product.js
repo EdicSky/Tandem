@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter, NavLink, Switch, Route } from 'react-router-dom'
 import Config from './Config'
 import Comment from './Comment'
+import { AiOutlineHeart,AiOutlineShoppingCart,AiOutlineArrowLeft,AiOutlineArrowRight,AiOutlineCaretLeft,AiOutlineCaretRight } from 'react-icons/ai'
 
 function Product(props) {
   const [myproduct, setMyproduct] = useState([])
@@ -77,7 +78,7 @@ function Product(props) {
           <p>{myproduct.itemIntro}</p>
           <div className="row">
             <button type="button" className="btn btn-outline-info mx-2">
-              <i class="far fa-heart"></i>加入收藏清單
+              <AiOutlineHeart/>加入收藏清單
             </button>
             <button
               type="button"
@@ -91,7 +92,7 @@ function Product(props) {
                 })
               }
             >
-              <i class="fas fa-cart-plus"></i>加入購物車
+              <AiOutlineShoppingCart/>加入購物車
             </button>
           </div>
           <div className="row">
@@ -104,7 +105,7 @@ function Product(props) {
           </div>
           <div className="row">
             <div className="col-3">遊戲類別:</div>
-            <div className="col-4">{myproduct.itemCategoryId}</div>
+            <div className="col-4">{myproduct.categoryName}</div>
           </div>
         </div>
       </div>
