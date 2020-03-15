@@ -57,16 +57,13 @@ function Filterbar(props) {
             價格區間
           </button>
           <div className="dropdown-menu">
-            <Link className="dropdown-item" to="#">
-              Action
+            <Link className="dropdown-item" to="#" onClick={()=>{props.setPrice('<100')}}>
+              Under NT$100
             </Link>
-            <Link className="dropdown-item" to="#">
-              Action
+            <Link className="dropdown-item" to="#" onClick={()=>{props.setPrice('<500')}}>
+              Under NT$500
             </Link>
-            <div role="separator" className="dropdown-divider"></div>
-            <Link className="dropdown-item" to="#">
-              Separated link
-            </Link>
+            
           </div>
         </div>
         <div className="col col-sm-6 col-lg-2 s-filterbar">
@@ -80,16 +77,37 @@ function Filterbar(props) {
             發行商
           </button>
           <div className="dropdown-menu">
-            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor(2)}>
-              1
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V001')}>
+            美國藝電（ElectronicArts）
             </Link>
-            <Link className="dropdown-item" to="#">
-              Action
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V002')}>
+            動視暴雪（Activision Blizzard）
             </Link>
-            <div role="separator" className="dropdown-divider"></div>
-            <Link className="dropdown-item" to="#">
-              Separated link
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V003')}>
+            2K Games
             </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V004')}>
+            任天堂（NINTENDO）
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V005')}>
+            索尼（SONY）
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V006')}>
+            育碧（Ubisoft）
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V007')}>
+            柯樂美（KONAMI）
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V008')}>
+            卡普空（CAPCOM）
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V009')}>
+            史克威爾艾尼克斯（SQUARE ENIX）
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setVendor('V010')}>
+            世嘉（SEGA）
+            </Link>
+            
           </div>
         </div>
         <div className="col col-sm-6 col-lg-2 s-filterbar">
@@ -126,11 +144,14 @@ function Filterbar(props) {
             排序方式
           </button>
           <div className="dropdown-menu">
-            <Link className="dropdown-item" to="#">
-              Action
+            <Link className="dropdown-item" to="#" onClick={()=>props.setOrderBy('itemName ASC')}>
+              遊戲名稱
             </Link>
-            <Link className="dropdown-item" to="#">
-              Action
+            <Link className="dropdown-item" to="#" onClick={()=>props.setOrderBy('itemPrice DESC')}>
+              價錢高至低
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setOrderBy('itemPrice ASC')}>
+              價錢低至高
             </Link>
             <div role="separator" className="dropdown-divider"></div>
             <Link className="dropdown-item" to="#">

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, NavLink, Switch, Route } from 'react-router-dom'
 import Config from './Config'
-import Comment from './Comment'
+// import Comment from './Comment'
+import Comment2 from './Comment2'
 import { AiOutlineHeart,AiOutlineShoppingCart,AiOutlineArrowLeft,AiOutlineArrowRight,AiOutlineCaretLeft,AiOutlineCaretRight } from 'react-icons/ai'
+import '../../css/shop.scss'
 
 function Product(props) {
   const [myproduct, setMyproduct] = useState([])
@@ -73,16 +75,17 @@ function Product(props) {
           </ul>
         </div>
         <div className="col col-sm-12 col-md-6">
-          <h2>NT$: {myproduct.itemPrice}</h2>
+          <div className="d-flex"><span className="p">NT$:</span><h2>{myproduct.itemPrice}</h2></div>
+          
           <h3>{myproduct.itemName}</h3>
           <p>{myproduct.itemIntro}</p>
           <div className="row">
-            <button type="button" className="btn btn-outline-info mx-2">
+            <button type="button" className="btn btn-outline-info mx-2 s-btn-common">
               <AiOutlineHeart/>加入收藏清單
             </button>
             <button
               type="button"
-              className="btn btn-outline-info mx-2"
+              className="btn btn-outline-info mx-2 s-btn-common"
               onClick={() =>
                 updateCartToLocalStorage({
                   id: myproduct.itemId,
@@ -95,17 +98,17 @@ function Product(props) {
               <AiOutlineShoppingCart/>加入購物車
             </button>
           </div>
-          <div className="row">
-            <div className="col-3">發行商:</div>
-            <div className="col-7">{myproduct.vName}</div>
+          <div className="row mt-2">
+            <div className="col-3 h5">發行商:</div>
+            <div className="col-7 h5">{myproduct.vName}</div>
           </div>
           <div className="row">
-            <div className="col-3">發行日期: </div>
-            <div className="col-4">{myproduct.itemDate}</div>
+            <div className="col-3 h5">發行日期: </div>
+            <div className="col-4 h5">{myproduct.itemDate}</div>
           </div>
           <div className="row">
-            <div className="col-3">遊戲類別:</div>
-            <div className="col-4">{myproduct.categoryName}</div>
+            <div className="col-3 h5">遊戲類別:</div>
+            <div className="col-4 h5">{myproduct.categoryName}</div>
           </div>
         </div>
       </div>
@@ -133,7 +136,7 @@ function Product(props) {
           </NavLink>
         </li>
       </ul>
-      <div className="">{configORcomment === 1 ? <Config /> : <Comment />}</div>
+      <div className="">{configORcomment === 1 ? <Config /> : <Comment2 />}</div>
       {/* <Switch>
         <Route path={`${path}/:id?/config/12`}>
           <Config />

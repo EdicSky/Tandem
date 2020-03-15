@@ -4,7 +4,7 @@ import Slider from '../../components/shop/Slider'
 import Filterbar from '../../components/shop/Filterbar'
 import Product from './Product'
 // import '../../css/styles.scss'
-import { AiOutlineHeart,AiOutlineShoppingCart,AiOutlineArrowLeft,AiOutlineArrowRight,AiOutlineCaretLeft,AiOutlineCaretRight } from 'react-icons/ai'
+import { AiOutlineHeart,AiOutlineShoppingCart,AiOutlineArrowLeft,AiOutlineArrowRight,AiOutlineCaretLeft,AiOutlineCaretRight,AiOutlineCloseCircle } from 'react-icons/ai'
 import '../../css/shop.scss'
 
 function ProductList(props) {
@@ -15,7 +15,9 @@ function ProductList(props) {
   const [totalpage, setTotalpage] = useState(0)
   const [currentpage, setCurrentpage] = useState(1)
   const [typeURL,setTypeURL]=useState(0)
-  const [vendor,setVendor]=useState(0)
+  const [vendor,setVendor]=useState('V000')
+  const [price,setPrice]=useState(9999)
+  const [orderBy,setOrderBy]=useState('itemId')
 
   const searchParams = new URLSearchParams(props.location.search)
   //如果url有type的話就抓下來
@@ -71,9 +73,9 @@ function ProductList(props) {
     //   })
     // }
     //新分業方法
-    if ( type !== 0) {
+    if ( type !== 0 || vendor !=='V000' || price !=='' ) {
       request = new Request(
-        'http://localhost:3300/product/search/' + type + '/' + currentpage,
+        'http://localhost:3300/product/search/' + type + '/' + vendor+'/'+price+'/'+orderBy+'/'+currentpage,
         {
           method: 'GET',
           credentials: 'include',
@@ -99,7 +101,7 @@ function ProductList(props) {
   //當換頁時setcurrentpage到新的值就會觸發getDataFromServer
   useEffect(() => {
     getClassifiedDataFromServer(currentpage)
-  }, [currentpage])
+  }, [currentpage,vendor,price,orderBy])
 
   //每次mycart資料有變動就會3秒後關掉載入指示
   useEffect(() => {
@@ -339,8 +341,15 @@ function ProductList(props) {
       <Slider handletype={function (value){
         handletype(value)
       }}/>
-      <button className="s-clearFilterBtn" onClick={()=>setType(0)}>X</button><h5>目前篩選:類別{type}</h5>
-      <Filterbar setMyproduct={setMyproduct} setTotalpage={setTotalpage} setVendor={setVendor}/>
+      <div className="d-flex">
+      
+      {type !== 0?(<div className="s-filterClearBtn">類型{type}<button onClick={()=>setType(0)}><AiOutlineCloseCircle/></button>
+      </div>):''}
+      {vendor !== 'V000'?(<div className="s-filterClearBtn">發行商{vendor}<button onClick={()=>setVendor('V000')}><AiOutlineCloseCircle/></button></div>):''}
+      {price !== 9999?(<div className="s-filterClearBtn">價格{price}<button onClick={()=>setPrice(9999)}><AiOutlineCloseCircle/></button></div>):''}
+      {orderBy !== 'itemId'?(<div className="s-filterClearBtn">排序{orderBy}<button onClick={()=>setOrderBy('itemId')}><AiOutlineCloseCircle/></button></div>):''}
+      </div>
+      <Filterbar setMyproduct={setMyproduct} setTotalpage={setTotalpage} setVendor={setVendor} setPrice={setPrice} setOrderBy={setOrderBy}/>
       <div className="container">{dataLoading ? loading : display}</div>
     </>
   )

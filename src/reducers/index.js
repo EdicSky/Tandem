@@ -16,10 +16,18 @@ const user = (state = { isAuth: false }, action) => {
       return state
   }
 }
+const leaveComment=(state={messageIsLeft:false},action)=>{
+  switch (action.type){
+    case 'LEAVE_MESSAGE':
+      return {...action.data, messageIsLeft:true}
+    default:
+        return state
+  }
+}
 
 //合併多個reducer(必要，為了要配合瀏覽器開發外掛使用)
 const rootReducer = combineReducers({
-  user,
+  user, leaveComment
 })
 
 export { rootReducer }

@@ -5,14 +5,41 @@ p {
 a:hover {
   text-decoration: none;
 }
-h2 {
-  // font-size: 16px;
+h1 {
+  font-size: 40px;
 }
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 28px;
+}
+h4 {
+  font-size: 24px;
+}
+h5 {
+  font-size: 20px;
+}
+h6,
+.p {
+  font-size: 16px;
+}
+
 .s-clearFilterBtn {
   //清除篩選功能
   width: 50px;
   height: 50px;
 }
+.s-btn-common {
+  border-radius: 0;
+  border: 1px solid rgb(67, 67, 236);
+  color: rgb(67, 67, 236);
+  &:hover {
+    background: rgb(67, 67, 236);
+    border: 1px solid rgb(67, 67, 236);
+  }
+}
+//以上是整體共用
 /* Cart */
 .circle {
   width: 80px;
@@ -36,15 +63,15 @@ h2 {
   height: 10px;
   background: lightgray;
 }
-.btn {
-  border-radius: 0;
-  border: 1px solid rgb(67, 67, 236);
-  color: rgb(67, 67, 236);
-  &:hover {
-    background: rgb(67, 67, 236);
-    border: 1px solid rgb(67, 67, 236);
-  }
-}
+// .btn {
+//   border-radius: 0;
+//   border: 1px solid rgb(67, 67, 236);
+//   color: rgb(67, 67, 236);
+//   &:hover {
+//     background: rgb(67, 67, 236);
+//     border: 1px solid rgb(67, 67, 236);
+//   }
+// }
 
 .shoppingList {
   width: 80%;
@@ -173,7 +200,25 @@ h2 {
     background-color: white;
   }
 }
-
+.s-filterClearBtn {
+  margin: 5px;
+  width: 190px;
+  // height: 50px;
+  font-size: 16px;
+  color: white;
+  border: 1px solid rgb(59, 59, 233);
+  text-align: center;
+  background-color: rgb(59, 59, 233);
+  button {
+    margin: 8px;
+    // height: 25px;
+    // width: 25px;
+    // border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    color: white;
+  }
+}
 //頁數element
 .s-pageItem {
   width: 50px;

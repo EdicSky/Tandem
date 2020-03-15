@@ -5,7 +5,7 @@ function Config(props) {
   const table = (
     <>
       <div className="d-flex justify-content-center">
-        <table class="table table-striped col-8">
+        <table class="table table-striped col-8 h5">
           <thead></thead>
           <tbody>
             <tr>
