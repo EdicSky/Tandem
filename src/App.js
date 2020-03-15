@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Header from './components/Header'
@@ -11,7 +11,6 @@ import Community from './pages/community/Community'
 import Forum from './pages/forum/Forum'
 import Member from './pages/member/Member'
 import Cart from './pages/shop/Cart'
-
 
 function App() {
   return (
@@ -44,8 +43,7 @@ function App() {
         <Footer />
       </>
     </Router>
-
-  );
+  )
 }
 
-export default App;
+export default App

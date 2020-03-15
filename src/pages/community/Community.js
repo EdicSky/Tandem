@@ -1,19 +1,28 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { cartIncrement } from '../../actions'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
+// import { useSelector, useDispatch } from 'react-redux'
+// import { cartIncrement } from '../../actions'
+import AddPost from './AddPost'
 
 function Community() {
-
-  const cartNumbers = useSelector(state => state.cartnumbers)
-  const dispatch = useDispatch()
+  // const cartNumbers = useSelector(state => state.cartnumbers)
+  // const dispatch = useDispatch()
 
   return (
-   
-      <article className="content container">Community
-      <h3>{cartNumbers}</h3>
-      <button onClick={dispatch(cartIncrement())}>click</button>
-      </article>
-    
+    <Router>
+      <a
+        href="./addpost"
+        className="d-flex justify-content-end"
+        style={{ fontSize: '40px' }}
+      >
+        <AiOutlinePlusCircle />
+      </a>
+
+      <Route path="/addpost">
+        <AddPost />
+      </Route>
+    </Router>
   )
 }
 
