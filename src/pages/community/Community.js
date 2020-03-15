@@ -3,7 +3,7 @@ import React from 'react'
 function Community() {
   return (
     <>
-      <div className="">big <br/>Community</div>
+      <article className="content container">Community</article>
     </>
   )
 }
