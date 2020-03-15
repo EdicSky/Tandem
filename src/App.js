@@ -9,7 +9,7 @@ import Activity from './pages/activity/Activity'
 import Bulletin from './pages/bulletin/Bulletin'
 import Community from './pages/community/Community'
 import Forum from './pages/forum/Forum'
-import Member from './pages/member/Member'
+import Mbcenterindex from './pages/member/Mbcenterindex'
 import Cart from './pages/shop/Cart'
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
             <Forum />
           </Route>
           <Route path="/member">
-            <Member />
+            <Mbcenterindex />
           </Route>
           <Route path="/cart">
             <Cart />

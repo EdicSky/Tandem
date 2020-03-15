@@ -1,0 +1,1069 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* 登入卡 */
+body {
+  font-family: "Noto Sans TC", sans-serif;
+}
+.M-loginWrapper {
+  width: 23.4rem;
+  height: 41.7rem;
+  /* border: 1px solid black; */
+  /* margin: 0; */
+  /* margin: 10px 10px; */
+  position: relative;
+  background: #79cee2;
+  padding-top: 0.1rem;
+  overflow: hidden;
+}
+
+.M-logCard {
+  width: 21.1rem;
+  height: 39.5rem;
+  background: teal;
+  background: white;
+  margin: 1.03rem auto;
+  transition: 1s;
+  text-align: center;
+  padding-top: 1rem;
+  /* display: none; */
+}
+.M-logCard.active {
+  display: none;
+}
+
+.M-regCard {
+  width: 21.1rem;
+  height: 39.5rem;
+  background: red;
+  background: white;
+  margin: 1rem auto;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.M-moveBrick1 {
+  width: 15rem;
+  height: 1.1rem;
+  /* border: 1px solid green; */
+  background: white;
+  position: absolute;
+  transition: 0.75s;
+  left: 1.1rem;
+  top: 0;
+}
+.M-moveBrick2 {
+  width: 15rem;
+  height: 1.1rem;
+  /* border: 1px solid green; */
+  position: absolute;
+  transition: 0.75s;
+  background: white;
+  left: 7.25rem;
+  bottom: 0rem;
+}
+.M-moveBrick3 {
+  width: 1.1rem;
+  height: 18rem;
+  background: white;
+  transition: 0.75s;
+  /* border: 1px solid blueviolet; */
+  position: absolute;
+  top: 16rem;
+}
+.M-moveBrick4 {
+  width: 1.1rem;
+  height: 18rem;
+  background: white;
+  transition: 0.75s;
+  /* border: 1px solid blueviolet; */
+  position: absolute;
+  left: 22.25rem;
+  top: 8rem;
+}
+.M-loginWrapper.active {
+  background: #f9a451;
+}
+.M-moveBrick1.active {
+  transform: translateX(6.12rem);
+}
+.M-moveBrick2.active {
+  transform: translateX(-6.12rem);
+}
+.M-moveBrick3.active {
+  transform: translateY(-8rem);
+}
+.M-moveBrick4.active {
+  transform: translateY(8rem);
+}
+.M-fakeLogo {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto;
+  /* padding: 10px; */
+  border: 1px black dotted;
+}
+.M-apiLog {
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 6rem;
+  display: flex;
+}
+.M-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 0.1rem;
+  border: 1px dotted black;
+}
+
+.M-logForm {
+  position: relative;
+}
+
+.M-loginInput {
+  /* background: red; */
+  margin-top: 10px;
+}
+
+.M-loginBtn {
+  /* margin: 0 auto;
+  margin-top: 40px; */
+  padding: 10px 30px;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  font-size: 1.875rem;
+  position: absolute;
+  top: 9.5rem;
+  left: 7rem;
+}
+
+.M-loginSwitch {
+  width: 5rem;
+  height: 5rem;
+  border: 1px dotted black;
+  position: absolute;
+  top: 15rem;
+  left: 2rem;
+  background: gold;
+}
+
+.M-regBtn {
+  /* margin: 0 auto;
+  margin-top: 40px; */
+  padding: 10px 30px;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  font-size: 1.875rem;
+  position: absolute;
+  top: 9.5rem;
+  left: 7rem;
+}
+
+.M-regSwitch {
+  width: 5rem;
+  height: 5rem;
+  border: 1px dotted black;
+  position: absolute;
+  top: 15rem;
+  left: 2rem;
+  background: blue;
+}
+
+/* -------------------會員中心左側//大頭貼//轉換鈕//關注商品--------------- */
+.M-indexLeft {
+  width: 23.4rem;
+  border: 1px solid black;
+}
+
+.M-avatarWrapper {
+  width: 23.2rem;
+  height: 50rem;
+  background: lightblue;
+  position: relative;
+  transition: 2s;
+  overflow: hidden;
+}
+
+/* .active */
+.M-avatarWrapper {
+  height: 12.19rem;
+}
+
+.M-avatarTop {
+  display: flex;
+}
+
+.M-avatarPhoto {
+  width: 8rem;
+  height: 8rem;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.M-avatarPhoto img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+}
+
+.M-avatarDes {
+  width: 14rem;
+  height: 8rem;
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-left: 10px;
+  /* border: 1px solid black; */
+}
+
+.M-avatarDes h6 {
+  color: grey;
+}
+
+.M-avatarWrapper a {
+  text-decoration: none;
+  display: inline-block;
+  position: absolute;
+  font-weight: 600;
+  left: 8rem;
+  top: 10rem;
+}
+
+.M-avatarChange {
+  width: 3rem;
+  height: 3rem;
+  border: 1px dotted green;
+  position: absolute;
+  top: 7rem;
+}
+
+/* .M-avatarDes > h6 {
+width: 15rem;
+height: 8rem;
+text-align: center;
+margin-top: 2.5rem;
+border: 1px solid black;
+} */
+.M-avatardwn {
+  margin-top: 5rem;
+  width: 23.2rem;
+  height: 30rem;
+  border: 1px solid red;
+}
+
+.M-mbdesForm {
+  text-align: center;
+}
+
+.M-mbdesFormtop {
+  display: flex;
+}
+
+.M-mbdesformLab {
+  text-align: right;
+  width: 8rem;
+}
+
+.M-mbdesformLab h6 {
+  margin: 15px;
+  margin-top: 12px;
+}
+
+.M-mbdesformIpt {
+  width: 5rem;
+  /* height: 10rem; */
+}
+
+.M-mbdesformIpt input {
+  margin-top: 5px;
+  /* display: block; */
+}
+
+.M-mbdesFormdwn {
+  text-align: center;
+}
+
+.M-mbdesFormdwn h6 {
+  text-align: left;
+  margin-left: 3rem;
+}
+
+.M-mbdesSub {
+  margin-top: 1rem;
+  padding: 5px 10px;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  font-size: 1.875rem;
+}
+
+/* 會員頁左邊選鈕 */
+.M-subbtnGroup {
+  margin: 10px 0;
+  width: 23.2rem;
+  height: 7.8rem;
+  background: pink;
+  display: flex;
+}
+
+.M-subbtnGroup a {
+  width: 7.8125rem;
+  height: 7.8125rem;
+  line-height: 6rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  text-align: center;
+  background: white;
+  padding: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.M-subbtnGroup a:hover {
+  transform: scale(0.8);
+}
+
+/* 關注商品列表 */
+.M-LikeproductWrapper {
+  width: 23.2rem;
+}
+
+.M-azenproductListWindow {
+  width: 16rem;
+  height: 23rem;
+  margin: 0 auto;
+  background: blueviolet;
+  /* overflow: hidden; */
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.M-azenproductList {
+  width: 16rem;
+  height: 30rem;
+  border: 1px solid red;
+  position: absolute;
+  transition: 0.8s;
+  /* bottom: 16.2rem; */
+  /* top: -23.2rem; */
+  top: 0rem;
+}
+
+.M-markpdWrapper {
+  width: 16rem;
+  height: 23.125rem;
+  /* border-radius: 0 5%; */
+  /* border: 1px solid black; */
+  overflow: hidden;
+  box-shadow: 0px 6px 2 black;
+
+  transition: 0.75s;
+  text-align: center;
+  border: 0.5px solid blue;
+  /* margin:  auto 1rem; */
+  /* margin-bottom: 2rem; */
+}
+
+.M-markpdWrapper.active {
+  transform: translateY(-10px);
+}
+
+.M-markpdImg {
+  width: 100%;
+  height: 166px;
+}
+
+.M-markpdImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: cell;
+  transition: 0.75s;
+}
+
+.M-markpdImg img:hover {
+  transform: scale(0.95);
+}
+
+.M-markpdBody {
+  width: 90%;
+  height: 0;
+  text-align: center;
+  margin: 0 auto 10px;
+  /* transition: .75s; */
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.58, 1);
+  overflow: hidden;
+}
+
+.M-markpdBody.active {
+  height: 51%;
+  border: 2px solid #707070;
+  border-top: 0;
+}
+
+.M-markpdBody h5 {
+  font-weight: 600;
+  line-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.M-markpdDes {
+  position: relative;
+  text-align: right;
+}
+
+.M-markpdDes p {
+  margin: 5px 5px;
+  font-size: 0.8rem;
+  line-height: 25px;
+  text-align: left;
+  /* 指定保留行數*/
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.M-markpdTrans {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  color: #707070;
+  text-decoration: none;
+  float: right;
+  padding: 10px;
+  filter: opacity(50%);
+  /* position: absolute;
+  right: 0; */
+}
+
+.M-markpdTrans:hover {
+  /* filter: drop-shadow(3px -6px 2px black) */
+  filter: opacity(100%);
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.M-markpdTrans img {
+  width: 100%;
+  height: 100%;
+  color: #707070;
+  object-fit: cover;
+}
+
+.M-markpdOuttitle {
+  display: inline-block;
+  margin: 0;
+  transition: 0.75s;
+  line-height: 150px;
+  /* white-space: normal; */
+}
+
+.M-markpdOuttitle.active {
+  opacity: 0;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
+
+/* --------------------會員收藏遊戲詳細小卡元件-------- */
+.collectcarddetailWrapper {
+  width: 46.8rem;
+  height: 19.75rem;
+  border: 1px solid black;
+  display: flex;
+}
+
+.collectcarddetailLeft {
+  /* width: 22rem;
+  height: 17rem;
+  border: 1px solid green; */
+}
+
+.collectcarddetailImg {
+  margin-top: 1.5rem;
+  width: 22rem;
+  height: 14rem;
+  /* border: 1px solid indianred; */
+}
+
+.collectcarddetailRight {
+  width: 24.5rem;
+  height: 19.5rem;
+  /* border: 1px solid indianred; */
+  position: relative;
+}
+
+.collectcarddetailRight h4 {
+  line-height: 4rem;
+  font-weight: 900;
+}
+
+.collectcarddetailRight p {
+  font-size: 0.85rem;
+}
+
+.collectcarddetailCbtn {
+  width: 3rem;
+  height: 3rem;
+  background: khaki;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.M-collectcarddetailStart {
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  text-decoration: none;
+}
+
+/* ---------------------加好友小卡----------------- */
+.M-addfriendCardWrapper {
+  width: 23rem;
+  height: 13rem;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 3px 6px #707070; */
+  position: relative;
+}
+
+.M-addfriendCardWrapper svg {
+  -webkit-filter: drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.7));
+  fill: #fff;
+}
+
+/* 背景圓 */
+.M-addfriendcardCricle {
+  width: 19rem;
+  height: 13rem;
+  /* border: 1px solid red; */
+  margin-left: 4rem;
+  position: relative;
+}
+
+.M-addfriendPhoto {
+  width: 7.5rem;
+  height: 7.5rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.7rem;
+  left: 0.2rem;
+}
+
+.M-addfriendBricktop {
+  width: 8rem;
+  height: 2rem;
+  /* border: 1px solid black; */
+  position: absolute;
+  background: #79cee2;
+  top: 0;
+}
+
+.M-addfriendBrickdwn {
+  width: 8rem;
+  height: 2rem;
+  /* border: 1px solid black; */
+  position: absolute;
+  background: #79cee2;
+  bottom: 0.1rem;
+  right: 0.25rem;
+}
+
+.M-addfriendDes {
+  width: 15.5rem;
+  margin-left: 3rem;
+  height: 13rem;
+  /* border: 1px solid black; */
+  position: absolute;
+  top: 0;
+  display: flex;
+}
+
+.M-addfrienddesLeft {
+  width: 15.8rem;
+  height: 12.8rem;
+  /* border: 1px solid black; */
+}
+
+.M-addfrienddesLeft h5 {
+  line-height: 5rem;
+  font-weight: 900;
+}
+
+.M-addfrienddesLeft p {
+  margin-left: 2rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.M-addfrienddesLeft h6 {
+  font-weight: 900;
+}
+
+/* 加入連結 */
+
+.M-addfrienddesLeft a {
+  padding: 5px;
+  margin-left: 8rem;
+  font-weight: 900;
+  color: #79cee2;
+  border: 1px solid #79cee2;
+}
+
+/* .M-addfrienddesRight {
+  margin-left: 0.1rem;
+  width: 4rem;
+  height: 12.8rem;
+  border: 1px solid red;
+} */
+
+.M-addfriendcardcbtn {
+  width: 4rem;
+  height: 4rem;
+  border: 1px dotted black;
+  /* background: cornflowerblue; */
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+}
+
+/* ------------------會員中心好友列表小卡---------------- */
+.M-friendcollectWrapper {
+  width: 46.875rem;
+  height: 10.75rem;
+  padding: 0.3rem;
+  border: 1px solid black;
+  /* display: flex;
+  justify-content: space-around; */
+}
+
+.M-friendcollectCard {
+  width: 20rem;
+  height: 10rem;
+  /* background: teal; */
+  border: 1px solid #adb6bd;
+  padding: 0.6rem;
+  /* position: relative; */
+  display: flex;
+}
+
+.M-friendcollectCardleft {
+  width: 7.5rem;
+  height: 9rem;
+  /* border: 1px solid black; */
+}
+
+.M-friendcollectPhoto {
+  width: 6rem;
+  height: 6rem;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.M-friendcollectClear {
+  margin-top: 0.8rem;
+  border: 1px solid #f9a451;
+  color: #f9a451;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.M-friendcollectCardright {
+  width: 11rem;
+  height: 9rem;
+  /* border: 1px solid black; */
+}
+
+.M-friendcollectCardright h5 {
+  font-size: 1.875rem;
+  margin-top: 0.4rem;
+  line-height: 4rem;
+}
+
+.M-friendcollectCardright p {
+  font-size: 1rem;
+  color: #adb6bd;
+  overflow: hidden;
+  /* 指定保留行數*/
+  line-height: 1.2rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.M-friendcollectDot {
+  width: 1rem;
+  height: 1rem;
+  background: green;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 7.5rem;
+}
+
+.M-friendcollectCardright span {
+  margin-left: 0.4rem;
+  margin-bottom: 0.8rem;
+  font-weight: 900;
+}
+
+/* -----會員主頁視覺牆--------MindexViewwall---------------- */
+.M-gameviewWall {
+  width: 46.875rem;
+  /* height: 11.85rem; */
+  background: lightpink;
+  margin: 5rem auto;
+  display: flex;
+}
+
+.M-viewwallPart {
+  width: 23.4375rem;
+  height: 11.85rem;
+  border: 1px solid green;
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.M-vwpuzzleWrapper {
+  width: 11rem;
+  height: 11.8rem;
+  margin: 0 0.4rem;
+  border: 1px solid red;
+}
+
+.M-vwbigPuzzle {
+  width: 10.5rem;
+  height: 7rem;
+  background: lightsalmon;
+  /* margin-bottom: 0.45rem; */
+}
+
+.M-vwsmlPuzzleWrapper {
+  padding-top: 0.43rem;
+  width: 10.5rem;
+  height: 4.5rem;
+  display: flex;
+}
+
+.M-vwsmlPuzzleLeft {
+  width: 5.5rem;
+  height: 3.8rem;
+  background: lightsteelblue;
+}
+
+.M-vwsmlPuzzleRight {
+  width: 5.5rem;
+  height: 3.8rem;
+  margin-left: 0.4rem;
+  background: lightsteelblue;
+}
+
+/* --------MindexChangeavatar--紙娃娃小卡------- */
+.M-dollcardWrapper {
+  width: 23.2rem;
+  height: 41.5rem;
+  border: 1px solid black;
+  position: relative;
+}
+
+/* canvas容器 */
+.M-dollcardMajor {
+  width: 14.375rem;
+  height: 14.375rem;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.M-dollhControlgroup {
+  width: 22rem;
+  height: 3rem;
+  border: 1px solid blue;
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.M-dollhControlgroup h5 {
+  line-height: 3rem;
+  font-weight: 900;
+}
+
+.M-dollhSelect {
+  width: 3rem;
+  height: 3rem;
+  background: greenyellow;
+}
+
+.M-dollhimgOuter {
+  margin-top: 1rem;
+  width: 23.1rem;
+  height: 5rem;
+  border: 1px solid violet;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+/* 圖片承載器 */
+.M-dollhimgList {
+  list-style: none;
+  width: 50rem;
+  height: 5rem;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: -100px;
+  /* -webkit-flex-wrap: nowrap; */
+}
+
+/* 圖片容器設定 */
+.M-dollhimgList li {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 5px;
+  background: yellow;
+  /* position: absolute; */
+}
+
+/* 圖片設定 */
+.M-dollhimgList li > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.M-dollconfrimBtn {
+  display: inline-block;
+  margin-top: 2rem;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  margin-left: 8rem;
+  text-decoration: none;
+}
+
+.M-dollcancelBtn {
+  width: 3rem;
+  height: 3rem;
+  background: teal;
+  position: absolute;
+  right: 0.3rem;
+  top: 0.3rem;
+}
+/* -----------MindexcomCard----好友發文小卡 */
+.M-fcomlistWrapper {
+  width: 54rem;
+  display: flex;
+}
+.M-comuWrapper {
+  width: 280px;
+  height: 418px;
+  margin: 0 1rem;
+  /* border: 1px solid black; */
+  /* margin: 50px auto; */
+  /* border-radius: 10px;
+  overflow: hidden; */
+  position: relative;
+  box-shadow: 0px 3px 2px #707070;
+}
+
+.M-comuPost {
+  width: 100%;
+  height: 100%;
+}
+
+.M-comuBody {
+  width: 100%;
+  height: 79%;
+  /* border: 1px solid red; */
+}
+
+.M-comuHead {
+  width: 100%;
+  height: 50%;
+  background: url() no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0px 3px 6px #707070;
+}
+
+.M-comuHead_des {
+  margin-top: 10px;
+  padding: 5px;
+  width: 100%;
+  height: 45%;
+  /* border: 1px solid teal; */
+}
+
+.M-comuHead_des h5 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 15px;
+}
+
+.M-comuHead_des h6 {
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.M-comuHead_des p {
+  margin-top: 15px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.M-comuFoot {
+  width: 100%;
+  height: 21%;
+  /* border: 1px solid teal; */
+  border-top: 0;
+  position: relative;
+}
+
+.M-comuFoot svg {
+  fill: #79cee2;
+}
+
+.M-comuPoster {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /* border: 1px solid red; */
+  overflow: hidden;
+  position: absolute;
+  bottom: 35%;
+  left: 8.2%;
+}
+
+.M-comuPoster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.M-comuDes {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid red; */
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+}
+
+.M-comuDes h5 {
+  display: inline-block;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+/* -----------Mbcenterindex----會員中心主頁---- */
+
+.M-indexWrapper {
+  max-width: 85.375rem;
+  /* height: 50rem; */
+  /* background: teal; */
+  margin: 0 auto;
+  border: 1px solid teal;
+  display: flex;
+}
+.M-indexLeftContainer {
+  width: 23.4375rem;
+  height: 50rem;
+  background: lightblue;
+}
+.M-indexRightContainer {
+  width: 61.9375rem;
+  height: 50rem;
+  background: green;
+}
+.M-indexRightlayer1 {
+  width: 61.9375rem;
+  height: 50rem;
+  background: red;
+}
+.M-indexRightlayer2 {
+  width: 61.9375rem;
+  height: 50rem;
+  background: blue;
+}
+.M-indexRightlayer3 {
+  width: 61.9375rem;
+  height: 50rem;
+  background: orange;
+}
+.layerDisappear {
+  display: none;
+}
+/* RWD */
+@media screen and (max-width: 576px) {
+  /* 會員中心主容器 */
+  .M-indexWrapper {
+    max-width: 23.4375rem;
+    background: red;
+    display: block;
+  }
+  /* 會員中心左側 */
+  .M-indexRightContainer {
+    width: 23.4375rem;
+  }
+  /* 會員中心右側一層 */
+
+  .M-indexRightlayer1 {
+    width: 23.4375rem;
+  }
+  /* 會員中心右側二層 */
+  .M-indexRightlayer2 {
+    width: 23.4375rem;
+  }
+  /* 會員中心右側三層 */
+
+  .M-indexRightlayer3 {
+    width: 23.4375rem;
+  }
+
+  /* 視覺牆 */
+  .M-gameviewWall {
+    width: 23.4375rem;
+    flex-direction: column;
+  }
+  .M-viewwallPart {
+    margin-top: 3rem;
+  }
+}
