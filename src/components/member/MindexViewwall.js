@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function MindexViewwall() {
   return (
@@ -49,9 +49,8 @@ function MindexViewwall() {
           {/* 圖片牆四分之一 終*/}
         </div>
       </div>
-      ;
     </>
-  );
+  )
 }
 
-export default MindexViewwall;
+export default MindexViewwall

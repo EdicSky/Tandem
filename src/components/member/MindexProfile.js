@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { displayChange } from '../../actions/Maction'
 
 function MindexProfile() {
-  const [azenpdpos, setAzenpdPos] = useState("0rem");
-  let startPos = 0;
-  let walkingDis = 23.2;
-  let endPos = -100;
-  let finalPos = "";
+  const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     startPos -= walkingDis;
-  //     if (startPos < endPos) {
-  //       startPos = 0;
-  //     }
-  //     finalPos = startPos + "rem";
-  //     console.log(finalPos);
-  //     setAzenpdPos(finalPos);
-  //     console.log(azenpdpos);
-  //   }, 5000);
-  // }, []);
+  const [azenpdpos, setAzenpdPos] = useState('0rem')
+  let startPos = 0
+  let walkingDis = 23.2
+  let finalPos = ''
+  let limit = -100
+
+  useEffect(() => {
+    setInterval(() => {
+      startPos -= walkingDis
+      if (startPos < limit) {
+        startPos = 0
+      }
+      finalPos = startPos + 'rem'
+      console.log('finalPos:' + finalPos)
+      setAzenpdPos(finalPos)
+    }, 5000)
+  }, [])
+  // 在setInterval裡都是會抓到useeffect
+  console.log('azenpdpos:' + azenpdpos)
 
   return (
     <>
@@ -31,14 +36,12 @@ function MindexProfile() {
                 <img src="" />
               </div>
               <div className="M-avatarDes">
-                <h3>Kotake</h3>
+                <h3 onClick={() => dispatch(displayChange(1))}>Kotake</h3>
                 <h6>只會爆裂魔法的...</h6>
               </div>
             </section>
             {/* 修改個人資料btn */}
-            <a type="button" className="M-mbDeschagebtn" href="#">
-              修改個人資料
-            </a>
+            <button className="M-mbDeschagebtn">修改個人資料</button>
             {/* 調整大頭像btn */}
             <div className="M-avatarChange">
               {/* 修改個人資料主表 */}
@@ -75,8 +78,8 @@ function MindexProfile() {
                       id=""
                       cols={30}
                       rows={5}
-                      style={{ maxWidth: 230, maxHeight: 130, resize: "none" }}
-                      defaultValue={""}
+                      style={{ maxWidth: 230, maxHeight: 130, resize: 'none' }}
+                      defaultValue={''}
                     />
                   </div>
                   <input
@@ -90,15 +93,27 @@ function MindexProfile() {
           </div>
           {/* 會員主頁左邊鈕 */}
           <div className="M-subbtnGroup">
-            <a type="button" href="#">
+            <button
+              onClick={() => {
+                dispatch(displayChange(2))
+              }}
+            >
               好友管理
-            </a>
-            <a type="button" href="#">
+            </button>
+            <button
+              onClick={() => {
+                dispatch(displayChange(3))
+              }}
+            >
               遊戲倉庫
-            </a>
-            <a type="button" href="#">
+            </button>
+            <button
+              onClick={() => {
+                dispatch(displayChange(4))
+              }}
+            >
               購買管理
-            </a>
+            </button>
           </div>
           {/* 關注商品列表跑馬 */}
           <div className="M-LikeproductWrapper">
@@ -106,7 +121,10 @@ function MindexProfile() {
             {/* 關注商品顯示窗 */}
             <div className="M-azenproductListWindow">
               {/* 關注商品輸送帶 */}
-              <div className="M-azenproductList" style={{ top: `{azenpdpos}` }}>
+              <div
+                className="M-azenproductList"
+                style={{ top: `${azenpdpos}` }}
+              >
                 {/* 商品本體 */}
                 <div className="M-markpdWrapper">
                   <div className="M-markpdImg">
@@ -115,7 +133,7 @@ function MindexProfile() {
                   <div className="M-markpdBody">
                     <h5>隻狼：暗影雙死</h5>
                     <span className="M-markpdSub">
-                      {" "}
+                      {' '}
                       <svg className="svg-icon" viewBox="0 0 20 20">
                         <path d="M9.719,17.073l-6.562-6.51c-0.27-0.268-0.504-0.567-0.696-0.888C1.385,7.89,1.67,5.613,3.155,4.14c0.864-0.856,2.012-1.329,3.233-1.329c1.924,0,3.115,1.12,3.612,1.752c0.499-0.634,1.689-1.752,3.612-1.752c1.221,0,2.369,0.472,3.233,1.329c1.484,1.473,1.771,3.75,0.693,5.537c-0.19,0.32-0.425,0.618-0.695,0.887l-6.562,6.51C10.125,17.229,9.875,17.229,9.719,17.073 M6.388,3.61C5.379,3.61,4.431,4,3.717,4.707C2.495,5.92,2.259,7.794,3.145,9.265c0.158,0.265,0.351,0.51,0.574,0.731L10,16.228l6.281-6.232c0.224-0.221,0.416-0.466,0.573-0.729c0.887-1.472,0.651-3.346-0.571-4.56C15.57,4,14.621,3.61,13.612,3.61c-1.43,0-2.639,0.786-3.268,1.863c-0.154,0.264-0.536,0.264-0.69,0C9.029,4.397,7.82,3.61,6.388,3.61"></path>
                       </svg>
@@ -141,7 +159,7 @@ function MindexProfile() {
                   <div className="M-markpdBody">
                     <h5>隻狼：暗影雙死</h5>
                     <span className="M-markpdSub">
-                      {" "}
+                      {' '}
                       <svg className="svg-icon" viewBox="0 0 20 20">
                         <path d="M9.719,17.073l-6.562-6.51c-0.27-0.268-0.504-0.567-0.696-0.888C1.385,7.89,1.67,5.613,3.155,4.14c0.864-0.856,2.012-1.329,3.233-1.329c1.924,0,3.115,1.12,3.612,1.752c0.499-0.634,1.689-1.752,3.612-1.752c1.221,0,2.369,0.472,3.233,1.329c1.484,1.473,1.771,3.75,0.693,5.537c-0.19,0.32-0.425,0.618-0.695,0.887l-6.562,6.51C10.125,17.229,9.875,17.229,9.719,17.073 M6.388,3.61C5.379,3.61,4.431,4,3.717,4.707C2.495,5.92,2.259,7.794,3.145,9.265c0.158,0.265,0.351,0.51,0.574,0.731L10,16.228l6.281-6.232c0.224-0.221,0.416-0.466,0.573-0.729c0.887-1.472,0.651-3.346-0.571-4.56C15.57,4,14.621,3.61,13.612,3.61c-1.43,0-2.639,0.786-3.268,1.863c-0.154,0.264-0.536,0.264-0.69,0C9.029,4.397,7.82,3.61,6.388,3.61"></path>
                       </svg>
@@ -166,7 +184,7 @@ function MindexProfile() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default MindexProfile;
+export default MindexProfile

@@ -6,7 +6,7 @@
 
 /* 登入卡 */
 body {
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .M-loginWrapper {
   width: 23.4rem;
@@ -187,9 +187,9 @@ body {
   overflow: hidden;
 }
 
-/* .active */
+/* .active  */
 .M-avatarWrapper {
-  height: 12.19rem;
+  height: 12.5rem;
 }
 
 .M-avatarTop {
@@ -249,10 +249,10 @@ margin-top: 2.5rem;
 border: 1px solid black;
 } */
 .M-avatardwn {
-  margin-top: 5rem;
+  margin-top: 6rem;
   width: 23.2rem;
   height: 30rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .M-mbdesForm {
@@ -291,6 +291,17 @@ border: 1px solid black;
   text-align: left;
   margin-left: 3rem;
 }
+.M-mbDeschagebtn {
+  width: 8rem;
+  height: 2rem;
+  /* font-size: 1.5rem; */
+  font-weight: 700;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  text-align: center;
+  background: white;
+  margin-left: 5rem;
+}
 
 .M-mbdesSub {
   margin-top: 1rem;
@@ -309,7 +320,7 @@ border: 1px solid black;
   display: flex;
 }
 
-.M-subbtnGroup a {
+.M-subbtnGroup button {
   width: 7.8125rem;
   height: 7.8125rem;
   line-height: 6rem;
@@ -324,7 +335,7 @@ border: 1px solid black;
   transition: 0.5s;
 }
 
-.M-subbtnGroup a:hover {
+.M-subbtnGroup button:hover {
   transform: scale(0.8);
 }
 
@@ -337,8 +348,8 @@ border: 1px solid black;
   width: 16rem;
   height: 23rem;
   margin: 0 auto;
-  background: blueviolet;
-  /* overflow: hidden; */
+  /* background: blueviolet; */
+  overflow: hidden;
   margin-bottom: 2rem;
   position: relative;
 }
@@ -450,7 +461,7 @@ border: 1px solid black;
 }
 
 .clearfix::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }
@@ -742,7 +753,7 @@ border: 1px solid black;
   width: 46.875rem;
   /* height: 11.85rem; */
   background: lightpink;
-  margin: 5rem auto;
+  margin: 3.5rem auto;
   display: flex;
 }
 
@@ -888,12 +899,16 @@ border: 1px solid black;
 /* -----------MindexcomCard----好友發文小卡 */
 .M-fcomlistWrapper {
   width: 54rem;
+  height: 28rem;
+  /* padding: 0 5rem; */
+  margin: 0 auto;
+  /* border: 1px solid white; */
   display: flex;
 }
 .M-comuWrapper {
   width: 280px;
-  height: 418px;
-  margin: 0 1rem;
+  height: 386px;
+  margin: 2rem 1rem;
   /* border: 1px solid black; */
   /* margin: 50px auto; */
   /* border-radius: 10px;
@@ -1005,18 +1020,18 @@ border: 1px solid black;
 }
 .M-indexLeftContainer {
   width: 23.4375rem;
-  height: 50rem;
+  /* height: 50rem; */
   background: lightblue;
 }
 .M-indexRightContainer {
   width: 61.9375rem;
-  height: 50rem;
-  background: green;
+  /* height: 50rem; */
+  /* background: green; */
 }
 .M-indexRightlayer1 {
   width: 61.9375rem;
   height: 50rem;
-  background: red;
+  background: lightgreen;
 }
 .M-indexRightlayer2 {
   width: 61.9375rem;
@@ -1028,6 +1043,11 @@ border: 1px solid black;
   height: 50rem;
   background: orange;
 }
+.M-indexRightlayer4 {
+  width: 61.9375rem;
+  height: 50rem;
+  background: lightslategray;
+}
 .layerDisappear {
   display: none;
 }
@@ -1036,7 +1056,7 @@ border: 1px solid black;
   /* 會員中心主容器 */
   .M-indexWrapper {
     max-width: 23.4375rem;
-    background: red;
+    /* background: red; */
     display: block;
   }
   /* 會員中心左側 */
@@ -1044,10 +1064,29 @@ border: 1px solid black;
     width: 23.4375rem;
   }
   /* 會員中心右側一層 */
+  .M-indexRightContainer {
+  }
 
   .M-indexRightlayer1 {
     width: 23.4375rem;
+    height: 125rem;
   }
+  /* 視覺牆 */
+  .M-gameviewWall {
+    width: 23.4375rem;
+    flex-direction: column;
+  }
+  .M-viewwallPart {
+    margin-top: 3rem;
+  }
+  /* 好友發文小卡 */
+  .M-fcomlistWrapper {
+    flex-direction: column;
+  }
+  .M-comuWrapper {
+    margin: 2rem 3rem;
+  }
+
   /* 會員中心右側二層 */
   .M-indexRightlayer2 {
     width: 23.4375rem;
@@ -1056,14 +1095,5 @@ border: 1px solid black;
 
   .M-indexRightlayer3 {
     width: 23.4375rem;
-  }
-
-  /* 視覺牆 */
-  .M-gameviewWall {
-    width: 23.4375rem;
-    flex-direction: column;
-  }
-  .M-viewwallPart {
-    margin-top: 3rem;
   }
 }

@@ -6,10 +6,15 @@ import MindexProfile from '../../components/member/MindexProfile'
 //會員中心右側介面
 //layer1
 import MindexViewwall from '../../components/member/MindexViewwall'
+import MindexcomCard from '../../components/member/MindexcomCard'
 
-const test = 1
+//redux控制
+// 引入store state
+import { useSelector } from 'react-redux'
 
 function Mbcenterindex() {
+  // 控制顯示層
+  const dispalyLayer = useSelector(state => state.MindexDisplaychange)
   return (
     <>
       <div className="M-indexWrapper">
@@ -19,19 +24,25 @@ function Mbcenterindex() {
         <div className="M-indexRightContainer">
           <div
             className={`M-indexRightlayer1 + ${
-              test === 2 || test === 3 ? 'layerDisappear' : ''
+              dispalyLayer === 1 ? '' : 'layerDisappear'
             }`}
           >
             <MindexViewwall />
+            <MindexcomCard />
           </div>
           <div
             className={`M-indexRightlayer2 + ${
-              test === 1 || test === 3 ? 'layerDisappear' : ''
+              dispalyLayer === 2 ? '' : 'layerDisappear'
             }`}
           ></div>
           <div
             className={`M-indexRightlayer3 + ${
-              test === 1 || test === 2 ? 'layerDisappear' : ''
+              dispalyLayer === 3 ? '' : 'layerDisappear'
+            }`}
+          ></div>
+          <div
+            className={`M-indexRightlayer4 + ${
+              dispalyLayer === 4 ? '' : 'layerDisappear'
             }`}
           ></div>
         </div>
