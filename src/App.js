@@ -23,7 +23,7 @@ function App() {
     <Router>
       <>
         <Header />
-        <div className="container mt-30">
+        <div className=" mt-30">
           {/* <Home className="mt-3"/> */}
           <Switch>
             <Route path="/activity">

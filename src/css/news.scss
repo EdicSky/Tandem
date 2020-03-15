@@ -4,197 +4,82 @@ $icon_color: #f9a451;
 $gray: #adb6bd;
 $btn_weight: bold;
 $shadow: 0px 0px 4px $gray;
+
+.banner {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: bottom;
+  background-image: url('/news_images/zombie.jpg');
+}
 .btn {
   background: #fff;
   border: 2px solid $main_color;
   transition: 0.5s;
-}
-a.btn {
   color: $main_color;
-  font-weight: bold;
-}
-a.btn:hover {
-  color: #fff;
 }
 .btn:hover {
   background: $main_color;
   border: none;
+  color: #fff;
 }
-.icon {
-  font-size: 20px;
-  color: $icon_color;
-  margin: 0 5px;
-}
-h2 {
+.related_news h2 {
   font-size: 2rem;
   font-family: $font-family;
   letter-spacing: 3px;
   font-weight: bold;
-}
-h4 {
-  font-family: $font-family;
-  letter-spacing: 3px;
-  font-weight: bold;
-}
-p {
-  letter-spacing: 1px;
-  font-family: $font-family;
-  line-height: 28px;
+  padding: 80px 0 40px 0;
 }
 
-.carousell_wrapper {
-  margin: auto;
-  .carousell {
-    width: 940px;
-
-    img {
-      width: 100%;
-    }
+.pagination_news {
+  h1 {
+    font-size: 30px;
   }
 }
-.category {
-  padding: 30px 0;
-  .btn {
-    margin-left: 10px;
-    border-radius: 15px;
-    width: 80px;
-  }
+.back_to_list {
+  right: 0;
+  bottom: -50px;
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
 }
-.news_introduction {
-  margin-bottom: 50px;
-}
-.news_index_title {
-  h4 {
-    margin-bottom: 20px;
-  }
-}
-.card {
-  border: 1px solid $gray;
-  box-shadow: $shadow;
-}
-.news_index_detail {
-  padding-top: 40px;
-  .btn {
-    width: 100px;
-    height: 40px;
-  }
-}
-.news_index_detail_icon_group {
-  font-size: 10px;
-  font-weight: bold;
-  width: 250px;
-  a {
-    text-decoration: none;
-    color: #333;
-    transition: 0.5s;
-  }
-  a:hover {
-    color: $icon_color;
-  }
-}
-.time_group {
-  p {
-    line-height: 20px;
-  }
-}
-a.btn {
-  color: $main_color;
-}
-.news_index_detail {
-  a.btn {
-    font-size: 14px;
-  }
-}
-.news_search {
-  border: 1.5px solid $main_color;
-  border-radius: 25px;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-  position: absolute;
-  font-size: 18px;
-}
-.input-icons {
-  width: 100%;
-  margin-bottom: 10px;
-}
-.icon_s {
-  font-size: 25px;
-
-  left: 20px;
-  top: 8px;
-  z-index: 1;
-  color: $main_color;
-}
-.latest_news {
-  border: 1px solid $gray;
-  margin: 80px 0 50px 0;
-  padding: 0 20px;
-  box-shadow: $shadow;
-  .latest_news_group {
-    margin: 20px 0;
-  }
-  h4 {
-    margin-bottom: 10px;
-  }
-  h2 {
-    padding: 20px 0;
-    color: #333;
-  }
-  .latest_news_img {
-    width: 120px;
-  }
-  a {
-    text-decoration: none;
-    color: #212529;
-  }
-  a:hover {
-    color: $icon_color;
-  }
-}
-.category_section {
-  height: 300px;
-  border: 1px solid $gray;
-  padding: 0 20px;
-  box-shadow: $shadow;
-  h2 {
-    padding: 20px 0;
-    color: #333;
-  }
-  .news,
-  .sales {
-    border-bottom: 1px solid $gray;
-    a {
-      text-decoration: none;
-      display: block;
-      padding: 15px;
-      color: #000000;
-      transition: 0.5s;
-    }
-    a:hover {
-      color: $icon_color;
-    }
-  }
-}
-.pagination {
+.related_news {
   ul {
-    margin: 0 auto;
+    .a {
+      text-decoration: none;
+    }
+    li {
+      background-color: #a5b7c588;
+      box-shadow: $shadow;
+      width: 230px;
+      height: 340px;
+      transition: 0.5s;
+
+      .related_img {
+        background-image: url('/news_images/starter_guide.png');
+
+        background-size: contain;
+        height: 130px;
+        transition: 0.5s;
+      }
+      .related_content {
+        padding: 20px;
+        color: #212529;
+      }
+    }
   }
-  li {
-    width: 50px;
-    height: 50px;
-    border: 1.5px solid $main_color;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 47px;
-    color: $main_color;
-    margin-right: 15px;
-    font-weight: bold;
-  }
-  li:hover {
-    background: $main_color;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-  }
+}
+.related_news li:hover {
+  transform: scale(0.9);
+}
+.related_news li:hover > .related_img {
+  transform: scale(0.8);
+  border-radius: 25px;
+}
+.get_ticket {
+  right: 0;
+  bottom: -50px;
+  width: 140px;
+  height: 40px;
+  font-size: 16px;
 }
