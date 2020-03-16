@@ -63,7 +63,7 @@ p {
   color: $icon_color;
 }
 .category {
-  //visibility: hidden;
+  visibility: hidden;
   padding: 30px 0;
   height: 100px;
   vertical-align: middle;
@@ -74,6 +74,9 @@ p {
     width: 80px;
     height: 30px;
   }
+}
+.mobile_input {
+  display: none;
 }
 .news_introduction {
   margin-bottom: 50px;
@@ -130,7 +133,8 @@ a.btn {
   position: absolute;
   font-size: 18px;
 }
-.input-icons {
+.input-icons,
+.mobile_input {
   width: 100%;
   margin-bottom: 10px;
 }
@@ -213,5 +217,19 @@ a.btn {
     border: none;
     color: #fff;
     cursor: pointer;
+  }
+}
+@media screen and (max-width: 576px) {
+  .category {
+    visibility: visible;
+  }
+  .mobile_input {
+    display: block;
+  }
+  .input_icons {
+    display: none;
+  }
+  .category_section {
+    display: none;
   }
 }
