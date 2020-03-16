@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ForumC() {
+function BulletinC() {
   return (
     <></>
   )
 }
 
-export default ForumC
+export default BulletinC
