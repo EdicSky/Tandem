@@ -1,18 +1,46 @@
 import React, { useState, useEffect } from 'react'
-import { dollImg } from '../../MimgRef'
 
 function MindexChangeavatar() {
   // 拿到canvas
   const canvasRef = React.useRef(null)
 
   // 定義兩個圖片物件
-  let img = new Image()
-  let img2 = new Image()
-
+  const img = new Image()
+  const img2 = new Image()
+  // 輸送帶位置參數
   const [headlistpos, setHeadlistpos] = useState(0)
+  const [bodylistpos, setBodylistpos] = useState(0)
+  let headinital = 0
+  // 上限修正-22
+  const moveHead = movedis => {
+    headinital = headlistpos
+    if (headinital > -5) {
+      headinital = -5
+    }
+    if (headinital < -22) {
+      headinital = -22
+    }
+    headinital += movedis
+    setHeadlistpos(headinital)
+  }
+
+  let bodyinital = 0
+  const moveBody = movedis => {
+    bodyinital = bodylistpos
+    if (bodyinital > -5) {
+      bodyinital = -5
+    }
+    if (bodyinital < -22) {
+      bodyinital = -22
+    }
+    bodyinital += movedis
+    setBodylistpos(bodyinital)
+  }
+
+  // 圖片控制參數
   const [headimg, setHeadImg] = useState('')
   const [bodyimg, setBodyImg] = useState('')
-  // component載入
+  // component載入時要加入使用者紀錄的圖片路徑
   useEffect(() => {}, [])
   //圖片任何參數更動都要再畫一次
   // 動頭
@@ -23,7 +51,7 @@ function MindexChangeavatar() {
     img.src = bodyimg
     ctx.drawImage(img, 40, 90, 140, 140)
     img2.src = headimg
-    ctx.drawImage(img2, 65, 5, 98, 120)
+    ctx.drawImage(img2, 65, 0, 98, 120)
   }, [headimg])
   // 動下半
   useEffect(() => {
@@ -33,16 +61,28 @@ function MindexChangeavatar() {
     img.src = bodyimg
     ctx.drawImage(img, 40, 90, 140, 140)
     img2.src = headimg
-    ctx.drawImage(img2, 65, 5, 98, 120)
+    ctx.drawImage(img2, 65, 0, 98, 120)
   }, [bodyimg])
 
-  // 分別注入兩種state 用effect處理
+  // 點擊分別注入兩種state 用effect處理
   const getHead = e => {
     setHeadImg(e.target.src)
   }
   const getBody = e => {
-    console.log(e.target.src)
     setBodyImg(e.target.src)
+  }
+
+  //紀錄使用者最終的canvas狀態
+  const [finalcanvas, setFinalCanvas] = useState()
+
+  const getCanvas = () => {
+    let finalcanvasbase64 = canvasRef.current.toDataURL()
+    console.log(finalcanvasbase64)
+    // 取得base64轉給state
+    setFinalCanvas(finalcanvasbase64)
+    // 再發一個fetch修改後端資料
+
+    // 用redux連接資料讓所有component的圖像一起更改
   }
 
   return (
@@ -57,16 +97,26 @@ function MindexChangeavatar() {
         <div className="M-dollhControlgroup">
           {/* 選擇控制表按鈕 */}
           {/* 頭部控制左 */}
-          <div className="M-dollhSelect" />
+          <div
+            className="M-dollhSelect"
+            onClick={() => {
+              moveHead(5)
+            }}
+          />
           <h5>頭部選擇</h5>
           {/* 頭部控制右 */}
 
-          <div className="M-dollhSelect" />
+          <div
+            className="M-dollhSelect"
+            onClick={() => {
+              moveHead(-5)
+            }}
+          />
         </div>
         {/* 頭部選擇表最外框 */}
         <div className="M-dollhimgOuter">
           {/* 頭部圖片乘載器 */}
-          <ul className="M-dollhimgList">
+          <ul className="M-dollhimgList" style={{ left: headlistpos + 'rem' }}>
             <li>
               <img
                 src="/images/member/dollsystemImg/head1.png"
@@ -154,14 +204,24 @@ function MindexChangeavatar() {
         {/* 身體選擇器 */}
         <div className="M-dollhControlgroup">
           {/* 選擇控制表按鈕 */}
-          <div className="M-dollhSelect" test={10} />
+          <div
+            className="M-dollhSelect"
+            onClick={() => {
+              moveBody(5)
+            }}
+          />
           <h5>下半選擇</h5>
-          <div className="M-dollhSelect" />
+          <div
+            className="M-dollhSelect"
+            onClick={() => {
+              moveBody(-5)
+            }}
+          />
         </div>
         {/* 下半選擇表最外框和頭共用 */}
         <div className="M-dollhimgOuter">
           {/* 下半圖片乘載器 */}
-          <ul className="M-dollbimgList">
+          <ul className="M-dollbimgList" style={{ left: bodylistpos + 'rem' }}>
             <li>
               <img
                 src="/images/member/dollsystemImg/body1.png"
@@ -234,7 +294,13 @@ function MindexChangeavatar() {
             </li>
           </ul>
         </div>
-        <button type="button" className="M-dollconfrimBtn" href="#">
+        <button
+          type="button"
+          className="M-dollconfrimBtn"
+          onClick={() => {
+            getCanvas()
+          }}
+        >
           確認修改
         </button>
       </div>
