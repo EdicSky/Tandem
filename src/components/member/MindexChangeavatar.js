@@ -72,17 +72,42 @@ function MindexChangeavatar() {
     setBodyImg(e.target.src)
   }
 
-  //紀錄使用者最終的canvas狀態
+  //紀錄使用者最終的canvas狀態 //應該要寫給redux，讓所有用到的state的component改變
+  // 在Dimount的時候會從資料庫fetch值出來
   const [finalcanvas, setFinalCanvas] = useState()
 
   const getCanvas = () => {
+    // 取得最新的canvas結果
     let finalcanvasbase64 = canvasRef.current.toDataURL()
     console.log(finalcanvasbase64)
-    // 取得base64轉給state
-    setFinalCanvas(finalcanvasbase64)
-    // 再發一個fetch修改後端資料
+    // 包成一個obj送後端//必須取得userID or mail，也要寫入頭和身體最後選擇的路徑---------
+    const usercanvasobj = {
+      userId: 'from somewere',
+      userNewcanvas: finalcanvasbase64,
+      mbAvaHead: headimg,
+      mbAvaBody: bodyimg,
+    }
+    // 發一個fetch修改後端資料
+    async function updatecanvas(usercanvas, callback) {
+      const request = new Request('http://localhost:4000/test', {
+        method: 'POST',
+        body: JSON.stringify(usercanvas),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
 
-    // 用redux連接資料讓所有component的圖像一起更改
+      const response = await fetch(request)
+      console.log('fetch完成')
+      const payload = await response.json()
+      console.log(payload)
+
+      //TODO 取得base64轉給state//應該要改寫成dispatch action
+      setFinalCanvas(finalcanvasbase64)
+    }
+    //呼叫上方fetch送後端
+    updatecanvas(usercanvasobj)
   }
 
   return (

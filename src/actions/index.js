@@ -1,8 +1,6 @@
 //範例
 export const cartIncrement = () => {
-    return {
-      type: 'CART_INCREMENT',
-    }
+  return {
+    type: 'CART_INCREMENT',
   }
-  
-  
+}
