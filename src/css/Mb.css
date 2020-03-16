@@ -815,7 +815,7 @@ border: 1px solid black;
   margin: 0 auto;
   margin-top: 1rem;
 }
-
+/* 頭部選擇區 */
 .M-dollhControlgroup {
   width: 22rem;
   height: 3rem;
@@ -855,7 +855,7 @@ border: 1px solid black;
   display: flex;
   align-items: center;
   position: absolute;
-  left: -100px;
+  left: 0;
   /* -webkit-flex-wrap: nowrap; */
 }
 
@@ -871,6 +871,37 @@ border: 1px solid black;
 
 /* 圖片設定 */
 .M-dollhimgList li > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 下半身選擇 */
+/* 圖片容器設定 */
+/* 圖片承載器 */
+.M-dollbimgList {
+  list-style: none;
+  width: 50rem;
+  height: 5rem;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  /* -webkit-flex-wrap: nowrap; */
+}
+
+/* 圖片容器設定 */
+.M-dollbimgList li {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 5px;
+  background: yellow;
+  /* position: absolute; */
+}
+
+/* 圖片設定 */
+.M-dollbimgList li > img {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -12,14 +12,17 @@ import Forum from './pages/forum/Forum'
 import Mbcenterindex from './pages/member/Mbcenterindex'
 import Cart from './pages/shop/Cart'
 
+import Mbtestpage from './pages/member/Mbtestpage'
+
 function App() {
   return (
     <Router>
       <>
         <Header />
+        <Mbtestpage />
         <Switch>
           <Route exact path="/">
-            <Home />
+            {/* <Home /> */}
           </Route>
           <Route path="/activity">
             <Activity />
@@ -33,9 +36,7 @@ function App() {
           <Route path="/forum">
             <Forum />
           </Route>
-          <Route path="/member">
-            <Mbcenterindex />
-          </Route>
+          <Route path="/member">{/* <Mbcenterindex /> */}</Route>
           <Route path="/cart">
             <Cart />
           </Route>
