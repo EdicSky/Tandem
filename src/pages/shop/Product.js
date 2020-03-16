@@ -56,21 +56,21 @@ function Product(props) {
           <div className="text-center">
             <img src="https://via.placeholder.com/500x300" alt="" />
           </div>
-          <ul class="list-unstyled d-flex justify-content-center">
+          <ul className="list-unstyled d-flex justify-content-center">
             <li>
-              <img class="" src="https://via.placeholder.com/100x100" alt="" />
+              <img className="" src="https://via.placeholder.com/100x100" alt="" />
             </li>
             <li>
-              <img class="" src="https://via.placeholder.com/100x100" alt="" />
+              <img className="" src="https://via.placeholder.com/100x100" alt="" />
             </li>
             <li>
-              <img class="" src="https://via.placeholder.com/100x100" alt="" />
+              <img className="" src="https://via.placeholder.com/100x100" alt="" />
             </li>
             <li>
-              <img class="" src="https://via.placeholder.com/100x100" alt="" />
+              <img className="" src="https://via.placeholder.com/100x100" alt="" />
             </li>
             <li>
-              <img class="" src="https://via.placeholder.com/100x100" alt="" />
+              <img className="" src="https://via.placeholder.com/100x100" alt="" />
             </li>
           </ul>
         </div>
@@ -98,41 +98,41 @@ function Product(props) {
               <AiOutlineShoppingCart/>加入購物車
             </button>
           </div>
-          <div className="row mt-2">
-            <div className="col-3 h5">發行商:</div>
-            <div className="col-7 h5">{myproduct.vName}</div>
+          <div className="row mt-2 h6">
+            <div className="col-3 ">發行商:</div>
+            <div className="col-7 ">{myproduct.vName}</div>
           </div>
-          <div className="row">
-            <div className="col-3 h5">發行日期: </div>
-            <div className="col-4 h5">{myproduct.itemDate}</div>
+          <div className="row h6">
+            <div className="col-3 ">發行日期: </div>
+            <div className="col-4 ">{myproduct.itemDate}</div>
           </div>
-          <div className="row">
-            <div className="col-3 h5">遊戲類別:</div>
-            <div className="col-4 h5">{myproduct.categoryName}</div>
+          <div className="row h6">
+            <div className="col-3 ">遊戲類別:</div>
+            <div className="col-4 ">{myproduct.categoryName}</div>
           </div>
         </div>
       </div>
       <ul className="nav justify-content-center">
-        <li class="nav-item">
+        <li className="nav-item">
           <NavLink
-            className="nav-link"
+            className="nav-link h5"
             to="#"
             onClick={() => {
               handleDisplay(1)
             }}
           >
-            推薦規格
+            建議配備
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink
-            className="nav-link"
+            className="nav-link h5"
             to="#"
             onClick={() => {
               handleDisplay(2)
             }}
           >
-            評論
+            留言評論
           </NavLink>
         </li>
       </ul>
