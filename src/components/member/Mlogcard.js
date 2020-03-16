@@ -5,6 +5,32 @@ function Mlogcard() {
   const [logswitch, setLogSwitch] = useState(false)
   //忘記密碼小卡彈跳
   const [forgetpwd, setForgetPwd] = useState(false)
+  // 密碼查詢email
+  const [fgtraceE, setFgtraceE] = useState('')
+  //寄送密碼重設信件
+  const resetEmail = () => {
+    //TODO 輸入驗證---------------------
+    //組裝資訊
+    const userfgtraceE = { fgtraceE }
+    // fetch後端送信
+    async function posttraceE(userfgtraceE, callback) {
+      const request = new Request('http://localhost:4000/fgpwd', {
+        method: 'POST',
+        body: JSON.stringify(userfgtraceE),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
+
+      const response = await fetch(request)
+      console.log('fetch完成')
+      const payload = await response.json()
+      console.log(payload)
+    }
+    // fire上方功能
+    posttraceE(userfgtraceE)
+  }
 
   //TODO
   //登入取值00 //值驗證 //發fetch後端確認搜索狀態 //成功寫入local//轉頁
@@ -139,8 +165,22 @@ function Mlogcard() {
             }}
           ></div>
           <h6>請輸入電子信箱</h6>
-          <input name="M-fgEmail" type="text" className="M-FgpwdCardinput" />
-          <button className="M-sendMail">寄送驗證信</button>
+          <input
+            name="M-fgEmail"
+            type="text"
+            className="M-FgpwdCardinput"
+            onChange={e => {
+              setFgtraceE(e.target.value)
+            }}
+          />
+          <button
+            className="M-sendMail"
+            onClick={() => {
+              resetEmail()
+            }}
+          >
+            寄送驗證信
+          </button>
         </div>
         {/* <!-- 登入卡 --> */}
 
