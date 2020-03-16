@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
+nav , footer{
+  background-color: #f0f0ee;
+}
+
 /* ------------------------
 	Header
 ------------------------ */
 nav{
   height: 100px;
-  margin-bottom: 30px;
 }
 
 .logosize {
@@ -41,10 +44,6 @@ img {
 
 ol , ul {
   list-style: none;
-}
-
-nav , footer{
-  background-color: #f0f0ee;
 }
 
 a {
