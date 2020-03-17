@@ -206,22 +206,24 @@ body {
 /* -------------------會員中心左側//大頭貼//轉換鈕//關注商品--------------- */
 .M-indexLeft {
   width: 23.4rem;
-  border: 1px solid black;
+  position: relative;
+  /* border: 1px solid black; */
 }
 
 .M-avatarWrapper {
   width: 23.2rem;
-  height: 50rem;
+  /* height: 50rem; */
+  height: 12.5rem;
   background: lightblue;
   position: relative;
   transition: 2s;
   overflow: hidden;
 }
-
+/* 以調整成功能 */
 /* .active  */
-.M-avatarWrapper {
-  height: 12.5rem;
-}
+/* .M-avatarWrapper { */
+/* height: 52rem; */
+/* } */
 
 .M-avatarTop {
   display: flex;
@@ -245,9 +247,9 @@ body {
 .M-avatarDes {
   width: 14rem;
   height: 8rem;
-  text-align: center;
+  text-align: left;
   margin-top: 2.5rem;
-  margin-left: 10px;
+  margin-left: 15px;
   /* border: 1px solid black; */
 }
 
@@ -255,13 +257,20 @@ body {
   color: grey;
 }
 
-.M-avatarWrapper a {
-  text-decoration: none;
-  display: inline-block;
+.M-mbDeschagebtn {
+  width: 8rem;
+  height: 2rem;
+  /* font-size: 1.5rem; */
+  font-weight: 700;
+  border: 1px solid #79cee2;
+  color: #79cee2;
+  text-align: center;
+  background: white;
   position: absolute;
   font-weight: 600;
-  left: 8rem;
+  left: 4.5rem;
   top: 10rem;
+  /* margin-left: 5rem; */
 }
 
 .M-avatarChange {
@@ -269,7 +278,43 @@ body {
   height: 3rem;
   border: 1px dotted green;
   position: absolute;
+  font-size: 3rem;
+  line-height: 1rem;
+  color: #f9a451;
+  text-align: center;
   top: 7rem;
+  animation: Rotate 6s infinite linear;
+}
+/* 齒輪轉動 */
+@keyframes Rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.M-comLink {
+  width: 3rem;
+  height: 3rem;
+  /* background: #4691f6; */
+  position: absolute;
+  left: 14rem;
+  top: 7.4rem;
+  color: #4691f6;
+  text-align: center;
+  font-size: 2.2rem;
+}
+.M-MajorLink {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 18rem;
+  top: 7.5rem;
+  color: #4691f6;
+  text-align: center;
+  font-size: 2rem;
 }
 
 /* .M-avatarDes > h6 {
@@ -310,7 +355,7 @@ border: 1px solid black;
 }
 
 .M-mbdesformIpt input {
-  margin-top: 5px;
+  margin-top: 6.5px;
   /* display: block; */
 }
 
@@ -321,17 +366,6 @@ border: 1px solid black;
 .M-mbdesFormdwn h6 {
   text-align: left;
   margin-left: 3rem;
-}
-.M-mbDeschagebtn {
-  width: 8rem;
-  height: 2rem;
-  /* font-size: 1.5rem; */
-  font-weight: 700;
-  border: 1px solid #79cee2;
-  color: #79cee2;
-  text-align: center;
-  background: white;
-  margin-left: 5rem;
 }
 
 .M-mbdesSub {
@@ -544,6 +578,8 @@ border: 1px solid black;
   top: 15rem;
   left: 48rem;
   z-index: 1;
+  /* 暫時測試關掉 */
+  display: none;
 }
 
 .collectcarddetailLeft {
@@ -855,6 +891,7 @@ border: 1px solid black;
   width: 15.625rem;
   height: 10.416875rem;
   background: teal;
+  overflow: hidden;
   position: relative;
 }
 .M-mygameListcard img {
@@ -873,19 +910,20 @@ border: 1px solid black;
   transition: 0.75s;
   top: 0;
 }
+/* ---------------有莫名跳動要排除---------- */
 .M-mygameUplayer:hover {
   opacity: 0.5;
+  transform: scale(1.2);
 }
 .M-mygameUplayer h5 {
   transform: scale(0.7);
-  transition: 0.75s;
 }
 .M-mygameUplayer h5:hover {
   transform: scale(0.85);
 }
 /* 橫線再補 */
 .M-mygameUnderline {
-  width: 0;
+  width: 20%;
 }
 .M-mygameUnderline:hover {
   width: 80%;
@@ -895,10 +933,24 @@ border: 1px solid black;
 }
 
 /* --------MindexChangeavatar--紙娃娃小卡------- */
+/* //為了可以移動小卡用的wrapper */
+
+.M-dollMoveWrapper {
+  position: absolute;
+  z-index: 1;
+  transition: 0.75s;
+  top: -1rem;
+}
+/* 功能取代 */
+/* .M-dollMoveWrapper {
+  top: -50rem;
+} */
+
 .M-dollcardWrapper {
   width: 23.2rem;
   height: 41.5rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  background: white;
   position: relative;
 }
 
@@ -906,7 +958,7 @@ border: 1px solid black;
 .M-dollcardMajor {
   width: 14.375rem;
   height: 14.375rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
   margin-top: 1rem;
 }
@@ -929,7 +981,10 @@ border: 1px solid black;
 .M-dollhSelect {
   width: 3rem;
   height: 3rem;
-  background: greenyellow;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 2.5rem;
+  /* background: greenyellow; */
 }
 
 .M-dollhimgOuter {
@@ -1020,7 +1075,10 @@ border: 1px solid black;
 .M-dollcancelBtn {
   width: 3rem;
   height: 3rem;
-  background: teal;
+  font-size: 3rem;
+  line-height: 2rem;
+  text-align: center;
+  /* background: teal; */
   position: absolute;
   right: 0.3rem;
   top: 0.3rem;
@@ -1171,10 +1229,11 @@ border: 1px solid black;
 .M-comuHead {
   width: 100%;
   height: 50%;
-  background: url() no-repeat;
+  border: 1px solid black;
+  /* background: url('/public/images/member/mygameSample.jpg') no-repeat;
   background-position: center;
-  background-size: cover;
-  box-shadow: 0px 3px 6px #707070;
+  background-size: cover; */
+  /* box-shadow: 0px 3px 6px #707070; */
 }
 
 .M-comuHead_des {

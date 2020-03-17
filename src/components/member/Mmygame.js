@@ -12,9 +12,11 @@ function Mmygame() {
         <div className="M-mygameListcard">
           <img src="/images/member/mygameSample.jpg" alt="" />
           <div
+            imgId="ok"
             className="M-mygameUplayer"
-            onClick={() => {
-              alert('ok')
+            //這樣可以拿到自定義的id，之後用來搜商品資料，設定詳細卡的state
+            onClick={e => {
+              console.log(e.target.getAttribute('imgId'))
             }}
           >
             <h5>血緣詛咒666666666666667777744</h5>
