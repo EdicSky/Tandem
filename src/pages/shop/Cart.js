@@ -172,7 +172,7 @@ function Cart() {
           <h1>3</h1>
         </div>
       </div>
-      <h3 className="text-center">購物清單</h3>
+      <h3 className="text-center mt-3 h4">購物清單</h3>
       <div className="shoppingList">
         <table className="table">
           <thead>
@@ -188,6 +188,8 @@ function Cart() {
               </th>
             </tr>
           </thead>
+        </table>
+        <table className="table">
           <tbody>
             {productImgUrl.map((value, index) => {
               return (
@@ -195,7 +197,7 @@ function Cart() {
                   <tr key={index}>
                     <td className="">
                       <img
-                        src="https://via.placeholder.com/300x150"
+                        src={`/images/shop/small_img/${value.itemImg}`}
                         className=""
                         alt="..."
                       />
@@ -227,9 +229,8 @@ function Cart() {
           </tbody>
         </table>
       </div>
-      <h3 className="text-center">折價券</h3>
-      <div className="shoppingList p-2">
-        <h5>總價:NT${sum(mycartDisplay)}</h5>
+      <h3 className="text-center h4">折價券</h3>
+      <div className="s-couponList p-2">
         <h5>你有1張折價券可使用</h5>
         <div className="my-2">
           <img
@@ -247,7 +248,22 @@ function Cart() {
             onClick={() => handleCouponSelect()}
           />
         </div>
+        <div className="d-flex">
+          <div className="p col-7">
+            購買總金額(共{mycartDisplay.length}個商品):
+            <span style={{ color: 'orange', fontSize: '30px' }}>
+              ${sum(mycartDisplay)}
+            </span>
+          </div>
+          <div className="p col-3">
+            折扣後:
+            <span style={{ color: 'orange', fontSize: '30px' }}>
+              ${sum(mycartDisplay) - 500}
+            </span>
+          </div>
+        </div>
       </div>
+
       <div className="d-flex justify-content-center my-3">
         <Link
           type="button"
@@ -257,7 +273,7 @@ function Cart() {
           繼續購物
         </Link>
         <Link type="button" className="btn btn-outline-info mx-2" to="/payment">
-          進行結帳
+          下一步，填付款資訊
         </Link>
       </div>
     </>

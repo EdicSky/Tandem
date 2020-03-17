@@ -1,27 +1,32 @@
 //整體共用
-p {
+p,
+.p {
   font-size: 16px;
 }
 a:hover {
   text-decoration: none;
 }
-h1 {
+h1,
+.h1 {
   font-size: 40px;
 }
-h2 {
+h2,
+.h2 {
   font-size: 32px;
 }
-h3 {
+h3,
+.h3 {
   font-size: 28px;
 }
-h4 {
+h4,
+.h4 {
   font-size: 24px;
 }
-h5 {
+h5,
+.h5 {
   font-size: 20px;
 }
-h6,
-.p {
+h6 {
   font-size: 16px;
 }
 
@@ -75,10 +80,25 @@ h6,
 
 .shoppingList {
   width: 80%;
-  border: 2px solid lightblue;
-  margin: 0 10%;
-}
+  // border: 1px solid lightblue;
+  margin: 20px 10%;
 
+  thead {
+    background-color: #005caf;
+    color: white;
+    margin-bottom: 30px;
+  }
+  tbody {
+    border: 1px solid lightblue;
+  }
+}
+.s-couponList {
+  @extend .shoppingList;
+  border: 1px solid lightblue;
+}
+.s-payment {
+  @extend .s-couponList;
+}
 .columnWidth1 {
   width: 50%;
 }

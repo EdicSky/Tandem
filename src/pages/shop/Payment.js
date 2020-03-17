@@ -1,10 +1,52 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-function Payment() {
+import { withRouter, Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import '../../css/shop.scss'
+function Payment(props) {
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [username, setUsername] = useState('')
+  const [agreement, setAgreement] = useState(false) //同意條款
+  const [itemIds, setItemIds] = useState([])
+  const [totalPrice, setTotalPrice] = useState(1000) //如何不抓localstorage內的價錢?
+  //付款資訊傳到server
+  async function submitPayment() {
+    let agree = document.querySelector('#agreement').checked
+    if (agree === !true) {
+      //沒有勾同意就中斷
+      alert('請勾選同意服務條款!')
+      return
+    }
+    //抓localstorage的商品Id
+    let productId = []
+
+    JSON.parse(localStorage.getItem('cart')).map((item, index) => {
+      productId.push(item.id.toString())
+    })
+    setItemIds(productId) //設定商品id to state
+    const body = {
+      username: username,
+      itemIds: JSON.stringify(productId),
+      totalPrice: totalPrice,
+    }
+    const request = new Request('http://localhost:3300/product/payment', {
+      method: 'POST',
+      body: JSON.stringify(body), //
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    //若寫入資料庫成功就alert，跳轉order頁
+    if (data.result.affectedRows == 1) {
+      alert('訂單成立!')
+      props.history.push('/order')
+    }
+  }
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -29,17 +71,15 @@ function Payment() {
           <h1>3</h1>
         </div>
       </div>
-      <h3 className="text-center">付款資訊</h3>
-      <div className="shoppingList">
+      <h3 className="text-center h4">付款資訊</h3>
+      <div className="s-payment p-2 h5">
         <form>
           <div className="form-group row">
-            <label for="exampleInputEmail1" className="col-sm-2 col-form-label">
-              總金額
-            </label>
-            <div class="col-sm-5">
+            <label className="col-sm-3 col-form-label text-right">總金額</label>
+            <div className="col-sm-5">
               <input
                 type="text"
-                className="form-control-plaintext"
+                className="form-control-plaintext h5"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder=""
@@ -48,75 +88,86 @@ function Payment() {
             </div>
           </div>
           <div className="form-group row">
-            <label
-              for="exampleInputPassword1"
-              className="col-sm-2 col-form-label"
-            >
+            <label className="col-sm-3 col-form-label text-right">
               訂購人姓名
             </label>
-            <div class="col-sm-5">
+            <div className="col-sm-5">
               <input
                 type="text"
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder=""
+                onChange={e => setUsername(e.target.value)}
               />
             </div>
           </div>
           <div className="form-group row">
-            <label
-              for="exampleInputPassword1"
-              className="col-sm-2 col-form-label"
-            >
+            <label className="col-sm-3 col-form-label text-right">
               付款方式
             </label>
-            <div class="col-sm-5">
+            <div className="col-sm-5 mx-2">
               <input
-                type="checkbox"
-                className="form-check-input"
+                type="radio"
+                className="form-check-input h5 "
                 id="exampleCheck1"
+                style={{ marginLeft: '-5px', marginRight: '10px' }}
               />
-              credit card
+              <img
+                src="/images/shop/visaCard.png"
+                style={{ marginLeft: '10px' }}
+                alt="..."
+              />
             </div>
           </div>
           <div className="form-group row">
-            <label
-              for="exampleInputPassword1"
-              className="col-sm-2 col-form-label"
-            >
-              到期日
-            </label>
-            <div class="col-sm-2">
+            <label className="col-sm-3 col-form-label text-right">到期日</label>
+            <div className="col-sm-4 p-2">
+              <select className="" style={{ width: '70px' }}>
+                <option>Jan</option>
+                <option>Feb</option>
+                <option>Mar</option>
+                <option>Apr</option>
+                <option>May</option>
+                <option>Jun</option>
+                <option>Jul</option>
+                <option>Aug</option>
+                <option>Sep</option>
+                <option>Oct</option>
+                <option>Nov</option>
+                <option>Dec</option>
+              </select>
+              /
+              <select>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
+              </select>
+            </div>
+            <label className="col-sm-2 col-form-label p px-0">安全碼CVV</label>
+            <div className="col-sm-2">
               <input
                 type="text"
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder=""
-              />
-            </div>
-            <label
-              for="exampleInputPassword1"
-              className="col-sm-2 col-form-label"
-            >
-              安全碼
-            </label>
-            <div class="col-sm-2">
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder=""
+                pattern="\d{3}"
+                required
               />
             </div>
           </div>
           <div className="form-group row">
-            <label
-              for="exampleInputPassword1"
-              className="col-sm-2 col-form-label"
-            >
+            <label className="col-sm-3 col-form-label text-right">
               電子載具
             </label>
-            <div class="col-sm-3">
+            <div className="col-sm-3">
               <input
                 type="text"
                 className="form-control"
@@ -125,15 +176,13 @@ function Payment() {
               />
             </div>
           </div>
-          <div className="form-check">
+          <div className="form-check text-center">
             <input
               type="checkbox"
               className="form-check-input"
-              id="exampleCheck1"
+              id="agreement"
             />
-            <label className="form-check-label" for="exampleCheck1">
-              同意服務條款
-            </label>
+            <label className="form-check-label p">勾選同意服務條款</label>
           </div>
         </form>
       </div>
@@ -142,9 +191,13 @@ function Payment() {
         <Link type="button" className="btn btn-outline-info mx-2" to="/cart">
           上一頁
         </Link>
-        <Link type="button" className="btn btn-outline-info mx-2">
+        <button
+          type="submit"
+          className="btn btn-outline-info mx-2"
+          onClick={() => submitPayment()}
+        >
           進行結帳
-        </Link>
+        </button>
       </div>
     </>
   )
@@ -155,4 +208,4 @@ function Payment() {
   )
 }
 
-export default Payment
+export default withRouter(Payment)
