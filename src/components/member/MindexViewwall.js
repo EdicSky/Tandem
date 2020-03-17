@@ -3,7 +3,6 @@ import React from 'react'
 function MindexViewwall() {
   return (
     <>
-      <h6>我的收藏</h6>
       <div className="M-gameviewWall">
         {/* 圖片牆二分之一始 */}
         <div className="M-viewwallPart">

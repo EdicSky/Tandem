@@ -532,12 +532,18 @@ border: 1px solid black;
   stroke-width: 1;
 }
 
-/* --------------------會員收藏遊戲詳細小卡元件-------- */
+/* ---McollectgameDetail---會員收藏遊戲詳細小卡元件------ */
 .collectcarddetailWrapper {
   width: 46.8rem;
   height: 19.75rem;
   border: 1px solid black;
+  background: white;
   display: flex;
+  /* //為了在遊戲庫調整 */
+  position: fixed;
+  top: 15rem;
+  left: 48rem;
+  z-index: 1;
 }
 
 .collectcarddetailLeft {
@@ -701,12 +707,15 @@ border: 1px solid black;
 
 /* ------------------會員中心好友列表小卡---------------- */
 .M-friendcollectWrapper {
-  width: 46.875rem;
-  height: 10.75rem;
+  /* width: 46.875rem; */
+  width: 54rem;
+  /* height: 10.75rem; */
   padding: 0.3rem;
   border: 1px solid black;
-  /* display: flex;
-  justify-content: space-around; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .M-friendcollectCard {
@@ -715,6 +724,7 @@ border: 1px solid black;
   /* background: teal; */
   border: 1px solid #adb6bd;
   padding: 0.6rem;
+  margin: 2rem;
   /* position: relative; */
   display: flex;
 }
@@ -828,6 +838,60 @@ border: 1px solid black;
   height: 3.8rem;
   margin-left: 0.4rem;
   background: lightsteelblue;
+}
+/* ------------M-mygameListWrapper---遊戲倉庫----------- */
+
+.M-mygameListWrapper {
+  width: 60rem;
+  /* height: 80rem; */
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  position: relative;
+}
+.M-mygameListcard {
+  margin: 2rem 2rem;
+  width: 15.625rem;
+  height: 10.416875rem;
+  background: teal;
+  position: relative;
+}
+.M-mygameListcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.M-mygameUplayer {
+  width: 15.625rem;
+  height: 10.416875rem;
+  background: white;
+  padding-top: 3rem;
+  text-align: center;
+  position: absolute;
+  opacity: 0;
+  transition: 0.75s;
+  top: 0;
+}
+.M-mygameUplayer:hover {
+  opacity: 0.5;
+}
+.M-mygameUplayer h5 {
+  transform: scale(0.7);
+  transition: 0.75s;
+}
+.M-mygameUplayer h5:hover {
+  transform: scale(0.85);
+}
+/* 橫線再補 */
+.M-mygameUnderline {
+  width: 0;
+}
+.M-mygameUnderline:hover {
+  width: 80%;
+  margin: 0 auto;
+  transition: 0.5s;
+  border-top: 1px solid black;
 }
 
 /* --------MindexChangeavatar--紙娃娃小卡------- */
@@ -961,6 +1025,117 @@ border: 1px solid black;
   right: 0.3rem;
   top: 0.3rem;
 }
+
+/* ........MazenpListcard....按讚商品列表小卡 */
+.M-azenproductWrapper {
+  width: 46.875rem;
+  /* height: 10.75rem; */
+  padding: 0.3rem;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.M-azenproductCard {
+  width: 20rem;
+  height: 10rem;
+  margin: 1rem;
+  /* background: teal; */
+  position: relative;
+  display: flex;
+}
+
+.M-azenproductImg {
+  width: 60%;
+  height: 100%;
+  border: 1px solid red;
+}
+
+.M-azenproductDes {
+  width: 40%;
+  height: 100%;
+  border: 1px solid blue;
+}
+
+.M-azenproductDes p {
+  margin-top: 2.8rem;
+  font-size: 1rem;
+  /* 指定保留行數*/
+  line-height: 1.2rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.M-azenproductDes a {
+  border: 1px solid blue;
+  margin-right: 0.2rem;
+  padding: 5px;
+  float: right;
+}
+
+.M-azenproductName {
+  width: 10rem;
+  height: 2rem;
+  background: white;
+  border: 1px solid lightblue;
+  padding: 4px;
+  position: absolute;
+  top: 0.5rem;
+  left: 8rem;
+  text-align: center;
+}
+
+.M-azenproductName span {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+/* -----------------我的折價券------ */
+.M-myCPwrapper {
+  width: 46.875rem;
+  /* height: 10rem; */
+  margin: 0 auto;
+  background: lightblue;
+}
+.M-myCPlistTop {
+  width: 46.875rem;
+  height: 4rem;
+  border: 1px solid lightcoral;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.3rem;
+}
+.M-myCPlistTop h6 {
+  line-height: 3.5rem;
+  margin-left: 2rem;
+}
+.M-myCPlistTop span {
+  line-height: 3.5rem;
+}
+.M-myCPlistswitch {
+  margin-top: 0.15rem;
+  margin-left: 8rem;
+  width: 3rem;
+  height: 3rem;
+  background: lightsalmon;
+}
+.M-myCPlistDown {
+  padding: 1rem;
+  width: 46.875rem;
+  height: 50rem;
+  background: lightpink;
+}
+.M-mycupon {
+  margin: 0 auto 1rem;
+  width: 30rem;
+  height: 10rem;
+  border: 1px solid blue;
+}
 /* -----------MindexcomCard----好友發文小卡 */
 .M-fcomlistWrapper {
   width: 54rem;
@@ -1093,24 +1268,28 @@ border: 1px solid black;
   /* height: 50rem; */
   /* background: green; */
 }
+/* normal首頁第一層 */
 .M-indexRightlayer1 {
   width: 61.9375rem;
   height: 50rem;
   background: lightgreen;
 }
+/* normal首頁第二層 */
 .M-indexRightlayer2 {
   width: 61.9375rem;
-  height: 50rem;
+  /* height: 50rem; */
   background: blue;
 }
+/* normal首頁第三層 */
 .M-indexRightlayer3 {
   width: 61.9375rem;
-  height: 50rem;
+  /* height: 50rem; */
   background: orange;
 }
+/* normal首頁第四層 */
 .M-indexRightlayer4 {
   width: 61.9375rem;
-  height: 50rem;
+  /* height: 50rem; */
   background: lightslategray;
 }
 .layerDisappear {

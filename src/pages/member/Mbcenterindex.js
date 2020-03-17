@@ -7,6 +7,14 @@ import MindexProfile from '../../components/member/MindexProfile'
 //layer1
 import MindexViewwall from '../../components/member/MindexViewwall'
 import MindexcomCard from '../../components/member/MindexcomCard'
+//layer2
+import Mfriendlistcard from '../../components/member/Mfriendlistcard'
+//layer3
+import Mmygame from '../../components/member/Mmygame'
+
+//layer4
+import MazenpListcard from '../../components/member/MazenpListcard'
+import MmyCoupon from '../../components/member/MmyCoupon'
 
 //redux控制
 // 引入store state
@@ -14,37 +22,58 @@ import { useSelector } from 'react-redux'
 
 function Mbcenterindex() {
   // 控制顯示層
-  const dispalyLayer = useSelector(state => state.MindexDisplaychange)
+  // const dispalyLayer = useSelector(state => state.MindexDisplaychange)
+  // 正在處理的頁面
+  const dispalyLayer = 4
   return (
     <>
       <div className="M-indexWrapper">
         <div className="M-indexLeftContainer">
           <MindexProfile />
         </div>
+        {/* 會員中心右側區域 */}
         <div className="M-indexRightContainer">
+          {/* 第一層 首頁*/}
           <div
             className={`M-indexRightlayer1 + ${
               dispalyLayer === 1 ? '' : 'layerDisappear'
             }`}
           >
+            <h4>我的收藏</h4>
             <MindexViewwall />
+            <h4>好友推文</h4>
             <MindexcomCard />
           </div>
+          {/* 第二層 好友管理*/}
           <div
             className={`M-indexRightlayer2 + ${
               dispalyLayer === 2 ? '' : 'layerDisappear'
             }`}
-          ></div>
+          >
+            <h4>好友管理</h4>
+            <Mfriendlistcard />
+          </div>
+          {/* 第三層 遊戲倉庫*/}
           <div
             className={`M-indexRightlayer3 + ${
               dispalyLayer === 3 ? '' : 'layerDisappear'
             }`}
-          ></div>
+          >
+            <h4>遊戲倉庫</h4>
+            <Mmygame />
+          </div>
+          {/* 第四層 購買管理*/}
           <div
             className={`M-indexRightlayer4 + ${
               dispalyLayer === 4 ? '' : 'layerDisappear'
             }`}
-          ></div>
+          >
+            <h4>購買管理</h4>
+            <h5>關注商品</h5>
+            <MazenpListcard />
+            <h5>我的折價券</h5>
+            <MmyCoupon />
+          </div>
         </div>
       </div>
     </>

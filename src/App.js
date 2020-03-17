@@ -19,7 +19,7 @@ function App() {
     <Router>
       <>
         <Header />
-        <Mbtestpage />
+        {/* <Mbtestpage /> */}
         <Switch>
           <Route exact path="/">
             {/* <Home /> */}
@@ -36,7 +36,9 @@ function App() {
           <Route path="/forum">
             <Forum />
           </Route>
-          <Route path="/member">{/* <Mbcenterindex /> */}</Route>
+          <Route path="/member">
+            <Mbcenterindex />
+          </Route>
           <Route path="/cart">
             <Cart />
           </Route>
