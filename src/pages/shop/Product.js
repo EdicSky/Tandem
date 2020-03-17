@@ -3,7 +3,14 @@ import { withRouter, NavLink, Switch, Route } from 'react-router-dom'
 import Config from './Config'
 // import Comment from './Comment'
 import Comment2 from './Comment2'
-import { AiOutlineHeart,AiOutlineShoppingCart,AiOutlineArrowLeft,AiOutlineArrowRight,AiOutlineCaretLeft,AiOutlineCaretRight } from 'react-icons/ai'
+import {
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+  AiOutlineCaretLeft,
+  AiOutlineCaretRight,
+} from 'react-icons/ai'
 import '../../css/shop.scss'
 
 function Product(props) {
@@ -58,30 +65,57 @@ function Product(props) {
           </div>
           <ul className="list-unstyled d-flex justify-content-center">
             <li>
-              <img className="" src="https://via.placeholder.com/100x100" alt="" />
+              <img
+                className=""
+                src="https://via.placeholder.com/100x100"
+                alt=""
+              />
             </li>
             <li>
-              <img className="" src="https://via.placeholder.com/100x100" alt="" />
+              <img
+                className=""
+                src="https://via.placeholder.com/100x100"
+                alt=""
+              />
             </li>
             <li>
-              <img className="" src="https://via.placeholder.com/100x100" alt="" />
+              <img
+                className=""
+                src="https://via.placeholder.com/100x100"
+                alt=""
+              />
             </li>
             <li>
-              <img className="" src="https://via.placeholder.com/100x100" alt="" />
+              <img
+                className=""
+                src="https://via.placeholder.com/100x100"
+                alt=""
+              />
             </li>
             <li>
-              <img className="" src="https://via.placeholder.com/100x100" alt="" />
+              <img
+                className=""
+                src="https://via.placeholder.com/100x100"
+                alt=""
+              />
             </li>
           </ul>
         </div>
         <div className="col col-sm-12 col-md-6">
-          <div className="d-flex"><span className="p">NT$:</span><h2>{myproduct.itemPrice}</h2></div>
-          
+          <div className="d-flex">
+            <span className="p">NT$:</span>
+            <h2>{myproduct.itemPrice}</h2>
+          </div>
+
           <h3>{myproduct.itemName}</h3>
           <p>{myproduct.itemIntro}</p>
           <div className="row">
-            <button type="button" className="btn btn-outline-info mx-2 s-btn-common">
-              <AiOutlineHeart/>加入收藏清單
+            <button
+              type="button"
+              className="btn btn-outline-info mx-2 s-btn-common"
+            >
+              <AiOutlineHeart />
+              加入收藏清單
             </button>
             <button
               type="button"
@@ -95,7 +129,8 @@ function Product(props) {
                 })
               }
             >
-              <AiOutlineShoppingCart/>加入購物車
+              <AiOutlineShoppingCart />
+              加入購物車
             </button>
           </div>
           <div className="row mt-2 h6">
@@ -136,7 +171,9 @@ function Product(props) {
           </NavLink>
         </li>
       </ul>
-      <div className="">{configORcomment === 1 ? <Config /> : <Comment2 />}</div>
+      <div className="">
+        {configORcomment === 1 ? <Config /> : <Comment2 />}
+      </div>
       {/* <Switch>
         <Route path={`${path}/:id?/config/12`}>
           <Config />

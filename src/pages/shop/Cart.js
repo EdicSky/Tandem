@@ -11,6 +11,8 @@ function Cart() {
   //coupon select
   const [selectCoupon, setSelectCoupon] = useState(false)
   const [totalMoney, setTotalMoney] = useState(0) //總金額
+  const [productIdInCart, setProductIdInCart] = useState([]) //購物車內商品Id
+  const [productImgUrl, setProductImgUrl] = useState([])
   async function getCartFromLocalStorage() {
     setDataLoading(true)
 
@@ -71,6 +73,8 @@ function Cart() {
     localStorage.setItem('cart', JSON.stringify(updateCart))
     //設定資料
     setMycart(updateCart)
+    getProductId(mycartDisplay) //重新抓購物車內商品id
+    // getImgFromServer(mycartDisplay) //發fetch重抓圖片
   }
   const handleCouponSelect = () => {
     setSelectCoupon(!selectCoupon)
@@ -88,12 +92,62 @@ function Cart() {
 
     setTotalMoney(money)
     SaveTotalToLocalStorage(money)
-  }, [mycart, mycartDisplay])
+  }, [mycartDisplay])
   console.log('目前總金額= ', totalMoney)
-
+  //總價set進Localstorage裡，key='total'
   async function SaveTotalToLocalStorage(money) {
     localStorage.setItem('total', money)
   }
+
+  // //抓cart中商品的id
+
+  async function getProductId(mycartDisplay) {
+    //+async
+    let productId = []
+    mycartDisplay.forEach((item, index) => {
+      productId.push(item.id.toString())
+      //  console.log('id=',productId)
+    })
+    setProductIdInCart(productId) //+await
+
+    getImgFromServer(productId) //抓商品圖片連結
+  }
+  //  console.log(body)
+  console.log(productIdInCart)
+
+  useEffect(() => {
+    getProductId(mycartDisplay)
+  }, [mycartDisplay])
+
+  //發送fetch給後端抓ImgUrl
+  async function getImgFromServer(id) {
+    if (id.length == 0) {
+      //若購物車id還沒找到就不要發fetch
+      return
+    }
+    let body = { id: id }
+    console.log('bodybody', body)
+    const request = new Request('http://localhost:3300/product/getCartImg', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+
+    setProductImgUrl(data.result)
+  }
+
+  // useEffect(() => {
+  //   getImgFromServer(productIdInCart)
+  // }, [productIdInCart])
+
+  // console.log(productImgUrl[0])
+
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -120,25 +174,25 @@ function Cart() {
       </div>
       <h3 className="text-center">購物清單</h3>
       <div className="shoppingList">
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
-              <th scope="col" className="columnWidth1">
+              <th scope="col" className="columnWidth1 h5">
                 商品名稱
               </th>
-              <th scope="col" className="">
+              <th scope="col" className="h5">
                 單價
               </th>
-              <th scope="col" className="columnWidth2">
+              <th scope="col" className="columnWidth2 h5">
                 操作
               </th>
             </tr>
           </thead>
           <tbody>
-            {mycartDisplay.map((value, index) => {
+            {productImgUrl.map((value, index) => {
               return (
                 <>
-                  <tr>
+                  <tr key={index}>
                     <td className="">
                       <img
                         src="https://via.placeholder.com/300x150"
@@ -146,24 +200,24 @@ function Cart() {
                         alt="..."
                       />
                     </td>
-                    <td>NT${value.price}</td>
+                    <td className="h5">NT${value.itemPrice}</td>
                     <td>
                       <button
                         type="button"
-                        className="btn btn-outline-info mx-2 my-2"
+                        className="btn btn-outline-info mx-2 my-2 s-btn-common"
                       >
-                        <i class="far fa-heart"></i>加入收藏清單
+                        <i className="far fa-heart"></i>加入收藏清單
                       </button>
                       <button
                         type="button"
-                        className="btn btn-outline-info mx-2"
+                        className="btn btn-outline-info mx-2 s-btn-common"
                         onClick={() =>
                           updateCartToLocalStorage({
-                            id: value.id,
+                            id: value.itemId,
                           })
                         }
                       >
-                        <i class="far fa-trash-alt"></i>刪除
+                        <i className="far fa-trash-alt"></i>刪除
                       </button>
                     </td>
                   </tr>
@@ -195,7 +249,11 @@ function Cart() {
         </div>
       </div>
       <div className="d-flex justify-content-center my-3">
-        <Link type="button" className="btn btn-outline-info mx-2" to="/productlist">
+        <Link
+          type="button"
+          className="btn btn-outline-info mx-2"
+          to="/productlist"
+        >
           繼續購物
         </Link>
         <Link type="button" className="btn btn-outline-info mx-2" to="/payment">
