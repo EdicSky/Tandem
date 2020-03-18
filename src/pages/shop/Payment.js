@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import '../../css/shop.scss'
+import Swal from 'sweetalert2'//sweetalert2
 function Payment(props) {
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
@@ -43,7 +44,8 @@ function Payment(props) {
     const data = await response.json()
     //若寫入資料庫成功就alert，跳轉order頁
     if (data.result.affectedRows == 1) {
-      alert('訂單成立!')
+      // alert('訂單成立!')
+      Swal.fire('訂單成立!')
       props.history.push('/order')
     }
   }
@@ -76,15 +78,8 @@ function Payment(props) {
         <form>
           <div className="form-group row">
             <label className="col-sm-3 col-form-label text-right">總金額</label>
-            <div className="col-sm-5">
-              <input
-                type="text"
-                className="form-control-plaintext h5"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder=""
-                value={'NT$' + localStorage.getItem('total')}
-              />
+            <div className="col-sm-5 mt-2">
+              {'NT$' + localStorage.getItem('total')}
             </div>
           </div>
           <div className="form-group row">

@@ -4,7 +4,15 @@ import Slider from '../../components/shop/Slider'
 import Filterbar from '../../components/shop/Filterbar'
 import Product from './Product'
 // import '../../css/styles.scss'
-import { AiOutlineHeart,AiOutlineShoppingCart,AiOutlineArrowLeft,AiOutlineArrowRight,AiOutlineCaretLeft,AiOutlineCaretRight,AiOutlineCloseCircle } from 'react-icons/ai'
+import {
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+  AiOutlineCaretLeft,
+  AiOutlineCaretRight,
+  AiOutlineCloseCircle,
+} from 'react-icons/ai'
 import '../../css/shop.scss'
 
 function ProductList(props) {
@@ -14,10 +22,10 @@ function ProductList(props) {
   const [type, setType] = useState(0)
   const [totalpage, setTotalpage] = useState(0)
   const [currentpage, setCurrentpage] = useState(1)
-  const [typeURL,setTypeURL]=useState(0)
-  const [vendor,setVendor]=useState('V000')
-  const [price,setPrice]=useState(9999)
-  const [orderBy,setOrderBy]=useState('itemId')
+  const [typeURL, setTypeURL] = useState(0)
+  const [vendor, setVendor] = useState('V000')
+  const [price, setPrice] = useState(9999)
+  const [orderBy, setOrderBy] = useState('itemId')
 
   const searchParams = new URLSearchParams(props.location.search)
   //如果url有type的話就抓下來
@@ -73,9 +81,18 @@ function ProductList(props) {
     //   })
     // }
     //新分業方法
-    if ( type !== 0 || vendor !=='V000' || price !=='' ) {
+    if (type !== 0 || vendor !== 'V000' || price !== '') {
       request = new Request(
-        'http://localhost:3300/product/search/' + type + '/' + vendor+'/'+price+'/'+orderBy+'/'+currentpage,
+        'http://localhost:3300/product/search/' +
+          type +
+          '/' +
+          vendor +
+          '/' +
+          price +
+          '/' +
+          orderBy +
+          '/' +
+          currentpage,
         {
           method: 'GET',
           credentials: 'include',
@@ -101,7 +118,7 @@ function ProductList(props) {
   //當換頁時setcurrentpage到新的值就會觸發getDataFromServer
   useEffect(() => {
     getClassifiedDataFromServer(currentpage)
-  }, [currentpage,vendor,price,orderBy])
+  }, [currentpage, vendor, price, orderBy])
 
   //每次mycart資料有變動就會3秒後關掉載入指示
   useEffect(() => {
@@ -128,11 +145,11 @@ function ProductList(props) {
   //   setType(value)
   //   setCurrentpage(1)
   // }
-  function handletype(value){
+  function handletype(value) {
     setType(value)
     setCurrentpage(1)
   }
-  console.log('type=',type)
+  console.log('type=', type)
   // 利用內建的API來得到URLSearchParams物件
   // const searchParams = new URLSearchParams(props.location.search)
   console.log(props)
@@ -152,8 +169,11 @@ function ProductList(props) {
       <div className="row row-cols-3">
         {myproduct.map((value, index) => {
           return (
-            <div className="col" key={index}>
-              <div className="card my-2">
+            <div className="col-6 col-lg-4 col-sm-6" key={index}>
+              <div
+                className="card my-2 s-productlist-card"
+                style={{ borderRadius: '0px' }}
+              >
                 <img
                   src="https://via.placeholder.com/250x150"
                   className="card-img-top"
@@ -161,12 +181,12 @@ function ProductList(props) {
                 />
                 <div className="card-body">
                   <Link to={{ pathname: `/product/${value.itemId}` }}>
-                    <h5 className="cart-title">{value.itemName}</h5>
+                    <h5 className="cart-title" style={{ color: 'black' }}>
+                      {value.itemName}
+                    </h5>
                   </Link>
                   <div className="d-flex">
-                    <p className="card-text text-danger col-8">
-                      NTD{value.itemPrice}
-                    </p>
+                    <p className="card-text col-8 p-0">NT$ {value.itemPrice}</p>
                     <Link
                       className="col-2"
                       onClick={() =>
@@ -179,11 +199,11 @@ function ProductList(props) {
                       }
                     >
                       {/* <i class="fas fa-shopping-cart"></i> */}
-                      <AiOutlineShoppingCart/>
+                      <AiOutlineShoppingCart style={{ color: '#79cee2' }} />
                     </Link>
                     <Link className="col-2">
                       {/* <i class="far fa-heart"></i> */}
-                      <AiOutlineHeart/>
+                      <AiOutlineHeart style={{ color: 'red' }} />
                     </Link>
                   </div>
                 </div>
@@ -213,57 +233,52 @@ function ProductList(props) {
       {totalpage} */}
       <div className="row">
         <div className="col">
-        {/* 新的頁數bar開始 */}
-        <ul className="d-flex">
-              <li className="s-pageItem">
-                <Link
-                  className=""
-                  onClick={() => paginate(currentpage - 1)}
+          {/* 新的頁數bar開始 */}
+          <ul className="d-flex">
+            <li className="s-pageItem">
+              <Link className="" onClick={() => paginate(currentpage - 1)}>
+                <AiOutlineCaretLeft />
+              </Link>
+            </li>
+            {pageNumbers.map((number, index) => {
+              const data = {
+                type,
+                page: number,
+              }
+              return (
+                <li
+                  key={index}
+                  className={
+                    's-pageItem ' +
+                    (number === currentpage ? 's-pageItem-Active' : '')
+                  }
                 >
-                 <AiOutlineCaretLeft/>
-                </Link>
-              </li>
-        {pageNumbers.map((number, index) => {
-          const data = {
-            type,
-            page:number
-          }
-                return (
-                  <li
-                    key={index}
-                    className={
-                      's-pageItem ' + (number === currentpage ? 's-pageItem-Active' : '')
-                    }
+                  <Link
+                    className=""
+                    //   to={{
+                    //     search: searchParams.get('page')
+                    //       ? `page=${number}`
+                    //       : search + `page=${number}`,
+                    //   }}
+                    // to={{ search: `type=${type}` + `&&page=${number}` }}
+                    //頁數資訊可以不要顯示在url
+                    // onClick={() => {paginate(number);setType(type)}}
+                    onClick={() => {
+                      setCurrentpage(number)
+                    }}
                   >
-                    <Link
-                      className=""
-                      //   to={{
-                      //     search: searchParams.get('page')
-                      //       ? `page=${number}`
-                      //       : search + `page=${number}`,
-                      //   }}
-                      // to={{ search: `type=${type}` + `&&page=${number}` }}
-                      //頁數資訊可以不要顯示在url
-                      // onClick={() => {paginate(number);setType(type)}}
-                      onClick={()=>{setCurrentpage(number)}}
-                    >
-                      {number}
-                    </Link>
-                  </li>
-                )
-              })}
-              <li className="s-pageItem">
-                <Link
-                  className=""
-                  onClick={() => paginate(currentpage + 1)}
-                >
-                  <AiOutlineCaretRight/>
-                </Link>
-              </li>
-          
-
-        </ul>
-        {/* 新的頁數bar結束 */}
+                    {number}
+                  </Link>
+                </li>
+              )
+            })}
+            <li className="s-pageItem">
+              <Link className="" onClick={() => paginate(currentpage + 1)}>
+                <AiOutlineCaretRight />
+              </Link>
+            </li>
+          </ul>
+          {/* 新的頁數bar結束 */}
 
           <nav aria-label="Page navigation example">
             <ul className="pagination">
@@ -273,7 +288,7 @@ function ProductList(props) {
                   onClick={() => paginate(currentpage - 1)}
                 >
                   {/* <i className="fas fa-arrow-left"></i> */}
-                  <AiOutlineArrowLeft/>
+                  <AiOutlineArrowLeft />
                 </Link>
               </li>
               {pageNumbers.map((number, index) => {
@@ -305,7 +320,7 @@ function ProductList(props) {
                   onClick={() => paginate(currentpage + 1)}
                 >
                   {/* <i className="fas fa-arrow-right"></i> */}
-                  <AiOutlineArrowRight/>
+                  <AiOutlineArrowRight />
                 </Link>
               </li>
             </ul>
@@ -338,18 +353,60 @@ function ProductList(props) {
         類別2
       </Link>
       <h3>產品類型 = {searchParams.get('type')}</h3> */}
-      <Slider handletype={function (value){
-        handletype(value)
-      }}/>
+      <Slider
+        handletype={function(value) {
+          handletype(value)
+        }}
+      />
       <div className="d-flex">
-      
-      {type !== 0?(<div className="s-filterClearBtn">類型{type}<button onClick={()=>setType(0)}><AiOutlineCloseCircle/></button>
-      </div>):''}
-      {vendor !== 'V000'?(<div className="s-filterClearBtn">發行商{vendor}<button onClick={()=>setVendor('V000')}><AiOutlineCloseCircle/></button></div>):''}
-      {price !== 9999?(<div className="s-filterClearBtn">價格{price}<button onClick={()=>setPrice(9999)}><AiOutlineCloseCircle/></button></div>):''}
-      {orderBy !== 'itemId'?(<div className="s-filterClearBtn">排序{orderBy}<button onClick={()=>setOrderBy('itemId')}><AiOutlineCloseCircle/></button></div>):''}
+        {type !== 0 ? (
+          <div className="s-filterClearBtn">
+            類型{type}
+            <button onClick={() => setType(0)}>
+              <AiOutlineCloseCircle />
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
+        {vendor !== 'V000' ? (
+          <div className="s-filterClearBtn">
+            發行商{vendor}
+            <button onClick={() => setVendor('V000')}>
+              <AiOutlineCloseCircle />
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
+        {price !== 9999 ? (
+          <div className="s-filterClearBtn">
+            價格{price}
+            <button onClick={() => setPrice(9999)}>
+              <AiOutlineCloseCircle />
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
+        {orderBy !== 'itemId' ? (
+          <div className="s-filterClearBtn">
+            排序{orderBy}
+            <button onClick={() => setOrderBy('itemId')}>
+              <AiOutlineCloseCircle />
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
-      <Filterbar setMyproduct={setMyproduct} setTotalpage={setTotalpage} setVendor={setVendor} setPrice={setPrice} setOrderBy={setOrderBy}/>
+      <Filterbar
+        setMyproduct={setMyproduct}
+        setTotalpage={setTotalpage}
+        setVendor={setVendor}
+        setPrice={setPrice}
+        setOrderBy={setOrderBy}
+      />
       <div className="container">{dataLoading ? loading : display}</div>
     </>
   )

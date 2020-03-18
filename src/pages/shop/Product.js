@@ -3,6 +3,7 @@ import { withRouter, NavLink, Switch, Route } from 'react-router-dom'
 import Config from './Config'
 // import Comment from './Comment'
 import Comment2 from './Comment2'
+import Recommend from './Recommend'
 import {
   AiOutlineHeart,
   AiOutlineShoppingCart,
@@ -56,10 +57,17 @@ function Product(props) {
   const url = props.match.url
   const path = props.match.path
   console.log('url', props.match)
+  //將database儲存的收藏此商品id=[1,2,3,4]轉成length
+  let wholike = {...myproduct}
+  let wholike2 = "'" + wholike.memberFavoriteId +"'"
+  
+  wholike2 = wholike2.split(",")
+  // console.log(wholike2.length)
+  
   return (
     <>
       <div className="d-flex flex-wrap">
-        <div className="col col-sm-12 col-md-6">
+        <div className="col col-sm-12 col-md-6 my-5">
           <div className="text-center">
             <img src="https://via.placeholder.com/500x300" alt="" />
           </div>
@@ -101,7 +109,7 @@ function Product(props) {
             </li>
           </ul>
         </div>
-        <div className="col col-sm-12 col-md-6">
+        <div className="col col-sm-12 col-md-6 my-5">
           <div className="d-flex">
             <span className="p">NT$:</span>
             <h2>{myproduct.itemPrice}</h2>
@@ -112,14 +120,14 @@ function Product(props) {
           <div className="row">
             <button
               type="button"
-              className="btn btn-outline-info mx-2 s-btn-common"
+              className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
             >
               <AiOutlineHeart />
               加入收藏清單
             </button>
             <button
               type="button"
-              className="btn btn-outline-info mx-2 s-btn-common"
+              className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
               onClick={() =>
                 updateCartToLocalStorage({
                   id: myproduct.itemId,
@@ -133,6 +141,7 @@ function Product(props) {
               加入購物車
             </button>
           </div>
+          <div className="row h5 m-2">共{wholike2.length}人收藏此遊戲</div>
           <div className="row mt-2 h6">
             <div className="col-3 ">發行商:</div>
             <div className="col-7 ">{myproduct.vName}</div>
@@ -174,6 +183,7 @@ function Product(props) {
       <div className="">
         {configORcomment === 1 ? <Config /> : <Comment2 />}
       </div>
+      <div>{<Recommend />}</div>
       {/* <Switch>
         <Route path={`${path}/:id?/config/12`}>
           <Config />

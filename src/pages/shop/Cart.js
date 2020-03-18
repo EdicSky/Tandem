@@ -109,7 +109,7 @@ function Cart() {
       //  console.log('id=',productId)
     })
     setProductIdInCart(productId) //+await
-
+    
     getImgFromServer(productId) //抓商品圖片連結
   }
   //  console.log(body)
@@ -121,10 +121,12 @@ function Cart() {
 
   //發送fetch給後端抓ImgUrl
   async function getImgFromServer(id) {
-    if (id.length == 0) {
-      //若購物車id還沒找到就不要發fetch
-      return
-    }
+    console.log('id長度=', id.length)
+    // if (id.length == 0) {
+    //   //若購物車id還沒找到就不要發fetch
+    //   setProductImgUrl([])
+    //   return
+    // }
     let body = { id: id }
     console.log('bodybody', body)
     const request = new Request('http://localhost:3300/product/getCartImg', {
@@ -147,7 +149,8 @@ function Cart() {
   // }, [productIdInCart])
 
   // console.log(productImgUrl[0])
-
+ 
+  
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -191,14 +194,15 @@ function Cart() {
         </table>
         <table className="table">
           <tbody>
-            {productImgUrl.map((value, index) => {
+
+            {productImgUrl.length !== 0 ? productImgUrl.map((value, index) => {
               return (
                 <>
                   <tr key={index}>
-                    <td className="">
+                    <td className="columnWidth1">
                       <img
                         src={`/images/shop/small_img/${value.itemImg}`}
-                        className=""
+                        className="img-fluid"
                         alt="..."
                       />
                     </td>
@@ -225,11 +229,15 @@ function Cart() {
                   </tr>
                 </>
               )
-            })}
+            }):''}
           </tbody>
         </table>
       </div>
-      <h3 className="text-center h4">折價券</h3>
+      <div className="d-flex justify-content-center">
+        <img src="/images/shop/coupon.png" style={{ width: '25px' }} alt="" />
+        <h3 className="text-center h4">折價券</h3>
+      </div>
+
       <div className="s-couponList p-2">
         <h5>你有1張折價券可使用</h5>
         <div className="my-2">

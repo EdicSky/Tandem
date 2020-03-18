@@ -260,3 +260,36 @@ h6 {
     color: white;
   }
 }
+
+//商品列表hover縮小
+.s-productlist-card {
+  img {
+    &:hover {
+      transform: scale(0.8);
+      border-radius: 25px;
+      transition: 0.5s;
+    }
+  }
+}
+
+//推薦商品頁
+.s-recommend {
+  // width: 90%;
+  background-color: whitesmoke;
+  overflow: hidden;
+  h4 {
+    color: #79cee2;
+  }
+}
+
+.s-recommend-pic {
+  width: 400px;
+  position: relative;
+  left: 0px;
+  margin-right: 20px;
+}
+.s-recommend-row {
+  width: 2000px;
+  position: relative;
+  left: 0px;
+}
