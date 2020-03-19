@@ -171,7 +171,7 @@ h6 {
   height: 100%;
   background: white;
   transition: 0.5s;
-  border: 2px solid lightgrey;
+  border: 1px solid lightgrey;
   a {
     position: absolute;
     top: 40%;
@@ -205,8 +205,8 @@ h6 {
 }
 .s-filterbar-btn {
   border-radius: 25px;
-  border: 1px solid lightblue;
-  color: lightblue;
+  border: 1px solid #79cee2;
+  color: #79cee2;
   width: 150px;
   &:hover {
     background-color: #007bff;
@@ -271,7 +271,26 @@ h6 {
     }
   }
 }
+//商品細節頁
+.s-bigImg {
+  width: 100%;
+  height: 80%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 
+.s-smailImg {
+  width: 100%;
+  li {
+    width: 25%;
+    img {
+      width: 100%;
+    }
+  }
+}
 //推薦商品頁
 .s-recommend {
   // width: 90%;
@@ -292,4 +311,121 @@ h6 {
   width: 2000px;
   position: relative;
   left: 0px;
+}
+
+//客製化checkbox
+/* Customize the label (the container) */
+.form-check {
+  display: block;
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.s-checkbox {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* Hide the browser's default checkbox */
+.form-check input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+// On mouse-over, add a grey background color */
+.form-check:hover input ~ .s-checkbox {
+  background-color: #ccc;
+}
+
+// When the checkbox is checked, add a blue background */
+.form-check input:checked ~ .s-checkbox {
+  background-color: #2196f3;
+}
+
+//Create the checkmark/indicator (hidden when not checked) */
+.s-checkbox::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+//Show the checkmark when checked */
+.form-check input:checked ~ .s-checkbox::after {
+  display: block;
+}
+
+//Style the checkmark/indicator
+.form-check .s-checkbox::after {
+  left: 9px;
+  top: 5px;
+  width: 8px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+//客製化radiobox
+
+/* Hide the browser's default radio button */
+.form-check input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.s-radio {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+/* On mouse-over, add a grey background color */
+.form-check:hover input ~ .s-radio {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.form-check input:checked ~ .s-radio {
+  background-color: #2196f3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.s-radio:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.form-check input:checked ~ .s-radio:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.form-check .s-radio:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }

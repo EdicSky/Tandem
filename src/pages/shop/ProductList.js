@@ -175,7 +175,7 @@ function ProductList(props) {
                 style={{ borderRadius: '0px' }}
               >
                 <img
-                  src="https://via.placeholder.com/250x150"
+                  src={`/images/shop/small_img/${value.itemImg}`}
                   className="card-img-top"
                   alt="..."
                 />
@@ -358,7 +358,7 @@ function ProductList(props) {
           handletype(value)
         }}
       />
-      <div className="d-flex">
+      <div className="d-flex container">
         {type !== 0 ? (
           <div className="s-filterClearBtn">
             類型{type}
@@ -400,6 +400,7 @@ function ProductList(props) {
           ''
         )}
       </div>
+      <div className="container">
       <Filterbar
         setMyproduct={setMyproduct}
         setTotalpage={setTotalpage}
@@ -407,6 +408,7 @@ function ProductList(props) {
         setPrice={setPrice}
         setOrderBy={setOrderBy}
       />
+      </div>
       <div className="container">{dataLoading ? loading : display}</div>
     </>
   )

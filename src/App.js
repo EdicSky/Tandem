@@ -27,7 +27,7 @@ function App() {
     <Router>
       <>          
         <Header />
-          <div className="container mt-30">
+          {/* <div className="container mt-30"> */}
           {/* <Home className="mt-3"/> */}
           <Switch>
 
@@ -66,7 +66,7 @@ function App() {
             </Route>
           </Switch>
 
-          </div>
+          {/* </div> */}
         <Footer/>
       </>
     </Router>

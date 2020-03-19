@@ -31,7 +31,7 @@ function Filterbar(props) {
         <div className="col col-sm-6 col-lg-2 s-filterbar">
           <input
             type="search"
-            className="form-control s-filterbar-search"
+            className="form-control s-filterbar-search pl-4"
             aria-label="Text input with dropdown button"
             name="search"
             value={search_query}

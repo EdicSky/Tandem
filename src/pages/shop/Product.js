@@ -13,6 +13,8 @@ import {
   AiOutlineCaretRight,
 } from 'react-icons/ai'
 import '../../css/shop.scss'
+import Swal from 'sweetalert2'//sweetalert2
+import $ from 'jquery'
 
 function Product(props) {
   const [myproduct, setMyproduct] = useState([])
@@ -22,6 +24,7 @@ function Product(props) {
   console.log(props)
   const productId = props.match.params.type
   console.log(productId)
+  const [like,setlike] = useState(false)//登錄的人是否有收藏此商品
   const handleDisplay = value => {
     setCofigORcomment(value)
   }
@@ -57,25 +60,86 @@ function Product(props) {
   const url = props.match.url
   const path = props.match.path
   console.log('url', props.match)
-  //將database儲存的收藏此商品id=[1,2,3,4]轉成length
+  //以下，將database儲存的收藏此商品id=[1,2,3,4]轉成length
   let wholike = {...myproduct}
   let wholike2 = "'" + wholike.memberFavoriteId +"'"
   
   wholike2 = wholike2.split(",")
   // console.log(wholike2.length)
+  //以上，將database儲存的收藏此商品id=[1,2,3,4]轉成length
+
+  //商品加入收藏
+  async function addToLike(){
+    const request = new Request('http://localhost:3300/product/addtolike', {
+      method: 'POST',
+      body:JSON.stringify({"userId":2,"likeproductId":myproduct.itemId}),
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    
+    console.log('加入收藏',data)
+    if (data.r.affectedRows == 1){
+      
+      Swal.fire('商品成功加入收藏!')
+    }
+  }
   
+  //點商品小圖=>展示大圖
+  useEffect(()=>{
+    $("ul li").click(function(){
+      
+      let newAttr = $(this).find("img").attr("src");
+      console.log(newAttr)
+
+
+      
+      document.querySelector(".s-bigImg img").setAttribute("src",newAttr)
+      
+    })
+
+  },[])
+
+  //處理小圖檔名，組合成大圖檔名
+  let bigImgarray = []
+  let oldname = String(myproduct.itemImg)
+  // oldname.toString()
+  let newname = oldname.split(".")
+  console.log(newname[0])
+  for (let i = 0;i<=3;i++){
+    
+    
+    bigImgarray.push(newname[0] + "_" +i)
+    
+  }
+  console.log(bigImgarray)
   return (
     <>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap container">
         <div className="col col-sm-12 col-md-6 my-5">
-          <div className="text-center">
-            <img src="https://via.placeholder.com/500x300" alt="" />
+          <div className="text-center s-bigImg">
+            <img className="img-fluid" src={`/images/shop/small_img/${myproduct.itemImg}`} alt="" />
           </div>
-          <ul className="list-unstyled d-flex justify-content-center">
-            <li>
+          <ul className="list-unstyled d-flex justify-content-center s-smailImg mt-3">
+          {bigImgarray.map((img,index)=>{
+            return (
+              <li key={index}>
               <img
-                className=""
-                src="https://via.placeholder.com/100x100"
+                className="img-fluid"
+                src={`/images/shop/bigImage/${img}.jpg`}
+                alt=""
+              />
+            </li>
+            )
+          })}
+            {/* <li>
+              <img
+                className=" img-fluid"
+                src={`/images/shop/small_img/${myproduct.itemImg}`}
                 alt=""
               />
             </li>
@@ -99,14 +163,14 @@ function Product(props) {
                 src="https://via.placeholder.com/100x100"
                 alt=""
               />
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <img
                 className=""
                 src="https://via.placeholder.com/100x100"
                 alt=""
               />
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="col col-sm-12 col-md-6 my-5">
@@ -121,6 +185,7 @@ function Product(props) {
             <button
               type="button"
               className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
+              onClick={()=>addToLike()}
             >
               <AiOutlineHeart />
               加入收藏清單
@@ -183,7 +248,7 @@ function Product(props) {
       <div className="">
         {configORcomment === 1 ? <Config /> : <Comment2 />}
       </div>
-      <div>{<Recommend />}</div>
+      <div className="container">{<Recommend />}</div>
       {/* <Switch>
         <Route path={`${path}/:id?/config/12`}>
           <Config />

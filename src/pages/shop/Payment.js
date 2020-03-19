@@ -3,6 +3,9 @@ import { withRouter, Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import '../../css/shop.scss'
 import Swal from 'sweetalert2'//sweetalert2
+import $ from 'jquery'
+
+
 function Payment(props) {
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
@@ -49,6 +52,25 @@ function Payment(props) {
       props.history.push('/order')
     }
   }
+
+
+//填信用卡號自動換格
+  useEffect(()=>{
+    $(".card-input").on("keyup",function(){
+      // console.log($(this).parent().next().find(".card-input"))
+      $(this).focus()
+      let contentLength = $(this).val().length;
+      let maxLength=$(this).attr("maxlength");
+      
+     
+      //數字超過4個跳下一格
+      if(contentLength==maxLength){
+  
+  
+          $(this).parent().next().find(".card-input").focus()
+         
+      }})
+  },[])
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -101,17 +123,48 @@ function Payment(props) {
               付款方式
             </label>
             <div className="col-sm-5 mx-2">
-              <input
+              {/* <input
                 type="radio"
                 className="form-check-input h5 "
                 id="exampleCheck1"
                 style={{ marginLeft: '-5px', marginRight: '10px' }}
-              />
+              /> */}
+              <label class="form-check ">
+              <input type="radio" name="radio"/>
+              <span class="s-radio"></span>
               <img
                 src="/images/shop/visaCard.png"
                 style={{ marginLeft: '10px' }}
                 alt="..."
               />
+              </label>
+            </div>
+          </div>
+          <div className="form-group row">
+            <label className="col-sm-3 col-form-label text-right">
+            信用卡號
+            </label>
+            <div className="col-sm-8 ">
+              {/* <input
+                type="text"
+                className="form-check-input h5 "
+                id="exampleCheck1"
+                style={{ marginLeft: '-5px', marginRight: '10px' }}
+              /> */}
+              <div class="form-group form-row">
+                <div class="col">
+                  <input type="text" className="form-control card-input" id="input1" placeholder="" maxlength="4"/>
+                </div>
+                <div class="col">
+                  <input type="text" className="form-control card-input" id="input2" placeholder="" maxlength="4"/>
+                </div>
+                <div class="col">
+                  <input type="text" className="form-control card-input" id="input3" placeholder="" maxlength="4"/>
+                </div>
+                <div class="col">
+                  <input type="text" className="form-control card-input" id="input4" placeholder="" maxlength="4"/>
+                </div>
+              </div>
             </div>
           </div>
           <div className="form-group row">
@@ -171,14 +224,15 @@ function Payment(props) {
               />
             </div>
           </div>
-          <div className="form-check text-center">
+          <label className="form-check ">
             <input
               type="checkbox"
               className="form-check-input"
               id="agreement"
             />
+            <span className="s-checkbox"></span>
             <label className="form-check-label p">勾選同意服務條款</label>
-          </div>
+          </label>
         </form>
       </div>
 

@@ -49,7 +49,7 @@ function Slider(props) {
       
     // })
     $('.box').mouseleave(function() {
-      $('.sbox-s').css({ transform: 'scale(1)' })
+      $('.sbox-s').css({ transform: 'scale(1)', opacity: '100%' })
       
     })
   }, [])
@@ -85,7 +85,8 @@ function Slider(props) {
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-            <h2>競速</h2>
+          <Link onClick={()=>props.handletype(6)} >競速</Link>
+            
           </div>
         </div>
       </div>
