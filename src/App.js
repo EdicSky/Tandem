@@ -15,6 +15,7 @@ import ProductList from './pages/shop/ProductList'
 import Product from './pages/shop/Product'
 import Payment from './pages/shop/Payment'
 import Order from './pages/shop/Order'
+import Test from './pages/shadow_Data'
 
 //選單
 // import Menu from './components/Menu'
@@ -61,9 +62,13 @@ function App() {
             <Route path="/order">
               <Order />
             </Route>
+            <Route path='/test'>
+              <Test/>
+            </Route>
             <Route exact path="/">
               <Home />
             </Route>
+            
           </Switch>
 
           {/* </div> */}
