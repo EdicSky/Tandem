@@ -36,7 +36,7 @@ function Order() {
 
   const display = (
     <>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center " style={{paddingTop:'50px'}}>
         <div className="circle">
           <h1>1</h1>
         </div>
@@ -49,7 +49,7 @@ function Order() {
           <h1>3</h1>
         </div>
       </div>
-      <h3 className="text-center h4">訂單資訊</h3>
+      <h3 className="text-center h4">訂單成立</h3>
       <div className="s-payment p-2 h5">
         <form>
           <div className="form-group row">

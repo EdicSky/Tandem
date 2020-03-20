@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 // import '../CSS/Cart.scss'
 import '../../css/shop.scss'
 import $ from 'jquery'
+import { AiOutlineCheckCircle } from 'react-icons/ai'
 
 function Cart() {
   const [mycart, setMycart] = useState([])
@@ -57,7 +58,9 @@ function Cart() {
     $('.coupon').click(function() {
       console.log($(this))
       $(this).toggleClass('couponActive')
+      $(this).next().css('max-width','100px')
     })
+
   }, [selectCoupon])
   // 刪除購物車項目
   async function updateCartToLocalStorage(value) {
@@ -78,6 +81,7 @@ function Cart() {
   }
   const handleCouponSelect = () => {
     setSelectCoupon(!selectCoupon)
+    
   }
   const sum = items => {
     let total = 0
@@ -162,7 +166,7 @@ function Cart() {
   )
   const display = (
     <>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center" style={{paddingTop:'50px'}}>
         <div className="circleActive">
           <h1>1</h1>
         </div>
@@ -175,7 +179,7 @@ function Cart() {
           <h1>3</h1>
         </div>
       </div>
-      <h3 className="text-center mt-3 h4">購物清單</h3>
+      {/* <h3 className="text-center mt-3 h4 s-cart-title">購物清單</h3> */}
       <div className="shoppingList">
         <table className="table">
           <thead>
@@ -238,8 +242,17 @@ function Cart() {
         <h3 className="text-center h4">折價券</h3>
       </div>
 
-      <div className="s-couponList p-2">
-        <h5>你有1張折價券可使用</h5>
+      <div className="s-couponList p-4">
+        <h5>你有2張折價券可使用，已選0張</h5>
+        <div className="my-3" style={{position:'relative'}}>
+          <img
+            src="https://via.placeholder.com/300x150"
+            className="coupon"
+            alt="..."
+            onClick={() => handleCouponSelect()}
+          />
+          <AiOutlineCheckCircle style={{ maxWidth:'0',transition:'0.5s',fontSize:'80px',fontWeight:'bold', color:'purple',position:'absolute', left:'15%',top:'30px'}}/>
+        </div>
         <div className="my-2">
           <img
             src="https://via.placeholder.com/300x150"
@@ -248,30 +261,45 @@ function Cart() {
             onClick={() => handleCouponSelect()}
           />
         </div>
-        <div className="my-2">
-          <img
-            src="https://via.placeholder.com/300x150"
-            className="coupon"
-            alt="..."
-            onClick={() => handleCouponSelect()}
-          />
-        </div>
-        <div className="d-flex">
-          <div className="p col-7">
-            購買總金額(共{mycartDisplay.length}個商品):
-            <span style={{ color: 'orange', fontSize: '30px' }}>
-              ${sum(mycartDisplay)}
-            </span>
-          </div>
-          <div className="p col-3">
-            折扣後:
-            <span style={{ color: 'orange', fontSize: '30px' }}>
-              ${sum(mycartDisplay) - 500}
-            </span>
-          </div>
-        </div>
+        
+        
+        
       </div>
-
+      <div className="container">
+      <table style={{width:'100%'}}>
+            <tbody>
+              <tr className="">
+                <td className="text-right pr-2" style={{width:'75%', fontSize:'20px'}}>
+                  
+                    購買總金額(共{mycartDisplay.length}個商品):
+                    
+                  
+                </td>
+                <td>
+                    <span className = "" style={{ color: 'orange', fontSize: '30px'}}>
+                      ${sum(mycartDisplay)}
+                    </span>
+                </td>
+              </tr>
+              <tr>
+                <td className="text-right pr-2" style={{width:'75%', fontSize:'20px'}}>
+                  折扣後:
+                </td>
+                <td>
+                  <div className="p">
+              
+                    <span className = "" style={{ color: 'orange', fontSize: '30px' }}>
+                      ${sum(mycartDisplay) - 500}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+        
+          
+          
+          </table>
+          </div>
       <div className="d-flex justify-content-center my-3">
         <Link
           type="button"

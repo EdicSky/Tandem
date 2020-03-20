@@ -109,7 +109,7 @@ function Product(props) {
   let oldname = String(myproduct.itemImg)
   // oldname.toString()
   let newname = oldname.split(".")
-  console.log(newname[0])
+  // console.log(newname[0])
   for (let i = 0;i<=3;i++){
     
     

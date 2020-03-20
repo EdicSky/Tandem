@@ -82,7 +82,7 @@ function Payment(props) {
   )
   const display = (
     <>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center" style={{paddingTop:'50px'}}>
         <div className="circle">
           <h1>1</h1>
         </div>
@@ -153,13 +153,13 @@ function Payment(props) {
               /> */}
               <div class="form-group form-row">
                 <div class="col">
-                  <input type="text" className="form-control card-input" id="input1" placeholder="" maxlength="4"/>
+                  <input type="password" className="form-control card-input" id="input1" placeholder="" maxlength="4"/>
                 </div>
                 <div class="col">
-                  <input type="text" className="form-control card-input" id="input2" placeholder="" maxlength="4"/>
+                  <input type="password" className="form-control card-input" id="input2" placeholder="" maxlength="4"/>
                 </div>
                 <div class="col">
-                  <input type="text" className="form-control card-input" id="input3" placeholder="" maxlength="4"/>
+                  <input type="password" className="form-control card-input" id="input3" placeholder="" maxlength="4"/>
                 </div>
                 <div class="col">
                   <input type="text" className="form-control card-input" id="input4" placeholder="" maxlength="4"/>
@@ -224,15 +224,17 @@ function Payment(props) {
               />
             </div>
           </div>
-          <label className="form-check ">
+          <div className="d-flex justify-content-center">
+          <label className="form-check col-5" >
             <input
               type="checkbox"
               className="form-check-input"
               id="agreement"
             />
             <span className="s-checkbox"></span>
-            <label className="form-check-label p">勾選同意服務條款</label>
+            <label className="form-check-label p " style={{position:'relative',left:'70px'}}>勾選同意服務條款</label>
           </label>
+          </div>
         </form>
       </div>
 
