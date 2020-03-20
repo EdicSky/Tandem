@@ -25,6 +25,7 @@ function Product(props) {
   const productId = props.match.params.type
   console.log(productId)
   const [like,setlike] = useState(false)//登錄的人是否有收藏此商品
+  const [defaultPic,setDefaultPic] =useState('')
   const handleDisplay = value => {
     setCofigORcomment(value)
   }
@@ -49,11 +50,17 @@ function Product(props) {
     const data = await response.json()
 
     setMyproduct(data.rows[0])
-
+    let picUrl = JSON.stringify(myproduct)
+    
+    console.log('pic',picUrl)
+    // console.log(typeof(myproduct))
+    setDefaultPic(data.rows[0].itemImg)
+    
     // console.log(data.rows)
   }
   useEffect(() => {
     getDataFromServer()
+    
   }, [])
 
   console.log('myproduct資訊=', myproduct)
@@ -90,19 +97,13 @@ function Product(props) {
   }
   
   //點商品小圖=>展示大圖
-  useEffect(()=>{
-    $("ul li").click(function(){
-      
-      let newAttr = $(this).find("img").attr("src");
-      console.log(newAttr)
-
-
-      
-      document.querySelector(".s-bigImg img").setAttribute("src",newAttr)
-      
-    })
-
-  },[])
+  
+  function clickTochangePic(e) {
+    // console.log('this is',e)
+    let newAttr = e.getAttribute("src");
+    console.log(newAttr)
+    document.querySelector(".s-bigImg img").setAttribute("src",newAttr)
+  }
 
   //處理小圖檔名，組合成大圖檔名
   let bigImgarray = []
@@ -117,21 +118,24 @@ function Product(props) {
     
   }
   console.log(bigImgarray)
+  
+  
   return (
     <>
       <div className="d-flex flex-wrap container">
         <div className="col col-sm-12 col-md-6 my-5">
           <div className="text-center s-bigImg">
-            <img className="img-fluid" src={`/images/shop/small_img/${myproduct.itemImg}`} alt="" />
+            <img className="img-fluid" src={`/images/shop/small_Img/${myproduct.itemImg}`} alt="" />
           </div>
-          <ul className="list-unstyled d-flex justify-content-center s-smailImg mt-3">
+          <ul className="list-unstyled d-flex justify-content-center s-smallImg mt-3">
           {bigImgarray.map((img,index)=>{
             return (
-              <li key={index}>
+              <li key={index} onClick={(e)=>clickTochangePic(e.target)}>
               <img
                 className="img-fluid"
                 src={`/images/shop/bigImage/${img}.jpg`}
                 alt=""
+                
               />
             </li>
             )
