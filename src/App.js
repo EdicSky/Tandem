@@ -15,7 +15,7 @@ import ProductList from './pages/shop/ProductList'
 import Product from './pages/shop/Product'
 import Payment from './pages/shop/Payment'
 import Order from './pages/shop/Order'
-import Test from './pages/shadow_Data'
+import Shadow_Data from './pages/Shadow_Data_ver2'
 
 //選單
 // import Menu from './components/Menu'
@@ -63,7 +63,7 @@ function App() {
               <Order />
             </Route>
             <Route path='/test'>
-              <Test/>
+              <Shadow_Data/>
             </Route>
             <Route exact path="/">
               <Home />

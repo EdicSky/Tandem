@@ -282,51 +282,7 @@ function ProductList(props) {
           </ul>
           {/* 新的頁數bar結束 */}
 
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="s-page-item">
-                <Link
-                  className="page-link"
-                  onClick={() => paginate(currentpage - 1)}
-                >
-                  {/* <i className="fas fa-arrow-left"></i> */}
-                  <AiOutlineArrowLeft />
-                </Link>
-              </li>
-              {pageNumbers.map((number, index) => {
-                return (
-                  <li
-                    key={index}
-                    className={
-                      'page-item ' + (number === currentpage ? 'active' : '')
-                    }
-                  >
-                    <Link
-                      className="page-link"
-                      //   to={{
-                      //     search: searchParams.get('page')
-                      //       ? `page=${number}`
-                      //       : search + `page=${number}`,
-                      //   }}
-                      to={{ search: `type=${type}` + `&&page=${number}` }}
-                      onClick={() => paginate(number)}
-                    >
-                      {number}
-                    </Link>
-                  </li>
-                )
-              })}
-              <li className="page-item ">
-                <Link
-                  className="page-link"
-                  onClick={() => paginate(currentpage + 1)}
-                >
-                  {/* <i className="fas fa-arrow-right"></i> */}
-                  <AiOutlineArrowRight />
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          
         </div>
       </div>
     </>

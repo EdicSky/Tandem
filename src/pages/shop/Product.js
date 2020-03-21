@@ -184,7 +184,7 @@ function Product(props) {
           </div>
 
           <h3>{myproduct.itemName}</h3>
-          <p>{myproduct.itemIntro}</p>
+          <p style={{minHeight:'150px'}}>{myproduct.itemIntro}</p>
           <div className="row">
             <button
               type="button"
@@ -250,7 +250,7 @@ function Product(props) {
         </li>
       </ul>
       <div className="">
-        {configORcomment === 1 ? <Config /> : <Comment2 />}
+        {configORcomment === 1 ? <Config /> : <Comment2 props={myproduct}/>}
       </div>
       <div className="container">{<Recommend />}</div>
       {/* <Switch>

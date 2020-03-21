@@ -10,16 +10,21 @@ function Payment(props) {
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
-  const [username, setUsername] = useState('')
+  // const [username, setUsername] = useState('')
   const [agreement, setAgreement] = useState(false) //同意條款
   const [itemIds, setItemIds] = useState([])
   const [totalPrice, setTotalPrice] = useState(1000) //如何不抓localstorage內的價錢?
+
+  //登入用戶的id
+  const mbId = JSON.parse(localStorage.getItem('LoginUserData')).body.mbId
+  const username = JSON.parse(localStorage.getItem('LoginUserData')).body.mbName
+  // const mbId = logindata.data.body.mbId
   //付款資訊傳到server
   async function submitPayment() {
     let agree = document.querySelector('#agreement').checked
     if (agree === !true) {
       //沒有勾同意就中斷
-      alert('請勾選同意服務條款!')
+      Swal.fire('請勾選同意服務條款!')
       return
     }
     //抓localstorage的商品Id
@@ -29,10 +34,12 @@ function Payment(props) {
       productId.push(item.id.toString())
     })
     setItemIds(productId) //設定商品id to state
+    
     const body = {
       username: username,
       itemIds: JSON.stringify(productId),
       totalPrice: totalPrice,
+      mbId: mbId
     }
     const request = new Request('http://localhost:3300/product/payment', {
       method: 'POST',
@@ -60,7 +67,7 @@ function Payment(props) {
       // console.log($(this).parent().next().find(".card-input"))
       $(this).focus()
       let contentLength = $(this).val().length;
-      let maxLength=$(this).attr("maxlength");
+      let maxLength=$(this).attr("maxLength");
       
      
       //數字超過4個跳下一格
@@ -114,7 +121,8 @@ function Payment(props) {
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder=""
-                onChange={e => setUsername(e.target.value)}
+                // onChange={e => setUsername(e.target.value)}
+                value = {username}
               />
             </div>
           </div>
@@ -153,16 +161,16 @@ function Payment(props) {
               /> */}
               <div class="form-group form-row">
                 <div class="col">
-                  <input type="password" className="form-control card-input" id="input1" placeholder="" maxlength="4"/>
+                  <input type="password" className="form-control card-input" id="input1" placeholder="" maxLength="4"/>
                 </div>
                 <div class="col">
-                  <input type="password" className="form-control card-input" id="input2" placeholder="" maxlength="4"/>
+                  <input type="password" className="form-control card-input" id="input2" placeholder="" maxLength="4"/>
                 </div>
                 <div class="col">
-                  <input type="password" className="form-control card-input" id="input3" placeholder="" maxlength="4"/>
+                  <input type="password" className="form-control card-input" id="input3" placeholder="" maxLength="4"/>
                 </div>
                 <div class="col">
-                  <input type="text" className="form-control card-input" id="input4" placeholder="" maxlength="4"/>
+                  <input type="text" className="form-control card-input" id="input4" placeholder="" maxLength="4"/>
                 </div>
               </div>
             </div>

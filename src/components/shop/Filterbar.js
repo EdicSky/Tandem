@@ -43,7 +43,7 @@ function Filterbar(props) {
             // onClick={() => props.handleSearch()}
           >
             {/* <i class="fas fa-search"></i> */}
-            <AiOutlineSearch />
+            <AiOutlineSearch style={{fontSize:'24px',marginTop:'10px'}}/>
           </Link>
         </div>
         <div className="col col-sm-6 col-lg-2 s-filterbar">

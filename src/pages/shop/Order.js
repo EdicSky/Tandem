@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import '../../css/shop.scss'
-function Order() {
+import { withRouter } from 'react-router-dom'
+function Order(props) {
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [orderInfo, setOrderInfo] = useState([])
-
+  const [productName,setProductName] = useState('')
+  const [productId,setProductId] = useState('')
+  
   useEffect(() => {
     async function getOrderInfo() {
       const request = new Request('http://localhost:3300/product/orderInfo', {
@@ -21,9 +24,53 @@ function Order() {
       const response = await fetch(request)
       const data = await response.json()
       setOrderInfo(data)
+      
+      // productIds.push([data])
+      setProductId(data[0].itemId)
+      
     }
+    console.log('beforeGetOrderInfo')
     getOrderInfo()
+    console.log('gerOrderInfo')
+    console.log('productId',productId.length)
+    if(productId){
+      console.log('找名稱')
+    getProductNameFromId()
+    }
+    // getProductNameFromId(.itemId)
   }, [])
+
+  
+  // console.log('orderInfoCopy Outside',orderInfo[0])
+// console.log('orderInfo',data.itemId)
+// console.log(productIds)
+  async function getProductNameFromId(){
+    // const orderInfoCopy = {...orderInfo}//對orderInfo做拷貝
+    // console.log('orderInfoCopy',orderInfo[0])
+    // console.log(id)
+    const request = new Request('http://localhost:3300/product/multipleId', {
+      method: 'POST',
+      body:JSON.stringify({'productIds':productId}),
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    setProductName(data)
+  }
+
+  // useEffect(()=>{
+  //   if(productId.length>0){
+  //     console.log('找名稱')
+  //   getProductNameFromId()
+  //   }
+  // },[])
+  const productname = JSON.parse(localStorage.getItem('cart'))
+  
+  console.log('localstorage',productname)
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -97,6 +144,7 @@ function Order() {
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder=""
+                value = {JSON.parse(localStorage.getItem('LoginUserData')).mbName}
               />
             </div>
           </div>
@@ -106,11 +154,17 @@ function Order() {
             </label>
             <div class="col-sm-5 my-2">信用卡付款</div>
           </div>
+          <div className="form-group row">
+            <label className="col-sm-3 col-form-label text-right">
+              訂購商品
+            </label>
+            <div class="col-sm-5 my-2">{productname.map((item,index)=>{return (<p>({index+1}) {item.name}</p>)})}</div>
+          </div>
         </form>
       </div>
 
       <div className="d-flex justify-content-center my-3">
-        <button type="button" className="btn btn-outline-info mx-2">
+        <button type="button" className="btn btn-outline-info mx-2" onClick={()=>{props.history.push('/productlist')}}>
           完成訂單
         </button>
       </div>
@@ -123,4 +177,4 @@ function Order() {
   )
 }
 
-export default Order
+export default withRouter(Order)

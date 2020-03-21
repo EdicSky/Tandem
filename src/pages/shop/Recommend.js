@@ -27,30 +27,30 @@ function Recommend() {
   }
   const recommend = (
     <>
-      <div className="d-flex justify-content-center mt-5">
-        <div className="s-recommend col-12 py-3">
+      <div className="d-flex justify-content-center my-5 ">
+        <div className="s-recommend col-12 px-5 py-3">
           <button
             id="toLeft"
             style={{
-              zIndex: 99,
+              // zIndex: 99,
               position: 'absolute',
-              height: '80%',
-              left: '20px',
+              height: '90%',
+              left: '0px',
               // top: '120px',
               backgroundColor: 'transparent',
               border: 'none',
             }}
             onClick={() => toLeft()}
           >
-            <AiOutlineCaretLeft style={{ fontSize: '30px', color: '' }} />
+            <AiOutlineCaretLeft style={{ fontSize: '30px', color: 'black'}} />
           </button>
           <button
             id="toRight"
             style={{
               zIndex: 99,
               position: 'absolute',
-              height: '80%',
-              right: '20px',
+              height: '90%',
+              right: '0px',
               // top: '120px',
               backgroundColor: 'transparent',
               border: 'none',
@@ -60,36 +60,38 @@ function Recommend() {
             <AiOutlineCaretRight style={{ fontSize: '30px', color: '' }} />
           </button>
           <h4 className="text-center">推薦商品</h4>
-
-          <div className="d-flex s-recommend-row mx-5">
-            <div className="s-recommend-pic">
-              <img
-                className="img-fluid"
-                src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
-                alt=""
-              />
-            </div>
-            <div className="s-recommend-pic">
-              <img
-                className="img-fluid"
-                src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
-                alt=""
-              />
-            </div>
-            <div className="s-recommend-pic">
-              <img
-                className="img-fluid"
-                src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
-                alt=""
-              />
-            </div>
-            <div className="s-recommend-pic">
-              <img
-                className="img-fluid"
-                src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
-                alt=""
-              />
-            </div>
+          <div className="" style={{overflow:'hidden'}}>
+            <div className="d-flex s-recommend-row mx-5 px-2" style={{transition:'.5s'}}>
+              <div className="s-recommend-pic">
+                <img
+                  className="img-fluid"
+                  src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="s-recommend-pic">
+                <img
+                  className="img-fluid"
+                  src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="s-recommend-pic">
+                <img
+                  className="img-fluid"
+                  src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="s-recommend-pic">
+                <img
+                  className="img-fluid"
+                  src="/images/shop/small_Img/1_Shadowverse CCG.jpg"
+                  alt=""
+                />
+              </div>
+            
+          </div>
           </div>
         </div>
       </div>
