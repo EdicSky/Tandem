@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import { NavLink } from 'react-router-dom'
 
 import {
@@ -11,22 +11,29 @@ import {
   AiOutlineCaretLeft,
   AiOutlineCaretRight,
 } from 'react-icons/ai'
-function NewsIntroduction() {
+function NewsIntroduction(props) {
+  console.log(props.ttt)
+  let news = props.ttt ? props.ttt : ''
+  let title = news.bTitle
+  let content = news.bContent
+  let img = news.bImg
+  let date = news.bDate
+  let url = news.sId === '' ? 'news/' + news.bId : 'sales/' + news.sId
+
   return (
     <>
       <div className="card news_introduction">
-        <img src="news_images/hades.jpg" className="card-img-top" alt="..." />
+        <img
+          src={`data:image/png;base64,${img}`}
+          className="card-img-top"
+          alt="..."
+        />
         <div className="news card-body">
           <div className="news_index_title">
-            <h2 className="card-title">萬智牌：競技場》——新手指南</h2>
+            <h3 className="card-title">{title}</h3>
           </div>
           <div className="news_index_content">
-            <p className="card-text">
-              《萬智牌：競技場》，劃定時代的集換式卡牌遊戲衍生出的廣受好評的新版本，現已在Epic
-              Games Store
-              上線。就在今天！《萬智牌：競技場》使傳奇的卡牌遊戲比以往都容易上手。'無需付費即可暢玩，提供遊戲玩法的指導，且自動執行所有規則，在遊戲中助您一臂之力。如果您一直想試試《萬智牌》，現在就是加入的最好時機。
-              Epic Games Store將是您通向世界頂尖集換式卡牌遊戲的通道。
-            </p>
+            <p className="card-text ellipsis">{content}</p>
           </div>
           <div className="news_index_detail d-flex justify-content-between ">
             <div className="news_index_detail_icon_group d-flex justify-content-between">
@@ -39,10 +46,10 @@ function NewsIntroduction() {
               </div>
               <div className="time_group d-flex">
                 <AiOutlineClockCircle className="icon" />
-                <p className=" d-flex">2019.11.1</p>
+                <p className=" d-flex">{date}</p>
               </div>
             </div>
-            <NavLink to="/bulletin/news" className="more_btn btn">
+            <NavLink to={`/${url}`} className="more_btn btn">
               詳細內容
             </NavLink>
           </div>

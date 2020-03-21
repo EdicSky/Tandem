@@ -2,11 +2,8 @@ import sample from './sample' //把自己的reducer import進來
 
 import { combineReducers } from 'redux'
 
-
-
 const allReducers = combineReducers({
-    sample,
-
+  sample,
 })
 
-export default allReducers;
+export default allReducers

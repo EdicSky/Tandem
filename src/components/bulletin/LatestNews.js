@@ -1,6 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
+
+import { Link } from 'react-router-dom'
 
 import {
   AiOutlineClockCircle,
@@ -11,20 +11,30 @@ import {
   AiOutlineCaretLeft,
   AiOutlineCaretRight,
 } from 'react-icons/ai'
-function LatestNews() {
+function LatestNews(props) {
+  console.log(props.ttt)
+  let news = props.ttt ? props.ttt : ''
+  let title = news.bTitle
+  let img = news.bImg
+  let time = news.bDate
+  let url = news.sId === '' ? 'news/' + news.bId : 'sales/' + news.sId
   return (
     <>
-      <div className="latest_news_group d-flex justify-content-between align-items-start">
-        <div className="latest_news_img">
-          <img src="news_images/starter_guide.png" alt="" />
+      <div className="latest_news_group d-flex   py-3">
+        <div className="latest_news_img mr-3">
+          <img
+            src={`data:image/png;base64,${img}`}
+            alt=""
+            className="latest_img"
+          />
         </div>
         <div className="latest_news_title">
-          <NavLink to="/bulletin/news">
-            <h4>《萬智牌：競技場》——新手指南</h4>
-          </NavLink>
+          <Link to={`/${url}`}>
+            <h6>{title}</h6>
+          </Link>
           <div className="time_group d-flex">
             <AiOutlineClockCircle className="icon" />
-            <p className=" d-flex">2019.11.1</p>
+            <p className=" d-flex">{time}</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import '../../css/news.scss'
+import RelatedNews from '../../components/bulletin/RelatedNews'
 import {
   AiOutlineClockCircle,
   AiOutlineFolderOpen,
@@ -10,45 +12,90 @@ import {
   AiOutlineCaretLeft,
   AiOutlineCaretRight,
 } from 'react-icons/ai'
-function News() {
+
+function News(props) {
+  const [bulletinDetailData, setBulletinDetailData] = useState([])
+  useEffect(() => {
+    //fetch
+    async function getBulletinData() {
+      const req = new Request(
+        `http://localhost:6001/bulletin${window.location.pathname}`,
+        {
+          method: 'GET',
+          headers: new Headers({
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }),
+        }
+      )
+
+      const res = await fetch(req)
+      const data = await res.json()
+      console.log(data)
+      setBulletinDetailData(data)
+    }
+
+    getBulletinData()
+    //getBulletinDetailData()
+  }, [])
+  let news = bulletinDetailData[0] ? bulletinDetailData[0] : ''
+  console.log(bulletinDetailData)
+  //console.log(window.location.pathname)
+  // console.log(props.data)
+  // if (news !== '') {
+  //   var newsEach = bulletinDetailData[0]
+  //   console.log(newsEach.bTitle)
+  // }
+  // console.log(bulletinDetailData[0].bTitle)
+  // let news = props.ttt ? props.ttt : ''
+  // let title = news.bTitle
+  // let content = news.bContent
+  // let img = news.bImg
+  // let bId = news.bId
+  // if (news == '') return <></>
   return (
     <>
       <div className="wrapper">
-        <div className="banner mb-4"></div>
+        <div className="banner mb-4">
+          <img
+            className="object-fit"
+            src={`data:image/png;base64,${
+              news == '' ? '' : bulletinDetailData[0].bImg
+            }`}
+            alt=""
+          />
+        </div>
         <div className="container pagination_news">
           <div className="pagination_news_content position-relative">
             <h1 className=" py-3 pagination_news">
-              《萬智牌：競技場》——新手指南
+              {news == '' ? '' : bulletinDetailData[0].bTitle}
             </h1>
             <div className="news_index_detail d-flex justify-content-between pt-2">
               <div className="news_index_detail_icon_group d-flex justify-content-between">
-                <NavLink to="#" className="vendor_name">
+                <Link to="#" className="vendor_name">
                   世嘉(SEGA)
-                </NavLink>
+                </Link>
                 <div className="category_group d-flex">
                   <AiOutlineFolderOpen className="icon" />
-                  <NavLink to="/bulletin/news">新聞</NavLink>
+                  <Link to="/bulletin/news">新聞</Link>
                 </div>
                 <div className="time_group d-flex">
                   <AiOutlineClockCircle className="icon" />
-                  <p>2019.11.1</p>
+                  <p>{news == '' ? '' : bulletinDetailData[0].bDate}</p>
                 </div>
               </div>
             </div>
             <p className="py-5">
-              《萬智牌：競技場》，劃定時代的集換式卡牌遊戲衍生出的廣受好評的新版本，現已在Epic
-              Games Store
-              上線。就在今天！《萬智牌：競技場》使傳奇的卡牌遊戲比以往都容易上手。'無需付費即可暢玩，提供遊戲玩法的指導，且自動執行所有規則，在遊戲中助您一臂之力。如果您一直想試試《萬智牌》，現在就是加入的最好時機。
-              Epic Games Store將是您通向世界頂尖集換式卡牌遊戲的通道。
+              {news == '' ? '' : bulletinDetailData[0].bContent}
             </p>
-            <NavLink to="#" className="position-absolute btn back_to_list">
+            <Link to="/bulletin" className="position-absolute btn back_to_list">
               返回公告頁
-            </NavLink>
+            </Link>
           </div>
           <div className="related_news">
             <h2>相關新聞</h2>
             <ul className="d-flex justify-content-between">
-              <NavLink to="#" className="a">
+              <Link to="#" className="a">
                 <li>
                   <div className="related_img"></div>
                   <div className="related_content">
@@ -63,10 +110,10 @@ function News() {
                     </div>
                   </div>
                 </li>
-              </NavLink>
-              <li></li>
-              <li></li>
-              <li></li>
+              </Link>
+              <RelatedNews />
+              <RelatedNews />
+              <RelatedNews />
             </ul>
           </div>
         </div>
