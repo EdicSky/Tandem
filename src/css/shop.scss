@@ -287,15 +287,37 @@ h6 {
 }
 
 //商品列表hover縮小
-.s-productlist-card {
-  img {
-    &:hover {
-      transform: scale(0.8);
+.s-cardwrap {
+  .s-productlist-card {
+    box-shadow: 0px 0px 10px #adb6bd;
+  }
+  &:hover {
+    .s-productlist-card {
+      transition: 1s;
+      transform: scale(0.9);
       border-radius: 25px;
-      transition: 0.5s;
+      img {
+        transition: 1s;
+        transform: scale(0.9);
+        border-radius: 25px;
+      }
     }
   }
 }
+// .s-productlist-card {
+//   &:hover {
+//     transform: scale(0.9);
+//     border-radius: 25px;
+//     transition: 1s;
+//   }
+//   img {
+//     &:hover {
+//       transform: scale(0.9);
+//       border-radius: 25px;
+//       transition: 1s;
+//     }
+//   }
+// }
 //商品細節頁
 .s-bigImg {
   width: 100%;

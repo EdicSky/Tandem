@@ -169,7 +169,8 @@ function ProductList(props) {
       <div className="row row-cols-3">
         {myproduct.map((value, index) => {
           return (
-            <div className="col-6 col-lg-4 col-sm-6" key={index}>
+          <div className="col-6 col-lg-4 col-sm-6" key={index}>
+            <div className="s-cardwrap">
               <div
                 className="card my-2 s-productlist-card"
                 style={{ borderRadius: '0px' }}
@@ -225,6 +226,7 @@ function ProductList(props) {
                 </div> */}
               </div>
             </div>
+          </div>
           )
         })}
       </div>
