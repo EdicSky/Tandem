@@ -16,8 +16,8 @@ function Payment(props) {
   const [totalPrice, setTotalPrice] = useState(1000) //如何不抓localstorage內的價錢?
 
   //登入用戶的id
-  const mbId = JSON.parse(localStorage.getItem('LoginUserData')).body.mbId
-  const username = JSON.parse(localStorage.getItem('LoginUserData')).body.mbName
+  const mbId = JSON.parse(localStorage.getItem('LoginUserData')).mbId
+  const username = JSON.parse(localStorage.getItem('LoginUserData')).mbName
   // const mbId = logindata.data.body.mbId
   //付款資訊傳到server
   async function submitPayment() {
@@ -38,7 +38,7 @@ function Payment(props) {
     const body = {
       username: username,
       itemIds: JSON.stringify(productId),
-      totalPrice: totalPrice,
+      totalPrice: localStorage.getItem('total'),
       mbId: mbId
     }
     const request = new Request('http://localhost:3300/product/payment', {

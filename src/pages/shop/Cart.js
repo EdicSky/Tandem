@@ -14,6 +14,7 @@ function Cart() {
   const [totalMoney, setTotalMoney] = useState(0) //總金額
   const [productIdInCart, setProductIdInCart] = useState([]) //購物車內商品Id
   const [productImgUrl, setProductImgUrl] = useState([])
+  const [coupon,setCoupon] = useState([])//coupon資訊
   async function getCartFromLocalStorage() {
     setDataLoading(true)
 
@@ -92,11 +93,12 @@ function Cart() {
   }
   //mycart有變動就把總金額set進totalMoney
   useEffect(() => {
-    let money = sum(mycartDisplay)
+    // console.log('coupon.sMethod',coupon.sMethod)
+    let money = sum(mycartDisplay)-coupon.sMethod
 
     setTotalMoney(money)
     SaveTotalToLocalStorage(money)
-  }, [mycartDisplay])
+  }, [mycartDisplay,coupon])
   console.log('目前總金額= ', totalMoney)
   //總價set進Localstorage裡，key='total'
   async function SaveTotalToLocalStorage(money) {
@@ -154,7 +156,24 @@ function Cart() {
 
   // console.log(productImgUrl[0])
  
-  
+  //抓coupon圖片
+  async function getCoupon(){
+    const request = new Request('http://localhost:3300/product/getCoupon', {
+      method: 'POST',
+      body: JSON.stringify({'sId':'S001'}),
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    setCoupon(data.r[0])
+  }
+  useEffect(()=>{
+    getCoupon()
+  },[])
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -243,7 +262,7 @@ function Cart() {
       </div>
 
       <div className="s-couponList p-4">
-        <h5>你有2張折價券可使用，已選0張</h5>
+        <h5>你有2張折價券可使用，已選{selectCoupon == true? '1':'0'}張</h5>
         <div className="my-3" style={{position:'relative'}}>
           <img
             src="https://via.placeholder.com/300x150"
@@ -261,6 +280,15 @@ function Cart() {
             onClick={() => handleCouponSelect()}
           />
         </div>
+        <div className="my-2">
+          <img
+            src={coupon.sCoupon}
+            className="coupon img-fluid"
+            alt="..."
+            onClick={() => handleCouponSelect()}
+          />
+        </div>
+        
         
         
         
@@ -289,7 +317,7 @@ function Cart() {
                   <div className="p">
               
                     <span className = "" style={{ color: 'orange', fontSize: '30px' }}>
-                      ${sum(mycartDisplay) - 500}
+                      ${sum(mycartDisplay) - coupon.sMethod}
                     </span>
                   </div>
                 </td>
