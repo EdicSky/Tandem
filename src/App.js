@@ -16,6 +16,7 @@ import Product from './pages/shop/Product'
 import Payment from './pages/shop/Payment'
 import Order from './pages/shop/Order'
 import Shadow_Data from './pages/Shadow_Data_ver2'
+import Cart_new from './pages/shop/Cart_new'
 
 //選單
 // import Menu from './components/Menu'
@@ -49,6 +50,9 @@ function App() {
             </Route>
             <Route path="/cart">
               <Cart />
+            </Route>
+            <Route path="/cart_new">
+              <Cart_new />
             </Route>
             <Route path="/productlist/:type?/:page?">
               <ProductList />
