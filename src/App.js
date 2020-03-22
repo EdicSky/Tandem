@@ -1,21 +1,31 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+//components
 import Header from './components/Header'
 import Footer from './components/Footer'
+import MbData from './components/Shadow_Data'
 
+//pages
 import Home from './pages/Home'
 import Activity from './pages/activity/Activity'
+import ActivityContentPage from './pages/activity/ActivityContentPage'
+import ActivityAddNew from './pages/activity/ActivityAddNew'
+
 import Bulletin from './pages/bulletin/Bulletin'
 import Community from './pages/community/Community'
 import Forum from './pages/forum/Forum'
 import Member from './pages/member/Member'
 import Cart from './pages/shop/Cart'
 
+//css
+import '../src/css/activity.css'
+
 function App() {
   return (
     <Router>
       <>
+        <MbData />
         <Header />
         <Switch>
           <Route exact path="/">
@@ -24,6 +34,14 @@ function App() {
           <Route path="/activity">
             <Activity />
           </Route>
+          {/* 我有新增的route */}
+          <Route path="/activityContentPage">
+            <ActivityContentPage />
+          </Route>
+          <Route path="/activityAddNew">
+            <ActivityAddNew />
+          </Route>
+          {/* --我是間格線-- */}
           <Route path="/bulletin">
             <Bulletin />
           </Route>

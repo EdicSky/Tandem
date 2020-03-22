@@ -1,11 +1,25 @@
 @charset "UTF-8";
 
+/* 可用的顏色:
+藍色：#79CEE2
+橘色：#F9A451
+灰色：#ADB6BD
+深藍 - 瑠璃 rgb(0, 92, 175)、#005CAF
+綠 - 木賊 rgb(45, 109, 75)、#2D6D4B
+黃 - 黄蘗 rgb(251, 226, 81)、#FBE251
+黑 - 憲法染 rgb(67, 52, 27)、#43341B
+白 - 白練 rgb(252, 250, 242)、#FCFAF2 */
+
+nav , footer{
+  /* background-color: #005CAF; */
+  background-color: #f0f0ee;
+}
+
 /* ------------------------
 	Header
 ------------------------ */
 nav{
-  height: 100px;
-  margin-bottom: 30px;
+  height: 80px;
 }
 
 .logosize {
@@ -41,10 +55,6 @@ img {
 
 ol , ul {
   list-style: none;
-}
-
-nav , footer{
-  background-color: #f0f0ee;
 }
 
 a {

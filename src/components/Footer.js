@@ -1,6 +1,12 @@
 import React from 'react'
 import logotitle from '../logotitle.png'
-import { AiFillFacebook, AiFillInstagram, AiFillTwitterCircle, AiFillMail, AiFillYoutube } from 'react-icons/ai'
+import {
+    AiFillFacebook,
+    AiFillInstagram,
+    AiFillTwitterCircle,
+    AiFillMail,
+    AiFillYoutube,
+} from 'react-icons/ai'
 import { Container, NavLink } from 'react-bootstrap'
 
 function Footer() {
@@ -13,16 +19,26 @@ function Footer() {
                     </div>
                     <div>
                         <div className="footer_row">
-                            <ul class="footer_nav">
-                                <li><NavLink href="#">關於TANDEM</NavLink></li>
-                                <li><NavLink href="#">TANDEM服務規範</NavLink></li>
-                                <li><NavLink href="#">隱私權政策</NavLink></li>
-                                <li><NavLink href="#">人才招募</NavLink></li>
-                                <li><NavLink href="#">聯絡我們</NavLink></li>
+                            <ul className="footer_nav">
+                                <li>
+                                    <NavLink href="#">關於TANDEM</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink href="#">TANDEM服務規範</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink href="#">隱私權政策</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink href="#">人才招募</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink href="#">聯絡我們</NavLink>
+                                </li>
                             </ul>
                         </div>
                         <div className="footer_row">
-                            <ul class="footer_icon">
+                            <ul className="footer_icon">
                                 <li>
                                     <NavLink>
                                         <AiFillFacebook />
@@ -51,7 +67,11 @@ function Footer() {
                             </ul>
                         </div>
                     </div>
-                    <p class="footer_copyright"><small>Copyright <span lang="en">©</span> TANDEM, Inc.</small></p>
+                    <p className="footer_copyright">
+                        <small>
+                            Copyright <span lang="en">©</span> TANDEM, Inc.
+            </small>
+                    </p>
                 </Container>
             </footer>
         </>
