@@ -10,7 +10,7 @@ import Bulletin from './pages/bulletin/Bulletin'
 import Community from './pages/community/Community'
 import Forum from './pages/forum/Forum'
 import Article from './pages/forum/Article'
-import ForumPost from './pages/forum/ForumPost'
+import ArticlePost from './pages/forum/ArticlePost'
 import Member from './pages/member/Member'
 import Cart from './pages/shop/Cart'
 
@@ -18,42 +18,37 @@ function App() {
   return (
     <Router>
       <>
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Header />
-
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/activity">
-              <Activity />
-            </Route>
-            <Route path="/bulletin">
-              <Bulletin />
-            </Route>
-            <Route path="/community">
-              <Community />
-            </Route>
-            <Route path="/forum">
-              <Forum />
-            </Route>
-            <Route path="/article">
-              <Article />
-            </Route>
-            <Route path="/forumpost">
-              <ForumPost />
-            </Route>
-            <Route path="/member">
-              <Member />
-            </Route>
-            <Route path="/cart">
-              <Cart />
-            </Route>
-
-          </Switch>
-
-
-        <Footer/>
-
+        <Switch>
+          <Route path="/activity">
+            <Activity />
+          </Route>
+          <Route path="/bulletin">
+            <Bulletin />
+          </Route>
+          <Route path="/community">
+            <Community />
+          </Route>
+          <Route path="/forum">
+            <Forum />
+          </Route>
+          <Route path="/article/:articleId?">
+            <Article />
+          </Route>
+          <Route path="/articlepost">
+            <ArticlePost />
+          </Route>
+          <Route path="/member">
+            <Member />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+        </Switch>
+        <Footer />
       </>
     </Router>
   )
