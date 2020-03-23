@@ -13,6 +13,17 @@ export const getArticleData = (state = [], action) => {
   }
 }
 
+//文章細節
+export const getArticleDetail = (state = [], action) => {
+  switch (action.type) {
+    case 'SHOW_ARTICLE_DETAIL':
+      console.log('reducer', action.data)
+      return action.data
+    default:
+      return state
+  }
+}
+
 const allReducers = combineReducers({
   getArticleData,
   // getArticleDetail,

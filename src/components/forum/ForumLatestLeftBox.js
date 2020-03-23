@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { withRouter, Switch, Route } from 'react-router-dom'
+import { withRouter, Switch, Route, Link } from 'react-router-dom'
 // import { NavLink } from 'react-bootstrap'
 //redux
 // import { connect } from 'react-redux'
@@ -16,13 +16,22 @@ import {
   AiOutlineLeft,
   AiOutlineRight,
 } from 'react-icons/ai'
-import '../../css/forum.css'
+import $ from 'jquery'
+import '../../css/forum.scss'
 
 function ForumLatestLeftBox(props) {
+  // console.log('left', props)
+  const [article, setArticle] = useState([])
+
+  function handleOnClick() {
+    props.changeIndex(props.index)
+    console.log('props.index', props.index)
+  }
+
   return (
     <>
       {/* <div class="f-latest-left-box-article f-latest-left-box-article-active"> */}
-      <div class="f-latest-left-box-article ">
+      <div class="f-latest-left-box-article " onClick={handleOnClick}>
         <div class="f-latest-left-box-article-img">
           <img
             src="./images/forum/post-1-sm.jpg"
@@ -37,9 +46,7 @@ function ForumLatestLeftBox(props) {
         <h3 class="f-latest-left-box-article-title">
           <span>{props.data.articleName}</span>
         </h3>
-        <span class="f-latest-left-box-article-category">
-          <span class="f-index-bg-5">程式設計</span>
-        </span>
+
         <div class="f-latest-left-box-article-text">
           <p>{props.data.articleContent}</p>
         </div>

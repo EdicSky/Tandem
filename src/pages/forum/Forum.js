@@ -6,7 +6,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getArticleData } from '../../actions/articleActions'
 import { NavLink } from 'react-bootstrap'
+import ForumLatestBox from '../../components/forum/ForumLatestBox'
 import ForumLatestLeftBox from '../../components/forum/ForumLatestLeftBox'
+import ForumLatestRightBox from '../../components/forum/ForumLatestRightBox'
 import ForumHotPostBox from '../../components/forum/ForumHotPostBox'
 import ForumArticleListBox from '../../components/forum/ForumArticleListBox'
 import {
@@ -18,20 +20,56 @@ import {
   AiOutlineMessage,
   AiOutlineLeft,
   AiOutlineRight,
+  AiOutlineCaretLeft,
+  AiOutlineCaretRight,
 } from 'react-icons/ai'
-import '../../css/forum.css'
+import $ from 'jquery'
+import '../../css/forum.scss'
 
 function Forum(props) {
   // const [article, setArticle] = useState([])
   // const articleId = props.match.params.type
   // console.log(articleId)
   // const [defaultPic, setDefaultPic] = useState('')
+  const [tagName, setTagname] = useState('')
+  const [className, setClassname] = useState('')
+  const [indexOfLastArtical, setIndexOfLastArtical] = useState(0)
 
   useEffect(() => {
-    console.log('forum', props)
+    console.log('dddd', props)
     props.getArticleData()
   }, [])
+
   // console.log('內容', props.article)
+
+  // $(document).ready(function() {
+  //   var width = $('.f-latest-right-box-info').width()
+  //   var toggle = true
+  //   $('.f-latest-left-box-article').click(function() {
+  //     if (toggle) {
+  //       $('.f-latest-right-box-info')
+  //         .stop()
+  //         .animate({ left: 0 }, 1000)
+  //     } else {
+  //       $('.f-latest-right-box-info')
+  //         .stop()
+  //         .animate({ left: -width }, 1000)
+  //     }
+  //     toggle = !toggle
+  //   })
+  // })
+
+  function changeTagName(newTagName) {
+    setTagname(newTagName)
+  }
+
+  function changeClassName(newClassName) {
+    setClassname(newClassName)
+  }
+
+  function changeIndexOfLastArtical(index) {
+    setIndexOfLastArtical(index)
+  }
   return (
     <>
       <div class="container">
@@ -49,7 +87,8 @@ function Forum(props) {
                   <NavLink
                     activeClassName="active"
                     className=""
-                    href="./article"
+                    href="#"
+                    onClick={() => changeTagName('1')}
                   >
                     程式設計
                     <br />
@@ -73,7 +112,8 @@ function Forum(props) {
                   <NavLink
                     activeClassName="active"
                     className=""
-                    href="./articlepost"
+                    href="#"
+                    onClick={() => changeTagName('2')}
                   >
                     原畫創作
                     <br />
@@ -97,7 +137,8 @@ function Forum(props) {
                   <NavLink
                     activeClassName="active"
                     className=""
-                    href="./article"
+                    href="#"
+                    onClick={() => changeTagName('3')}
                   >
                     遊戲廠商
                     <br />
@@ -119,6 +160,12 @@ function Forum(props) {
             <span class="f-category-text-1">最新</span> 文章
           </span>
         </h3>
+
+        {/* {props.article &&
+          props.article.map((value, index) => {
+            return <ForumLatestBox key={index} data={props.article[index]} />
+          })} */}
+
         <div class="f-gap"></div>
 
         <div class="f-latest-left-box">
@@ -135,6 +182,10 @@ function Forum(props) {
                       <ForumLatestLeftBox
                         key={index}
                         data={props.article[index]}
+                        index={index}
+                        changeIndex={num => {
+                          changeIndexOfLastArtical(num)
+                        }}
                       />
                     )
                   })}
@@ -149,7 +200,18 @@ function Forum(props) {
           </div>
 
           {/* 將左列文章放大至右邊顯示細節 */}
-          <div class=" f-latest-right-box-info">
+          {props.article &&
+            props.article.map((value, index) => {
+              if (index === indexOfLastArtical) {
+                return (
+                  <ForumLatestRightBox
+                    key={indexOfLastArtical}
+                    data={props.article[indexOfLastArtical]}
+                  />
+                )
+              }
+            })}
+          {/* <div class=" f-latest-right-box-info">
             <div class="f-nano f-latest-scrollbar">
               <div
                 class="f-nano-content"
@@ -192,7 +254,7 @@ function Forum(props) {
                 ></div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* 熱門文章  */}
@@ -206,17 +268,30 @@ function Forum(props) {
 
         <div class="f-hot-grid">
           <div class="row">
-            {/* {props.article &&
+            {props.article &&
               props.article.map((value, index) => {
-                return (
-                  <ForumHotPostBox
-                    key={}
-                    data={props.article[index]}
-                  />
-                )
-              })} */}
+                if (tagName) {
+                  if (props.article[index].articleCategoryId === tagName) {
+                    return (
+                      <ForumHotPostBox
+                        key={index}
+                        data={props.article[index]}
+                        tagName={tagName}
+                      />
+                    )
+                  }
+                } else {
+                  return (
+                    <ForumHotPostBox
+                      key={index}
+                      data={props.article[index]}
+                      tagName={props.article[index].articleCategoryId}
+                    />
+                  )
+                }
+              })}
 
-            <div class="col-md-6 col-lg-3">
+            {/* <div class="col-md-6 col-lg-3">
               <div class="f-hot-post">
                 <a href="#" class="f-hot-post-img">
                   <img
@@ -376,7 +451,7 @@ function Forum(props) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -414,6 +489,7 @@ function Forum(props) {
                   role="tab"
                   data-toggle="tab"
                   aria-selected="false"
+                  onClick={() => changeClassName('1')}
                 >
                   技術分享
                 </a>
@@ -425,6 +501,7 @@ function Forum(props) {
                   role="tab"
                   data-toggle="tab"
                   aria-selected="false"
+                  onClick={() => changeClassName('2')}
                 >
                   問題求解
                 </a>
@@ -436,6 +513,7 @@ function Forum(props) {
                   role="tab"
                   data-toggle="tab"
                   aria-selected="false"
+                  onClick={() => changeClassName('3')}
                 >
                   聯合創作
                 </a>
@@ -447,6 +525,7 @@ function Forum(props) {
                   role="tab"
                   data-toggle="tab"
                   aria-selected="false"
+                  onClick={() => changeClassName('4')}
                 >
                   情報分享
                 </a>
@@ -458,6 +537,7 @@ function Forum(props) {
                   role="tab"
                   data-toggle="tab"
                   aria-selected="false"
+                  onClick={() => changeClassName('5')}
                 >
                   輕鬆閒聊
                 </a>
@@ -484,7 +564,61 @@ function Forum(props) {
                   )
                 })} */}
 
-              <div class="f-hot-post">
+              {props.article &&
+                props.article.map((value, index) => {
+                  if (tagName) {
+                    if (className) {
+                      if (
+                        tagName === props.article[index].articleCategoryId &&
+                        className === props.article[index].articleClassId
+                      ) {
+                        return (
+                          <ForumArticleListBox
+                            key={index}
+                            data={props.article[index]}
+                            tagName={tagName}
+                            className={className}
+                          />
+                        )
+                      }
+                    } else {
+                      if (tagName === props.article[index].articleCategoryId) {
+                        return (
+                          <ForumArticleListBox
+                            key={index}
+                            data={props.article[index]}
+                            tagName={tagName}
+                            className={props.article[index].articleClassId}
+                          />
+                        )
+                      }
+                    }
+                  } else {
+                    if (className) {
+                      if (className === props.article[index].articleClassId) {
+                        return (
+                          <ForumArticleListBox
+                            key={index}
+                            data={props.article[index]}
+                            tagName={props.article[index].articleCategoryId}
+                            className={className}
+                          />
+                        )
+                      }
+                    } else {
+                      return (
+                        <ForumArticleListBox
+                          key={index}
+                          data={props.article[index]}
+                          tagName={props.article[index].articleCategoryId}
+                          className={props.article[index].articleClassId}
+                        />
+                      )
+                    }
+                  }
+                })}
+
+              {/* <div class="f-hot-post">
                 <div class="row f-vertical-gap">
                   <div class="col-lg-3 col-md-5">
                     <a href="" class="f-hot-post-img">
@@ -644,9 +778,9 @@ function Forum(props) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div class="f-hot-post">
+              {/* <div class="f-hot-post">
                 <div class="row f-vertical-gap">
                   <div class="col-lg-3 col-md-5">
                     <a href="" class="f-hot-post-img">
@@ -684,39 +818,53 @@ function Forum(props) {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div>               
+              </div> */}
 
-                <div class="f-gap-3"></div>
-                {/* 分頁按鈕 */}
-                <div class="f-pagenumber f-pagenumber-center">
-                  <a href="#" class="f-category-icon">
-                    <AiOutlineLeft />
-                  </a>
-                  <ul class="d-flex ">
-                    <li class="nav-item" href="#">
-                      1
-                    </li>
-                    <li class="nav-item" href="#">
-                      2
-                    </li>
-                    <li class="nav-item" href="#">
-                      3
-                    </li>
-                    <li class="nav-item" href="#">
-                      4
-                    </li>
-                    <li class="nav-item">...</li>
-                    <li class="nav-item" href="#">
-                      14
-                    </li>
-                  </ul>
-                  <a href="#" class="f-category-icon">
-                    <AiOutlineRight />
-                  </a>
-                </div>
-
-                <div class="f-gap"></div>
+              <div class="f-gap-2"></div>
+              <div className="pagination">
+                <ul className="d-flex">
+                  <li>
+                    <AiOutlineCaretLeft />
+                  </li>
+                  <li>1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>
+                    <AiOutlineCaretRight />
+                  </li>
+                </ul>
               </div>
+
+              {/* 分頁按鈕 */}
+              {/* <div class="f-pagenumber f-pagenumber-center">
+                <a href="#" class="f-category-icon">
+                  <AiOutlineLeft />
+                </a>
+                <ul class="d-flex ">
+                  <li class="nav-item" href="#">
+                    1
+                  </li>
+                  <li class="nav-item" href="#">
+                    2
+                  </li>
+                  <li class="nav-item" href="#">
+                    3
+                  </li>
+                  <li class="nav-item" href="#">
+                    4
+                  </li>
+                  <li class="nav-item">...</li>
+                  <li class="nav-item" href="#">
+                    14
+                  </li>
+                </ul>
+                <a href="#" class="f-category-icon">
+                  <AiOutlineRight />
+                </a>
+              </div> */}
+
+              <div class="f-gap"></div>
             </div>
 
             {/* TAB內容底部  */}

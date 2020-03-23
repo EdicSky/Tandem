@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap'
 import CKEditor from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import '../../css/forum.css'
+import '../../css/forum.scss'
 
 function ArticlePost() {
   return (

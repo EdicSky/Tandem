@@ -1,3 +1,5 @@
+$main_color: #79cee2;
+
 .f-gap {
   display: block;
   height: 15px;
@@ -312,13 +314,25 @@
 }
 
 .f-right-side a:hover {
-  color: #007bff;
+  color: #f9a451;
+}
+
+.f-latest-right-box-article-text p {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* font-size: 10px; */
 }
 
 .f-latest-right-box-article-date svg {
   font-size: 200%;
   margin-right: 10px;
   color: #f9a451;
+}
+
+.f-latest-right-box-article-date span {
+  margin-top: 3px;
 }
 
 .f-latest-left-box .f-latest-right-box-info {
@@ -382,6 +396,19 @@
 }
 .f-latest-left-box-article-title p {
   font-size: 10px;
+}
+
+.f-latest-right-box-article-title p {
+  font-size: 18px;
+  color: #79cee2;
+  margin-left: -10px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.f-latest-right-box-article-title p:hover {
+  color: #f9a451;
 }
 .f-latest-left-box .f-latest-right-box-info .f-latest-left-box-article-more {
   font-weight: 600;
@@ -540,7 +567,7 @@
 .f-latest-left-box-article-more {
   font-size: 20px;
   font-weight: 600;
-  color: #005caf;
+  color: #f9a451;
   text-transform: uppercase;
 }
 
@@ -632,50 +659,71 @@
 }
 
 /* ==========================熱門文章區=========================== */
+.f-card {
+  width: auto;
+}
+
+.f-card .f-hot-post,
+.f-hot-post-img img {
+  transition: 1s;
+}
 
 .f-hot-post {
   margin-bottom: 30px;
+  border: solid 1px #adb6bd;
+  box-shadow: 0px 0px 10px #adb6bd;
 }
 
-.f-hot-post:not(.f-hot-post-single):hover .f-hot-post-img img {
+.f-card:hover .f-hot-post {
+  border-radius: 25px;
+  transform: scale(0.9);
+}
+
+.f-card:hover .f-hot-post-img img {
+  border-radius: 25px;
+  transform: scale(0.7);
+}
+
+/* .f-hot-post:not(.f-hot-post-single):hover .f-hot-post-img img {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
-}
+} */
 
-.f-hot-post-img:hover {
+/* .f-hot-post-img:hover {
   opacity: 0.8;
   border-radius: 50px;
   transition: 0.5s;
-}
+} */
 
 .f-hot-post-img {
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 0px;
+  /* border-radius: 0px;
   -webkit-transition: opacity 0.15s ease-in-out;
   -o-transition: opacity 0.15s ease-in-out;
-  transition: opacity 0.15s ease-in-out;
+  transition: opacity 0.15s ease-in-out; */
 }
 .f-hot-post-img img {
   width: 100%;
   height: auto;
-  -webkit-transition: -webkit-transform 0.15s ease-in-out;
+  /* -webkit-transition: -webkit-transform 0.15s ease-in-out;
   transition: -webkit-transform 0.15s ease-in-out;
   -o-transition: transform 0.15s ease-in-out;
   transition: transform 0.15s ease-in-out;
-  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
-  -webkit-transform: scale(1);
+  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out; */
+  /* -webkit-transform: scale(1);
   -ms-transform: scale(1);
-  transform: scale(1);
-  will-change: transform;
+  transform: scale(1); */
+  /* transition: 1s; */
+  /* will-change: transform; */
 }
-.f-hot-post:not(.f-hot-post-single):hover .f-hot-post-img img {
+/* .f-hot-post:not(.f-hot-post-single):hover .f-hot-post-img img {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
-}
+} */
 .f-hot-post-img:hover {
   opacity: 0.8;
 }
@@ -713,8 +761,8 @@
   border-top: 9px solid #fff;
   border-right: 6px solid transparent;
   border-left: 6px solid transparent;
-  -webkit-transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg);
+  /* -webkit-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg); */
   transform: rotate(-30deg);
 }
 
@@ -771,8 +819,13 @@
   transition: 0.15s color;
 }
 
-.f-hot-post-title span {
-  margin-right: -15px;
+.f-index-h3 p {
+  font-size: 18px;
+  color: #79cee2;
+}
+.f-index-h3 p:hover {
+  font-size: 18px;
+  color: #f9a451;
 }
 .f-hot-post-title > a.hover,
 .f-hot-post-title > a:hover {
@@ -817,6 +870,7 @@
 .f-post-list-title > a {
   color: inherit;
   text-decoration: none;
+
   padding-left: 15px;
   -webkit-transition: 0.15s color;
   -o-transition: 0.15s color;
@@ -831,6 +885,13 @@
   color: #f9a451;
 }
 
+.f-post-list-title a {
+  margin-top: 80px;
+}
+
+.f-post-list-title a:hover {
+  color: #f9a451;
+}
 .float-right {
   float: right;
 }
@@ -867,8 +928,10 @@
   text-decoration: none;
 }
 
-.f-index-btn-rounded {
-  border-radius: 0px;
+.f-card:hover .f-index-btn-rounded {
+  transition: 1s;
+  border-radius: 25px;
+  transform: scale(0.9);
 }
 
 .f-index-btn-color {
@@ -911,12 +974,12 @@
 .f-hot-post-date {
   font-size: 16px;
   color: #a0a7ab;
-  margin-top: 5px;
+  margin: 5px 10px 0 0;
 }
 
 .f-hot-post-date svg {
   font-size: 18px;
-  margin: 3px 8px 0 0;
+  margin-right: 8px;
   color: #f9a451;
 }
 
@@ -942,6 +1005,15 @@
   color: #f9a451;
 }
 
+.f-single-post-img {
+  // width: 300px;
+  // height: 300px;
+  margin: auto;
+}
+.f-single-post-img img {
+  width: 100%;
+  margin: auto;
+}
 /* ==========================文章列表=========================== */
 .f-index-tab::before {
   content: '';
@@ -1222,7 +1294,12 @@
   margin-left: 20px;
 }
 
-.f-blockquote {
+.f-single-article-content {
+  margin: 30px;
+  white-space: pre;
+}
+
+/* .f-blockquote {
   position: relative;
   margin: 20px 0;
   margin-top: 33px;
@@ -1327,7 +1404,7 @@
 }
 .f-video > .f-video-plain-toggle .f-video-icon {
   text-decoration: none;
-}
+} */
 
 .f-comments .f-comment::after {
   content: '';
@@ -1396,6 +1473,31 @@ p {
   color: #79cee2;
   background-color: #fff;
   border-color: #79cee2;
+}
+
+/* ==========================分頁按鈕=========================== */
+.pagination {
+  ul {
+    margin: 10px auto;
+  }
+  li {
+    width: 50px;
+    height: 50px;
+    border: 1.5px solid $main_color;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 47px;
+    color: $main_color;
+    margin-right: 15px;
+    font-weight: bold;
+    transition: 0.5s;
+  }
+  li:hover {
+    background: $main_color;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
 }
 
 /* ==========================背景顏色=========================== */

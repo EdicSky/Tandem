@@ -16,39 +16,50 @@ import {
   AiOutlineTwitter,
   AiOutlineLinkedin,
 } from 'react-icons/ai'
-import '../../css/forum.css'
+import ArticleTag from '../../components/forum/ArticleTag'
+import '../../css/forum.scss'
 import $ from 'jquery'
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
 
 function Article(props) {
+  console.log('細節1', props)
+
   const [article, setArticle] = useState([])
+  const [tagName, setTagname] = useState('')
   const articleId = props.match.params.articleId
     ? props.match.params.articleId
     : ''
-  // console.log(articleId)
+  let showCategory = ''
+  if (article.articleCategoryId === '1') {
+    showCategory = '程式設計'
+  } else if (article.articleCategoryId === '2') {
+    showCategory = '原畫創作'
+  } else {
+    showCategory = '廠商徵才'
+  }
+  console.log('AC', article.articleCategoryId)
+  console.log('SC', showCategory)
+  console.log('ID', articleId)
   const Swal = require('sweetalert2')
 
-  // async function getDetailFromServer() {
-  //   const request = new Request('http://localhost:6001/articles/' + articleId, {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //   })
-  //   const response = await fetch(request)
-  //   const data = await response.json()
-  //   console.log('文章1', data)
-  //   setArticle(data.result[0])
-  // }
+  async function getDetailFromServer(articleId) {
+    const request = new Request('http://localhost:6001/articles/' + articleId, {
+      method: 'GET',
+      credentials: 'include',
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('文章1', data)
+    setArticle(data[0])
+  }
 
-  // useEffect(() => {
-  //   console.log('文章細節', props)
-  //   props.getArticleDetail()
-  // }, [])
+  useEffect(() => {
+    console.log('文章2', props)
+    getDetailFromServer(articleId)
+  }, [])
 
-  // useEffect(() => {
-  //   console.log('文章2', props)
-  //   getDetailFromServer()
-  // }, [])
+  console.log('內容2', article)
 
   function post() {
     Swal.fire({
@@ -57,6 +68,10 @@ function Article(props) {
       text: 'Something went wrong!',
       footer: '<a href>Why do I have this issue?</a>',
     })
+  }
+
+  function changeTagName(newTagName) {
+    setTagname(newTagName)
   }
 
   // async function getArticleData() {
@@ -83,19 +98,19 @@ function Article(props) {
             <AiOutlineRight />
           </li>
           <li>
-            <a href="./forum">開發論壇</a>
+            <a href="/forum">開發論壇</a>
           </li>
           <li>
             <AiOutlineRight />
           </li>
           <li>
-            <a href="./forum">程式設計</a>
+            <a href="#">{showCategory}</a>
           </li>
           <li>
             <AiOutlineRight />
           </li>
           <li>
-            {/* <span>{props.article[0] ? props.article[0].articleName : ''}</span> */}
+            <span>{article ? article.articleName : ''}</span>
           </li>
         </ul>
 
@@ -107,62 +122,28 @@ function Article(props) {
             <div class="f-hot-post f-hot-post-single">
               <ArticleDetail />
 
-              <div class="f-hot-post-text mt-0">
-                <div class="f-hot-post-img">
-                  <img
-                    src="./images/forum/post-2.jpg"
-                    alt="Grab your sword and fight the Horde"
-                  />
-                </div>
-
-                <div class="f-gap-1"></div>
-                <h1 class="f-hot-post-title h4">
-                  Grab your sword and fight the Horde
-                </h1>
-                <div class="f-gap"></div>
-                <div class="f-hot-post-by">
-                  <img
-                    src="./images/forum/avatar-2.jpg"
-                    alt="Witch Murder"
-                    class="rounded-circle"
-                    width="35"
-                  />{' '}
-                  by <a href="#">Witch Murder</a> in Sep 5, 2018
-                  <div class="f-hot-post-category">
-                    <span class="f-index-bg-5">程式設計</span>
-                    <span class="f-index-bg-6">原畫創作</span>
-                    <span>
-                      <AiOutlineEdit />
-                    </span>
-                    <span>
-                      <AiOutlineDelete />
-                    </span>
-                  </div>
-                </div>
-
-                {/* {props.data && props.data.articleContent} */}
-                {/* {props.article &&
-                  props.article.map((value, index) => {
-                    return <div key={index} data={props.data.articleContent} />
-                  })} */}
-
-                <img
-                  class="float-left mt-0"
-                  src="./images/forum/post-inner-img.jpg"
-                  alt=""
-                />
-
-                <div class="f-gap"></div>
-                <div class="f-post-share justify-content-between">
-                  <span class="">Share Article:</span>
-                  <div class="d-flex f-post-share-icon">
-                    <AiOutlineGoogle />
-                    <AiOutlineFacebook />
-                    <AiOutlineTwitter />
-                    <AiOutlineLinkedin />
-                  </div>
-                </div>
-              </div>
+              {/* {props.article &&
+                props.article.map((value, index) => {
+                  if (tagName) {
+                    if (props.article[index].articleCategoryId === tagName) {
+                      return (
+                        <ArticleDetail
+                          key={index}
+                          data={props.article[index]}
+                          tagName={tagName}
+                        />
+                      )
+                    }
+                  } else {
+                    return (
+                      <ArticleDetail
+                        key={index}
+                        data={props.article[index]}
+                        tagName={props.article[index].articleCategoryId}
+                      />
+                    )
+                  }
+                })} */}
 
               {/* 留言內容 */}
               <div class="f-gap-3"></div>
@@ -390,11 +371,13 @@ function Article(props) {
   )
 }
 
-const mapStateToProps = store => {
-  return { article: store.getArticleDetail }
-}
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ getArticleDetail }, dispatch)
-}
+// const mapStateToProps = store => {
+//   return { article: store.getArticleDetail }
+// }
+// const mapDispatchToProps = dispatch => {
+//   return bindActionCreators({ getArticleDetail }, dispatch)
+// }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Article))
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Article))
+
+export default withRouter(Article)

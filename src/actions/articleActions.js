@@ -45,21 +45,21 @@ export const getArticleData = () => {
 // }
 
 //跟server要文章細節
-export const showArticleDetail = data => {
-  return { type: 'SHOW_ARTICLE_DETAIL', data }
-}
-export const getArticleDetail = articleId => {
-  return async dispatch => {
-    const req = new Request(`http://localhost:6001/articles/${articleId}`, {
-      method: 'GET',
-      credentials: 'include',
-    })
-    const res = await fetch(req)
-    const data = await res.json()
-    // console.log('detail', data)
-    dispatch(showArticleDetail(data))
-  }
-}
+// export const showArticleDetail = data => {
+//   return { type: 'SHOW_ARTICLE_DETAIL', data }
+// }
+// export const getArticleDetail = articleId => {
+//   return async dispatch => {
+//     const req = new Request(`http://localhost:6001/articles/${articleId}`, {
+//       method: 'GET',
+//       credentials: 'include',
+//     })
+//     const res = await fetch(req)
+//     const data = await res.json()
+//     console.log('detail', data)
+//     dispatch(showArticleDetail(data))
+//   }
+// }
 
 //要資料--留言
 //   export const getCommentData = () => {
