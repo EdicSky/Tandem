@@ -284,7 +284,7 @@ function Cart_new() {
             src={coupon.sCoupon}
             className="coupon img-fluid"
             alt="..."
-            onClick={() => handleCouponSelect()}
+            onClick={(e) => handleCouponSelect(e.target)}
           />
         </div>
         

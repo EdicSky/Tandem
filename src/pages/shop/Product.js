@@ -6,6 +6,7 @@ import Comment2 from './Comment2'
 import Recommend from './Recommend'
 import {
   AiOutlineHeart,
+  AiFillHeart,
   AiOutlineShoppingCart,
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
@@ -186,14 +187,16 @@ function Product(props) {
           <h3>{myproduct.itemName}</h3>
           <p style={{minHeight:'150px'}}>{myproduct.itemIntro}</p>
           <div className="row">
+            { JSON.parse(localStorage.getItem('LoginUserData')).mbAzen.indexOf(productId) == -1 ?
             <button
               type="button"
               className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
+              
               onClick={()=>addToLike()}
             >
-              <AiOutlineHeart />
+              <AiOutlineHeart style={{color:'orange',fontSize:'24px'}}/>
               加入收藏清單
-            </button>
+            </button>:<AiFillHeart style={{color:'orange',fontSize:'24px'}}/>}
             <button
               type="button"
               className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
