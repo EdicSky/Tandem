@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import '../../css/shop.scss'
 import $ from 'jquery'
 import { AiOutlineCheckCircle,AiOutlineDelete,AiOutlineHeart } from 'react-icons/ai'
+import Swal from 'sweetalert2'//sweetalert2
 
 function Cart_new() {
   const [mycart, setMycart] = useState([])
@@ -96,11 +97,17 @@ function Cart_new() {
   //mycart有變動就把總金額set進totalMoney
   useEffect(() => {
     // console.log('coupon.sMethod',coupon.sMethod)
-    let money = sum(mycartDisplay)-coupon.sMethod
+    let money
+    if(selectCoupon){
+      money = sum(mycartDisplay)-coupon.sMethod
+    }else{
+      money = sum(mycartDisplay)
+    }
+    // let money = sum(mycartDisplay)-coupon.sMethod
 
     setTotalMoney(money)
     SaveTotalToLocalStorage(money)
-  }, [mycartDisplay,coupon])
+  }, [mycartDisplay,coupon,selectCoupon])
   console.log('目前總金額= ', totalMoney)
   //總價set進Localstorage裡，key='total'
   async function SaveTotalToLocalStorage(money) {
@@ -176,6 +183,27 @@ function Cart_new() {
   useEffect(()=>{
     getCoupon()
   },[])
+
+  //商品加入收藏
+  async function addToLike(itemID){
+    const request = new Request('http://localhost:3300/product/addtolike', {
+      method: 'POST',
+      body:JSON.stringify({"userId":JSON.parse(localStorage.getItem('LoginUserData')).mbId,"likeproductId":itemID}),
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    
+    console.log('加入收藏',data)
+    if (data.r.affectedRows == 1){
+      
+      Swal.fire('商品成功加入收藏!')
+    }
+  }
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -239,8 +267,9 @@ function Cart_new() {
                       <button
                         type="button"
                         className="btn btn-outline-info mx-2 my-2 s-btn-common"
+                        onClick={()=>addToLike(value.itemId)}
                       >
-                        <AiOutlineHeart/>加入收藏清單
+                        <AiOutlineHeart style={{color:'#F9A451',fontSize:'24px'}}/>加入收藏清單
                       </button>
                       <button
                         type="button"
@@ -251,7 +280,7 @@ function Cart_new() {
                           })
                         }
                       >
-                        <AiOutlineDelete/>刪除
+                        <AiOutlineDelete style={{color:'#F9A451',fontSize:'24px'}}/>刪除
                       </button>
                     </td>
                   </tr>

@@ -57,6 +57,8 @@ function Product(props) {
     // console.log(typeof(myproduct))
     setDefaultPic(data.rows[0].itemImg)
     
+    setlike(data.rows[0].memberFavoriteId)
+    
     // console.log(data.rows)
   }
   useEffect(() => {
@@ -70,17 +72,21 @@ function Product(props) {
   console.log('url', props.match)
   //以下，將database儲存的收藏此商品id=[1,2,3,4]轉成length
   let wholike = {...myproduct}
+  console.log('wholike',Array.from(String(wholike.memberFavoriteId)))
+  console.log(String(String(wholike.memberFavoriteId).replace(/([[]|])/gm,'')))
+  console.log('wholike_toarr',[wholike.memberFavoriteId])
   let wholike2 = "'" + wholike.memberFavoriteId +"'"
+  // let wholike2 = [wholike.memberFavoriteId]
   
   wholike2 = wholike2.split(",")
-  // console.log(wholike2.length)
+  console.log('wholike2',wholike2)
   //以上，將database儲存的收藏此商品id=[1,2,3,4]轉成length
 
   //商品加入收藏
   async function addToLike(){
     const request = new Request('http://localhost:3300/product/addtolike', {
       method: 'POST',
-      body:JSON.stringify({"userId":2,"likeproductId":myproduct.itemId}),
+      body:JSON.stringify({"userId":JSON.parse(localStorage.getItem('LoginUserData')).mbId,"likeproductId":myproduct.itemId}),
       credentials: 'include',
       headers: new Headers({
         Accept: 'application/json',
@@ -187,16 +193,25 @@ function Product(props) {
           <h3>{myproduct.itemName}</h3>
           <p style={{minHeight:'150px'}}>{myproduct.itemIntro}</p>
           <div className="row">
-            { JSON.parse(localStorage.getItem('LoginUserData')).mbAzen.indexOf(productId) == -1 ?
+            { JSON.parse(localStorage.getItem('LoginUserData')).mbAzen.replace(/([[]|])/gm,'').split(',').indexOf(productId) == -1 ?
             <button
               type="button"
               className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
               
               onClick={()=>addToLike()}
             >
-              <AiOutlineHeart style={{color:'orange',fontSize:'24px'}}/>
+              <AiOutlineHeart style={{color:'#F9A451',fontSize:'24px'}}/>
               加入收藏清單
-            </button>:<AiFillHeart style={{color:'orange',fontSize:'24px'}}/>}
+            </button>:
+            <button
+              type="button"
+              className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
+              style={{backgroundColor:'#79cee2',color:'white'}}
+              
+            >
+              <AiFillHeart style={{color:'#F9A451',fontSize:'24px'}}/>
+              已加入收藏
+            </button>}
             <button
               type="button"
               className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
@@ -209,11 +224,11 @@ function Product(props) {
                 })
               }
             >
-              <AiOutlineShoppingCart />
+              <AiOutlineShoppingCart style={{color:'#F9A451',fontSize:'24px'}}/>
               加入購物車
             </button>
           </div>
-          <div className="row h5 m-2">共{wholike2.length}人收藏此遊戲</div>
+          <div className="row h5 m-2">共{like !== '[]'? wholike2.length:0}人收藏此遊戲</div>
           <div className="row mt-2 h6">
             <div className="col-3 ">發行商:</div>
             <div className="col-7 ">{myproduct.vName}</div>

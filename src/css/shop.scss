@@ -37,11 +37,11 @@ h6 {
 }
 .s-btn-common {
   border-radius: 0;
-  border: 1px solid rgb(67, 67, 236);
-  color: rgb(67, 67, 236);
+  border: 1px solid #79cee2;
+  color: #79cee2;
   &:hover {
-    background: rgb(67, 67, 236);
-    border: 1px solid rgb(67, 67, 236);
+    background: #79cee2;
+    border: 1px solid #79cee2;
   }
 }
 //以上是整體共用
@@ -131,8 +131,9 @@ h6 {
   width: 30%;
 }
 .couponActive {
-  border: 5px solid orange;
+  border: 5px solid coral;
   box-shadow: 2px 2px gray;
+  border-radius: 15px;
 }
 .post {
   /* width: 70%; */
@@ -164,7 +165,7 @@ h6 {
 }
 .s-searchicon {
   position: relative;
-  bottom: 45px;
+  bottom: 40px;
   left: 5px;
 }
 
@@ -268,19 +269,28 @@ h6 {
 .s-pageItem {
   width: 50px;
   height: 50px;
-  border: 2px solid lightblue;
+  border: 1.5px solid #79cee2;
   border-radius: 50%;
   margin: 5px;
+  line-height: 47px;
+  transition: 0.5s;
+  &:hover {
+    background-color: #79cee2;
+  }
   a {
     text-decoration: none;
-    color: lightblue;
+    color: #79cee2;
     font-size: 24px;
     display: block;
     text-align: center;
+    transition: 0.5s;
+    &:hover {
+      color: white;
+    }
   }
 }
 .s-pageItem-Active {
-  background-color: lightblue;
+  background-color: #79cee2;
   a {
     color: white;
   }

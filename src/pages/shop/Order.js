@@ -164,7 +164,7 @@ function Order(props) {
       </div>
 
       <div className="d-flex justify-content-center my-3">
-        <button type="button" className="btn btn-outline-info mx-2" onClick={()=>{props.history.push('/productlist')}}>
+        <button type="button" className="btn btn-outline-info mx-2" onClick={()=>{props.history.push('/productlist');localStorage.removeItem('cart')}}>
           完成訂單
         </button>
       </div>
