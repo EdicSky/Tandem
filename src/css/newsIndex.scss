@@ -4,7 +4,9 @@ $icon_color: #f9a451;
 $gray: #adb6bd;
 $btn_weight: bold;
 $shadow: 0px 0px 10px $gray;
-
+a {
+  cursor: pointer;
+}
 .btn {
   background: #fff;
   border: 2px solid $main_color;
@@ -94,6 +96,15 @@ p {
 }
 .news_introduction {
   margin-bottom: 50px;
+  .intro_img {
+    background-color: #000000;
+  }
+  img {
+    transition: 0.5s;
+  }
+}
+.news_introduction:hover img {
+  opacity: 0.8;
 }
 .news_index_title {
   h5 {
@@ -113,7 +124,7 @@ p {
 .news_index_detail_icon_group {
   font-size: 10px;
   font-weight: bold;
-  width: 250px;
+  width: 300px;
   a {
     text-decoration: none;
     color: #333;
@@ -163,9 +174,7 @@ a.btn {
   margin: 80px 0 50px 0;
   padding: 0 20px;
   box-shadow: $shadow;
-  .latest_news_group {
-    margin: 20px 0;
-  }
+
   h6 {
     line-height: 25px;
     width: 275px;

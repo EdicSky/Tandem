@@ -1,0 +1,297 @@
+/* ------------------------
+可用的顏色:
+藍色：#79CEE2
+橘色：#F9A451
+灰色：#ADB6BD
+深藍 - 瑠璃 rgb(0, 92, 175)、#005CAF
+綠 - 木賊 rgb(45, 109, 75)、#2D6D4B
+黃 - 黄蘗 rgb(251, 226, 81)、#FBE251
+黑 - 憲法染 rgb(67, 52, 27)、#43341B
+白 - 白練 rgb(252, 250, 242)、#FCFAF2
+ ------------------------ */
+
+/* 套用至所有版面連結的基本設定 */
+a{
+  color: #79CEE2;
+  text-decoration: none;
+}
+a:hover{
+  color: #005CAF;
+  text-decoration: none;
+  transition: none;
+}
+
+/* ------------------------
+    pages - Activity
+------------------------ */
+
+/* component
+ActivityCarousel */
+.aKV {
+  min-height: 80vh;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+.aCarouselTitle{
+  top: 0px;
+  left: 400px;
+}
+.ascLeft{
+  margin-left: 60px;
+}
+.ascRight{
+  right: 60px;
+}
+.aSideCarousel{
+  max-height: 400px;
+  max-width: 600px;
+  object-fit: cover;
+}
+.aSideCarousel img{
+  filter: grayscale(90%);
+}
+.aMainCarousel{
+  max-height: 600px;
+  max-width: 900px;
+  margin: auto;
+  right: calc(50vw - 450px);
+}
+.aSideCarousel, 
+.aMainCarousel,
+.aSideCarousel img,
+.aMainCarousel img,
+.aSideCarousel .aSideCarouselInfo,
+.aMainCarousel .aMainCarouselInfo{
+  transition: 1s;
+}
+.aSideCarousel:hover img,
+.aMainCarousel:hover img{
+  filter: grayscale(0);
+}
+.aMainCarousel img{
+  width: 150%;
+  height: 150%;
+}
+.aMainCarouselInfo .card-title{
+  font-size: 26px;
+}
+.aSideCarouselInfo,
+.aMainCarouselInfo{
+  bottom: 10px;
+  background: rgba(67, 52, 27 , .7);
+  padding: 10px;
+}
+.aSideCarousel:hover .aSideCarouselInfo,
+.aMainCarousel:hover .aMainCarouselInfo{
+  /* bottom: 40px; */
+  background: rgba(252, 250, 242);
+}
+.aCrown{
+  filter: drop-shadow(rgba(0, 0, 0,.8) -3px 2px 2px);
+  position: absolute;
+  font-size: 100px;
+  top: -90px;
+  z-index: 100;
+}
+.aCrown.gold{
+  color: gold;
+}
+.aCrown.silver{
+  color: silver;
+}
+.aCrown.copper{
+  color:#B87333;
+}
+
+/* component
+ActivityCategorySearchbar */
+.aCategory{
+  color: #005CAF;
+  /* background: ; */
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #005CAF;
+  border-radius: 25px;
+  margin: 2px;
+}
+.aCategory:hover{
+  color: white;
+  background: #005CAF;
+}
+.aSearchbar{
+  margin: auto;
+  min-width: 200px;
+  min-height: 40px;
+  border: solid 1px #005CAF;
+  border-radius: 25px;
+}
+.aSearchIcon{
+  font-size: 22px;
+  top: 10px;
+  left: 30px;
+  color: #005CAF;
+}
+
+/* component
+ActivityListCard */
+.aListCardWrap{
+  max-width: 530px;
+}
+.aListCardWrap .aListCard ,
+.aListCardWrap Img {
+  transition: 1s;
+}
+.aListCardWrap:hover .aListCard ,
+.aListCardWrap:hover Img {
+  border-radius: 25px;
+  transform: scale(.9);
+}
+.aListCard{
+  border: solid 1px #adb6bd;
+  box-shadow: 0px 0px 10px #adb6bd;
+}
+
+/* Activity
+ActivityPageNumber */
+.pagination  ul {
+  margin: 10px auto;
+}
+.pagination li {
+  width: 50px;
+  height: 50px;
+  border: 1.5px solid #79cee2;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 47px;
+  color: #79cee2;
+  margin-right: 15px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+.pagination li:hover {
+  background: #79cee2;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+/* Activity
+開新活動的icon */
+.aAddActivity a{
+  font-size: 50px;
+  color: #F9A451;
+}
+.aAddActivity a:hover{
+  color: #005CAF;
+}
+
+/* ------------------------
+pages - ActivityContentPage
+------------------------ */
+
+/* component
+ActivityContentKV */
+.activityWrap{
+  margin: 30px auto;
+  border: solid 1px #adb6bd;
+  box-shadow: 0px 0px 10px #adb6bd;
+  padding-bottom: 30px;
+}
+.aContentKV{
+  margin-top: 30px;
+}
+.aContentCatgory{
+  padding: 5px;
+  color: white;
+  background:#79cee2 ;
+  border: #79cee2 5px solid;
+  top: 20px;
+  right: 0px;
+}
+.aContentPageName{
+  color: rgb(67, 52, 27);
+  border: #79CEE2 5px solid;
+  background: rgba(252, 250, 242 ,.9);
+  bottom: -32px;
+  left: 32px;
+  padding: 10px;
+}
+.aContentCatgory h3 , .aContentPageName h1{
+  margin: auto;
+}
+
+/* component
+ActivityContentInfo */
+.aContent{
+  font-size: 22px;
+  margin-top: 60px;
+  line-height: 40px;
+  /* margin: 10px; */
+}
+.aMap{
+  width: 100%;
+  height: 300px;
+  background: #79CEE2;
+}
+.aIcon a{
+  border: solid 2px #F9A451;
+  font-size: 22px;
+  margin-top: 10px;
+  transition: 1s;
+}
+.aIcon a{
+  color: #F9A451;
+}
+.aIcon col:hover , .aIcon a:hover{
+  color: #FCFAF2;
+  background: #F9A451;
+  border-radius: 25px;
+}
+.aCreatTime{
+  font-size: 18px;
+}
+
+/* component
+ActivityComment */
+.aComment{
+  margin-bottom: 10px;
+}
+.aCommentAvatar{
+  margin: 3px;
+  width: 80px;
+  height: 80px;
+  border: rgb(67, 52, 27) 2px solid;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.aCommentAvatar a img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.aFunctionLine{
+  margin-bottom: 10px;
+}
+.aReply{
+  border: rgb(67, 52, 27) 1px solid;
+  margin-bottom: 20px;
+}
+
+/* ActivityNewInfo */
+.aAddInfo{
+  font-size: 22px;
+}
+.aUplodePic{
+  border: dashed 1px rgb(67, 52, 27);
+  font-size: 18px;
+  color: #ADB6BD;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aUplodePic p:focus{
+  outline: none !important; 
+}

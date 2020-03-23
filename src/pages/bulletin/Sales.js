@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { NavLink } from 'react-router-dom'
+
 import '../../css/news.scss'
 import {
   AiOutlineClockCircle,
@@ -11,10 +14,12 @@ import {
   AiOutlineCaretRight,
   AiOutlineGift,
 } from 'react-icons/ai'
+const MySwal = withReactContent(Swal)
+
 function Sales(props) {
   const [salesDetailData, setSalesDetailData] = useState([])
   const [hiddenCoupon, setHiddenCoupon] = useState(false)
-
+  // const SweetAlert = withSwalInstance(swal)
   // const [getCoupon, setGetCoupon] = useState([])
 
   useEffect(() => {
@@ -74,7 +79,13 @@ function Sales(props) {
       fetch(req).then(res => {
         if (res.status === 200) {
           setHiddenCoupon(true)
-          alert('success')
+
+          MySwal.fire({
+            icon: 'success',
+            title: '領取成功！',
+            showConfirmButton: false,
+            timer: 1550,
+          })
         } else {
           setHiddenCoupon(false)
           //
@@ -82,7 +93,12 @@ function Sales(props) {
       })
     } catch (err) {
       console.error(err)
-      alert('請登入會員')
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '麻煩請先登入會員!',
+        footer: '<a href="/member">回到登入頁面</a>',
+      })
     }
 
     // const res = await fetch(req)
@@ -115,10 +131,6 @@ function Sales(props) {
   //   getCoupon()
   // }, [])
 
-  function test() {
-    console.log('ttttttttttt')
-  }
-
   let sales = salesDetailData[0] ? salesDetailData[0] : ''
   return (
     <>
@@ -133,6 +145,7 @@ function Sales(props) {
             alt=""
           />
         </div>
+
         <div className="container pagination_news">
           <div className="pagination_news_content position-relative">
             <h1 className=" py-3 pagination_news">
@@ -141,7 +154,7 @@ function Sales(props) {
             <div className="news_index_detail d-flex justify-content-between pt-2">
               <div className="news_index_detail_icon_group d-flex justify-content-between">
                 <NavLink to="#" className="vendor_name">
-                  世嘉(SEGA)
+                  {sales == '' ? '' : salesDetailData[0].vName}
                 </NavLink>
                 <div className="category_group d-flex">
                   <AiOutlineFolderOpen className="icon" />

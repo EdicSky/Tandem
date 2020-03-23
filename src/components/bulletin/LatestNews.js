@@ -29,7 +29,7 @@ function LatestNews(props) {
           />
         </div>
         <div className="latest_news_title">
-          <Link to={`/${url}`}>
+          <Link to={`r/${url}`}>
             <h6>{title}</h6>
           </Link>
           <div className="time_group d-flex">

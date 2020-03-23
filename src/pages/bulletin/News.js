@@ -73,7 +73,7 @@ function News(props) {
             <div className="news_index_detail d-flex justify-content-between pt-2">
               <div className="news_index_detail_icon_group d-flex justify-content-between">
                 <Link to="#" className="vendor_name">
-                  世嘉(SEGA)
+                  {news == '' ? '' : bulletinDetailData[0].vName}
                 </Link>
                 <div className="category_group d-flex">
                   <AiOutlineFolderOpen className="icon" />

@@ -61,13 +61,14 @@ $shadow: 0px 0px 4px $gray;
       width: 230px;
       height: 340px;
       transition: 0.5s;
-
+      border-radius: 25px;
       .related_img {
         background-image: url('/news_images/starter_guide.png');
 
         background-size: contain;
         height: 130px;
         transition: 0.5s;
+        border-radius: 25px 25px 0 0;
       }
       .related_content {
         padding: 20px;
@@ -93,8 +94,7 @@ $shadow: 0px 0px 4px $gray;
 .get_notyet {
   z-index: 1;
 }
-.alredy_get {
-}
+
 .sales_p {
   margin-bottom: 100px;
 }

@@ -18,22 +18,22 @@ function Carousell() {
       >
         <NavLink to="#">
           <div>
-            <img className="img" src={'assets/img/black_friday_sale.jpg'} />
+            <img className="img" src={'/assets/img/black_friday_sale.jpg'} />
           </div>
         </NavLink>
         <NavLink to="#">
           <div>
-            <img className="img" src={'assets/img/hades.jpg'} />
+            <img className="img" src={'/assets/img/hades.jpg'} />
           </div>
         </NavLink>
         <NavLink to="#">
           <div>
-            <img className="img" src={'assets/img/feature_update.jpg'} />
+            <img className="img" src={'/assets/img/feature_update.jpg'} />
           </div>
         </NavLink>
         <NavLink to="#">
           <div>
-            <img className="img" src={'assets/img/EncoreSale.jpg'} />
+            <img className="img" src={'/assets/img/EncoreSale.jpg'} />
           </div>
         </NavLink>
       </OwlCarousel>

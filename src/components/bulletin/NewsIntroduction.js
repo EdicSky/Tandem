@@ -18,16 +18,20 @@ function NewsIntroduction(props) {
   let content = news.bContent
   let img = news.bImg
   let date = news.bDate
+  let vendor = news.vName
+  let category = news.cName
   let url = news.sId === '' ? 'news/' + news.bId : 'sales/' + news.sId
 
   return (
     <>
       <div className="card news_introduction">
-        <img
-          src={`data:image/png;base64,${img}`}
-          className="card-img-top"
-          alt="..."
-        />
+        <div className="intro_img">
+          <img
+            src={`data:image/png;base64,${img}`}
+            className="card-img-top"
+            alt="..."
+          />
+        </div>
         <div className="news card-body">
           <div className="news_index_title">
             <h3 className="card-title">{title}</h3>
@@ -38,11 +42,11 @@ function NewsIntroduction(props) {
           <div className="news_index_detail d-flex justify-content-between ">
             <div className="news_index_detail_icon_group d-flex justify-content-between">
               <NavLink to="#" className="vendor_name">
-                世嘉(SEGA)
+                {vendor}
               </NavLink>
               <div className="category_group d-flex">
                 <AiOutlineFolderOpen className="icon" />
-                <NavLink to="/bulletin/news">新聞</NavLink>
+                <NavLink to="/bulletin/news">{category}</NavLink>
               </div>
               <div className="time_group d-flex">
                 <AiOutlineClockCircle className="icon" />
