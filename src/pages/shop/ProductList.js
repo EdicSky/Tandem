@@ -14,6 +14,8 @@ import {
   AiOutlineCloseCircle,
 } from 'react-icons/ai'
 import '../../css/shop.scss'
+import Swal from 'sweetalert2'
+import addToLike from './addToLike'
 
 function ProductList(props) {
   const [mycart, setMycart] = useState([])
@@ -38,7 +40,7 @@ function ProductList(props) {
   //  加入購物車
   async function updateCartToLocalStorage(value) {
     setDataLoading(true)
-
+    Swal.fire({html:`商品名稱:${value.name}加入購物車`})
     const currentCart = JSON.parse(localStorage.getItem('cart')) || []
 
     const newCart = [...currentCart, value]
@@ -155,6 +157,75 @@ function ProductList(props) {
   console.log(props)
   let search = props.location.search
   console.log('search= ', search)
+  //顯示排序方式
+  let orderbydisplay;
+  switch (orderBy){
+    case 'itemName ASC':
+      orderbydisplay = '遊戲名稱'
+      break;
+    case 'itemPrice DESC':
+      orderbydisplay = '價錢高至低'
+      break;
+    case 'itemPrice DESC':
+      orderbydisplay = '價錢低至高'
+      break;
+    case 'itemDate ASC':
+      orderbydisplay = '推出時間最早'
+      break;
+    case 'itemDate DESC':
+      orderbydisplay = '推出時間最新'
+      break;
+    
+    default:
+    }
+  //顯示發行商
+  let vendordisplay;
+  switch (vendor){
+    case 'V001':
+      vendordisplay = "美國藝電（ElectronicArts）"
+      break;
+    case 'V002':
+      vendordisplay = '動視暴雪（Activision Blizzard）'
+      break;
+    case 'V003':
+      vendordisplay = '2K Games'
+      break;
+    case 'V004':
+      vendordisplay = '任天堂（NINTENDO）'
+      break;
+    case 'V005':
+      vendordisplay = '索尼（SONY）'
+      break;
+    case 'V006':
+      vendordisplay = '育碧（Ubisoft）'
+      break;
+    case 'V007':
+      vendordisplay = '柯樂美（KONAMI）'
+      break;
+    case 'V008':
+      vendordisplay = '卡普空（CAPCOM）'
+      break;
+    case 'V009':
+      vendordisplay = '史克威爾艾尼克斯（SQUARE ENIX）'
+      break;
+    case 'V010':
+      vendordisplay = '世嘉（SEGA）'
+      break;
+    default:
+    }
+  //顯示價格區間
+  let pricedisplay;
+  switch (price){
+    case '<100':
+      pricedisplay = "< NT$100"
+      break;
+    case '<500':
+      pricedisplay = '< NT$500'
+      break;
+    
+    
+    default:
+    }
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -200,11 +271,11 @@ function ProductList(props) {
                       }
                     >
                       {/* <i class="fas fa-shopping-cart"></i> */}
-                      <AiOutlineShoppingCart style={{ color: '#79cee2' }} />
+                      <AiOutlineShoppingCart style={{ color: '#79cee2',fontSize:'24px' }} />
                     </Link>
-                    <Link className="col-2">
+                    <Link className="col-2" onClick={()=>{addToLike({"userId":JSON.parse(localStorage.getItem('LoginUserData')).mbId,"likeproductId":value.itemId})}}>
                       {/* <i class="far fa-heart"></i> */}
-                      <AiOutlineHeart style={{ color: 'red' }} />
+                      <AiOutlineHeart style={{ color: '#F9A451',fontSize:'24px' }} />
                     </Link>
                   </div>
                 </div>
@@ -233,7 +304,7 @@ function ProductList(props) {
 
       {/* {myproduct.length}
       {totalpage} */}
-      <div className="row">
+      <div className="row my-3">
         <div className="col">
           {/* 新的頁數bar開始 */}
           <ul className="d-flex">
@@ -329,7 +400,7 @@ function ProductList(props) {
         )}
         {vendor !== 'V000' ? (
           <div className="s-filterClearBtn">
-            發行商{vendor}
+            發行商:{vendordisplay}
             <button onClick={() => setVendor('V000')}>
               <AiOutlineCloseCircle />
             </button>
@@ -339,7 +410,7 @@ function ProductList(props) {
         )}
         {price !== 9999 ? (
           <div className="s-filterClearBtn">
-            價格{price}
+            價格:{pricedisplay}
             <button onClick={() => setPrice(9999)}>
               <AiOutlineCloseCircle />
             </button>
@@ -349,7 +420,7 @@ function ProductList(props) {
         )}
         {orderBy !== 'itemId' ? (
           <div className="s-filterClearBtn">
-            排序{orderBy}
+            排序:{orderbydisplay}
             <button onClick={() => setOrderBy('itemId')}>
               <AiOutlineCloseCircle />
             </button>

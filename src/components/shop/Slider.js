@@ -56,7 +56,7 @@ function Slider(props) {
   // console.log('目前樣式',props.type)
   return (
     <>
-      <div className="box d-flex">
+      <div className="box d-flex h5">
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
             <Link onClick={()=>props.handletype(5)} >運動</Link>

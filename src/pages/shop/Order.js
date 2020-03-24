@@ -68,9 +68,34 @@ function Order(props) {
   //   getProductNameFromId()
   //   }
   // },[])
-  const productname = JSON.parse(localStorage.getItem('cart'))
+
+  //抓出localStorage商品名字
+  let productnamearr=[]
+  const localStorageproductname = JSON.parse(localStorage.getItem('cart'))
+  localStorageproductname.map((item,index)=>{
+    if(productnamearr.indexOf(item.name)==-1){
+      productnamearr.push(item.name)
+    }
+  })
   
-  console.log('localstorage',productname)
+  
+
+  console.log('商品名稱array',productnamearr)
+
+  //寄訂單成立通知信
+  async function sendOrderEmail(){
+    const request = new Request('http://localhost:3300/product/confirmOrderEmail', {
+      method: 'POST',
+      body:JSON.stringify({'productName':productnamearr,'orderId':orderInfo[0].orderId,"checktotal":orderInfo[0].checkSubtotal}),
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+  }
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -141,7 +166,7 @@ function Order(props) {
             <div class="col-sm-5">
               <input
                 type="text"
-                className="form-control"
+                className="form-control-plaintext"
                 id="exampleInputPassword1"
                 placeholder=""
                 value = {JSON.parse(localStorage.getItem('LoginUserData')).mbName}
@@ -158,13 +183,18 @@ function Order(props) {
             <label className="col-sm-3 col-form-label text-right">
               訂購商品
             </label>
-            <div class="col-sm-5 my-2">{productname.map((item,index)=>{return (<p>({index+1}) {item.name}</p>)})}</div>
+            <div class="col-sm-5 my-2">{productnamearr.map((item,index)=>{
+              return (
+
+              <p>({index+1}) {item}</p>
+            )
+            })}</div>
           </div>
         </form>
       </div>
 
       <div className="d-flex justify-content-center my-3">
-        <button type="button" className="btn btn-outline-info mx-2" onClick={()=>{props.history.push('/productlist');localStorage.removeItem('cart')}}>
+        <button type="button" className="btn btn-outline-info mx-2" onClick={()=>{sendOrderEmail();props.history.push('/productlist');localStorage.removeItem('cart');}}>
           完成訂單
         </button>
       </div>

@@ -31,7 +31,10 @@ function Payment(props) {
     let productId = []
 
     JSON.parse(localStorage.getItem('cart')).map((item, index) => {
+      //如果id重複就略過
+      if (productId.indexOf(item.id.toString()) == -1){
       productId.push(item.id.toString())
+      }
     })
     setItemIds(productId) //設定商品id to state
     

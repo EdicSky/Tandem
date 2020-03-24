@@ -153,9 +153,11 @@ function Filterbar(props) {
             <Link className="dropdown-item" to="#" onClick={()=>props.setOrderBy('itemPrice ASC')}>
               價錢低至高
             </Link>
-            <div role="separator" className="dropdown-divider"></div>
-            <Link className="dropdown-item" to="#">
-              Separated link
+            <Link className="dropdown-item" to="#" onClick={()=>props.setOrderBy('itemDate ASC')}>
+              推出時間最早
+            </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>props.setOrderBy('itemDate DESC')}>
+              推出時間最新
             </Link>
           </div>
         </div>
