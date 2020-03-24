@@ -16,6 +16,8 @@ function Cart_new() {
   const [productIdInCart, setProductIdInCart] = useState([]) //購物車內商品Id
   const [productImgUrl, setProductImgUrl] = useState([])
   const [coupon,setCoupon] = useState([])//coupon資訊
+  const [couponNo,setCouponNo] = useState('S001')
+  const [discount,setDiscount] = useState(0)//折扣多少錢
   async function getCartFromLocalStorage() {
     setDataLoading(true)
 
@@ -82,9 +84,14 @@ function Cart_new() {
     // getImgFromServer(mycartDisplay) //發fetch重抓圖片
   }
   const handleCouponSelect = (element) => {
+    console.log(element)
     setSelectCoupon(!selectCoupon)
     
     element.classList.toggle('couponActive') //click coupon加上邊框顏色
+    // let couponpic = document.querySelector('.s-coupon-pic img')
+    console.log('扣多少錢',element.dataset.discount)
+    let discountmoney = element.dataset.discount
+    setDiscount(discountmoney)
     
   }
   const sum = items => {
@@ -99,7 +106,7 @@ function Cart_new() {
     // console.log('coupon.sMethod',coupon.sMethod)
     let money
     if(selectCoupon){
-      money = sum(mycartDisplay)-coupon.sMethod
+      money = sum(mycartDisplay)-discount
     }else{
       money = sum(mycartDisplay)
     }
@@ -165,11 +172,11 @@ function Cart_new() {
 
   // console.log(productImgUrl[0])
  
-  //抓coupon圖片
+  //抓coupon圖片和資訊
   async function getCoupon(){
-    const request = new Request('http://localhost:3300/product/getCoupon', {
+    const request = new Request('http://localhost:3300/product/findmycup', {
       method: 'POST',
-      body: JSON.stringify({'sId':'S001'}),
+      body: JSON.stringify({'mbId':JSON.parse(localStorage.getItem('LoginUserData')).mbId}),
       credentials: 'include',
       headers: new Headers({
         Accept: 'application/json',
@@ -178,12 +185,24 @@ function Cart_new() {
     })
     const response = await fetch(request)
     const data = await response.json()
-    setCoupon(data.r[0])
+    setCoupon(data)
   }
   useEffect(()=>{
     getCoupon()
   },[])
-
+  //設定目前選到的coupon編號
+  
+  function couponselectfunc(){
+    let selectcoupon = document.querySelector('.s-coupon');
+    let optioncoupon = selectcoupon[selectcoupon.selectedIndex];
+    console.log('選擇到的coupon',optioncoupon,optioncoupon.value)
+    setCouponNo(optioncoupon.value)
+    
+    
+  }
+  
+  
+  
   //商品加入收藏
   async function addToLike(itemID){
     const request = new Request('http://localhost:3300/product/addtolike', {
@@ -297,24 +316,33 @@ function Cart_new() {
       
 
       <div className="s-couponList p-4">
-        <h5>你有1張折價券可使用，已選{selectCoupon == true? '1':'0'}張</h5>
-        <div className="my-3" style={{position:'relative'}}>
-          <img
-            src="https://via.placeholder.com/300x150"
-            className="coupon"
-            alt="..."
-            onClick={(e) => handleCouponSelect(e.target)}
-          />
-          <AiOutlineCheckCircle style={{ maxWidth:'0',transition:'0.5s',fontSize:'80px',fontWeight:'bold', color:'purple',position:'absolute', left:'15%',top:'30px'}}/>
-        </div>
+      <h5>你有{coupon.length}張折價券可使用，已選{selectCoupon == true? '1':'0'}張</h5>
+        <select className="col-12 s-coupon" onChange={()=>couponselectfunc()}>
+          {coupon.map((item,index)=>{
+            return (<option value={item.sId} >{item.sTitle}</option>)
+          })}
+          
+        </select>
+        
        
-        <div className="my-2">
-          <img
+        <div className="my-2 s-coupon-pic">
+          {coupon.map((item,index)=>{
+            if (item.sId==couponNo)
+            {return (<img
+              src={item.sCoupon}
+              value={item.sId}
+              data-discount={item.sMethod}
+              className="coupon img-fluid"
+              alt="..."
+              onClick={(e) => handleCouponSelect(e.target)}
+            />)}
+          })}
+          {/* <img
             src={coupon.sCoupon}
             className="coupon img-fluid"
             alt="..."
             onClick={(e) => handleCouponSelect(e.target)}
-          />
+          /> */}
         </div>
         
         
@@ -346,7 +374,7 @@ function Cart_new() {
                   <div className="p">
               
                     <span className = "" style={{ color: 'orange', fontSize: '30px' }}>
-                      ${selectCoupon? sum(mycartDisplay) - coupon.sMethod:sum(mycartDisplay)}
+                      ${selectCoupon? sum(mycartDisplay) - discount:sum(mycartDisplay)}
                     </span>
                   </div>
                 </td>

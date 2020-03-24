@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userCommentAsync } from '../../actions/index'
 import Swal from 'sweetalert2' //sweetalert2
+import getMemberInfo from './getMemberInfo'
 
 function Comment2(props) {
   console.log(props.leaveComment)
@@ -16,6 +17,7 @@ function Comment2(props) {
   const [rating, setRating] = useState(5)
   const [oldCommentContent, setOldCommentContent] = useState([])
   //   const [parentId,setParentId] = useState(0)//留言父層id
+  const [avator,setAvator] = useState({})//留言大頭照
   const handleSubmit = (parentId = 0) => {
     console.log('click')
     const userCommentContent = {
@@ -24,6 +26,7 @@ function Comment2(props) {
       rating: rating,
       itemId: props.match.params.type,
       parentId: parentId,
+      memberId: JSON.parse(localStorage.getItem('LoginUserData')).mbId
     }
     console.log(userCommentContent)
     props.userCommentAsync(userCommentContent, () => {
@@ -68,6 +71,33 @@ function Comment2(props) {
     // targetElement.style('display','block')
     // console.log(targetElement)
   }
+  
+  // //要怎麼抓到大頭照圖片?
+  // async function getMemberInfo(value){
+    
+  //   console.log(value)
+  //   const request = new Request('http://localhost:3300/product/getmemberinfo', {
+  //     method: 'POST',
+  //     body:JSON.stringify(value),
+  //     credentials: 'include',
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     }),
+  //   })
+    
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+    
+  //   console.log('大頭照',JSON.stringify(data.r[0].mbAva))
+  //   // console.log(JSON.parse(data))
+  //   let avator2 = JSON.stringify(data.r[0].mbAva)
+  //   // return avator2
+  //   setAvator({'26':avator2})
+  //   // return avator2
+
+    
+  // }
 
   const comment = (
     <>
@@ -237,7 +267,8 @@ function Comment2(props) {
                 <div className="row">
                   <div className="col-md-2">
                     <img
-                      src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                      // src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                      src={msg.mbAva}
                       className="img img-rounded img-fluid"
                     />
                     <p className="text-secondary text-center">
@@ -282,9 +313,11 @@ function Comment2(props) {
                         <div className="row">
                           <div className="col-md-2">
                             <img
-                              src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                              // src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                              src={innermsg.mbAva}
                               className="img img-rounded img-fluid"
                             />
+                            
                             <p className="text-secondary text-center">
                               {innermsg.created_at}
                             </p>

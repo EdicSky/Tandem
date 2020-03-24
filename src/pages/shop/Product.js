@@ -228,7 +228,7 @@ function Product(props) {
               加入購物車
             </button>
           </div>
-          <div className="row h5 m-2">有{like !== '[]'? wholike2.length:0}人收藏此遊戲</div>
+          <div className="row h5 m-2">有{wholike2 !== '[]'? wholike2.length:0}人收藏此遊戲</div>
           <div className="row mt-2 h6">
             <div className="col-3 ">發行商:</div>
             <div className="col-7 ">{myproduct.vName}</div>
