@@ -1,9 +1,7 @@
 import React from 'react'
 
-function CommunityC() {
-  return (
-    <></>
-  )
+function Community() {
+  return <></>
 }
 
-export default CommunityC
+export default Community

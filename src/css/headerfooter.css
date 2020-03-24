@@ -4,7 +4,7 @@
 	Header
 ------------------------ */
 nav{
-  height: 100px;
+  height: 80px;
   margin-bottom: 30px;
 }
 
@@ -16,7 +16,11 @@ nav{
 
 .headerlist li {
   padding: 0 20px 0 20px;
-  font-size: 22px;
+  font-size: 16px;
+  transition: .5s;
+}
+.headerlist li:hover{
+  transform: scale(1.2);
 }
 
 .header-icon{

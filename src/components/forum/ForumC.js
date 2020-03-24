@@ -1,9 +1,7 @@
 import React from 'react'
 
 function ForumC() {
-  return (
-    <></>
-  )
+  return <></>
 }
 
 export default ForumC
