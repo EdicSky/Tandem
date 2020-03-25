@@ -51,7 +51,7 @@ function ProductList(props) {
   console.log('currentpage=', currentpage)
   //fetch database product撈所有資料(不分類)
   async function getDataFromServer(page) {
-    const request = new Request('http://localhost:3300/product/list/' + page, {
+    const request = new Request('http://localhost:6001/product/list/' + page, {
       method: 'GET',
       credentials: 'include',
     })
@@ -85,7 +85,7 @@ function ProductList(props) {
     //新分業方法
     if (type !== 0 || vendor !== 'V000' || price !== '') {
       request = new Request(
-        'http://localhost:3300/product/search/' +
+        'http://localhost:6001/product/search/' +
           type +
           '/' +
           vendor +
@@ -101,7 +101,7 @@ function ProductList(props) {
         }
       )
     } else {
-      request = new Request('http://localhost:3300/product/list/' + page, {
+      request = new Request('http://localhost:6001/product/list/' + page, {
         method: 'GET',
         credentials: 'include',
       })

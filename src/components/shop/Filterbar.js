@@ -7,7 +7,7 @@ function Filterbar(props) {
   const [search_query, setSearch_query] = useState('')
   async function Search() {
     const request = new Request(
-      'http://localhost:3300/product/?search=' + search_query,
+      'http://localhost:6001/product/?search=' + search_query,
       {
         method: 'GET',
         credentials: 'include',

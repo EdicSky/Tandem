@@ -39,7 +39,7 @@ function Comment2(props) {
   async function getOldCommentAsync(productId) {
     const request = new Request(
       // 'http://localhost:5555/comments/?itemId='+productId,
-      'http://localhost:3300/product/comment/' + productId,
+      'http://localhost:6001/product/comment/' + productId,
       {
         method: 'GET',
 

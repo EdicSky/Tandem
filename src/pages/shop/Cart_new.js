@@ -160,7 +160,7 @@ function Cart_new() {
     // }
     let body = { id: id }
     console.log('bodybody', body)
-    const request = new Request('http://localhost:3300/product/getCartImg', {
+    const request = new Request('http://localhost:6001/product/getCartImg', {
       method: 'POST',
       body: JSON.stringify(body),
       credentials: 'include',
@@ -183,7 +183,7 @@ function Cart_new() {
  
   //抓coupon圖片和資訊
   async function getCoupon(){
-    const request = new Request('http://localhost:3300/product/findmycup', {
+    const request = new Request('http://localhost:6001/product/findmycup', {
       method: 'POST',
       body: JSON.stringify({'mbId':JSON.parse(localStorage.getItem('LoginUserData')).mbId}),
       credentials: 'include',
@@ -214,7 +214,7 @@ function Cart_new() {
   
   //商品加入收藏
   async function addToLike(itemID){
-    const request = new Request('http://localhost:3300/product/addtolike', {
+    const request = new Request('http://localhost:6001/product/addtolike', {
       method: 'POST',
       body:JSON.stringify({"userId":JSON.parse(localStorage.getItem('LoginUserData')).mbId,"likeproductId":itemID}),
       credentials: 'include',

@@ -135,7 +135,7 @@ function Cart() {
     // }
     let body = { id: id }
     console.log('bodybody', body)
-    const request = new Request('http://localhost:3300/product/getCartImg', {
+    const request = new Request('http://localhost:6001/product/getCartImg', {
       method: 'POST',
       body: JSON.stringify(body),
       credentials: 'include',
@@ -158,7 +158,7 @@ function Cart() {
  
   //抓coupon圖片
   async function getCoupon(){
-    const request = new Request('http://localhost:3300/product/getCoupon', {
+    const request = new Request('http://localhost:6001/product/getCoupon', {
       method: 'POST',
       body: JSON.stringify({'sId':'S001'}),
       credentials: 'include',

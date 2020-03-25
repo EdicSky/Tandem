@@ -8,7 +8,7 @@ export const userCommentAsync = (userCommentContent, callback) => {
     return async dispatch => {
       const request = new Request(
         // 'http://localhost:5555/comments/',
-        'http://localhost:3300/product/comment/'+userCommentContent.itemId,
+        'http://localhost:6001/product/comment/'+userCommentContent.itemId,
         {
           method: 'POST',
           body:JSON.stringify(userCommentContent),

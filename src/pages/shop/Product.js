@@ -43,7 +43,7 @@ function Product(props) {
   }
   //fetch database product撈所有資料(不分類)
   async function getDataFromServer() {
-    const request = new Request('http://localhost:3300/product/' + productId, {
+    const request = new Request('http://localhost:6001/product/' + productId, {
       method: 'GET',
       credentials: 'include',
     })
@@ -84,7 +84,7 @@ function Product(props) {
 
   //商品加入收藏
   async function addToLike(){
-    const request = new Request('http://localhost:3300/product/addtolike', {
+    const request = new Request('http://localhost:6001/product/addtolike', {
       method: 'POST',
       body:JSON.stringify({"userId":JSON.parse(localStorage.getItem('LoginUserData')).mbId,"likeproductId":myproduct.itemId}),
       credentials: 'include',

@@ -12,7 +12,7 @@ function Order(props) {
   
   useEffect(() => {
     async function getOrderInfo() {
-      const request = new Request('http://localhost:3300/product/orderInfo', {
+      const request = new Request('http://localhost:6001/product/orderInfo', {
         method: 'POST',
 
         credentials: 'include',
@@ -48,7 +48,7 @@ function Order(props) {
     // const orderInfoCopy = {...orderInfo}//對orderInfo做拷貝
     // console.log('orderInfoCopy',orderInfo[0])
     // console.log(id)
-    const request = new Request('http://localhost:3300/product/multipleId', {
+    const request = new Request('http://localhost:6001/product/multipleId', {
       method: 'POST',
       body:JSON.stringify({'productIds':productId}),
       credentials: 'include',
@@ -84,7 +84,7 @@ function Order(props) {
 
   //寄訂單成立通知信
   async function sendOrderEmail(){
-    const request = new Request('http://localhost:3300/product/confirmOrderEmail', {
+    const request = new Request('http://localhost:6001/product/confirmOrderEmail', {
       method: 'POST',
       body:JSON.stringify({'productName':productnamearr,'orderId':orderInfo[0].orderId,"checktotal":orderInfo[0].checkSubtotal}),
       credentials: 'include',

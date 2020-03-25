@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2'
 //加入收藏清單function
 async function addToLike(value){
-    const request = new Request('http://localhost:3300/product/addtolike', {
+    const request = new Request('http://localhost:6001/product/addtolike', {
       method: 'POST',
       body:JSON.stringify(value),
       credentials: 'include',
