@@ -7,11 +7,6 @@ import '../../css/news.scss'
 import {
   AiOutlineClockCircle,
   AiOutlineFolderOpen,
-  AiOutlineDoubleLeft,
-  AiOutlineDoubleRight,
-  AiOutlineSearch,
-  AiOutlineCaretLeft,
-  AiOutlineCaretRight,
   AiOutlineGift,
 } from 'react-icons/ai'
 const MySwal = withReactContent(Swal)
@@ -166,7 +161,7 @@ function Sales(props) {
                 </div>
               </div>
             </div>
-            <p className="py-5 sales_p">
+            <p className="py-5 sales_p" style={{ whiteSpace: 'pre-wrap' }}>
               {sales == '' ? '' : salesDetailData[0].bContent}
             </p>
             <NavLink

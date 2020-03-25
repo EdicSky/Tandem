@@ -3,18 +3,11 @@ import { Link } from 'react-router-dom'
 
 import '../../css/news.scss'
 import RelatedNews from '../../components/bulletin/RelatedNews'
-import {
-  AiOutlineClockCircle,
-  AiOutlineFolderOpen,
-  AiOutlineDoubleLeft,
-  AiOutlineDoubleRight,
-  AiOutlineSearch,
-  AiOutlineCaretLeft,
-  AiOutlineCaretRight,
-} from 'react-icons/ai'
+import { AiOutlineClockCircle, AiOutlineFolderOpen } from 'react-icons/ai'
 
 function News(props) {
   const [bulletinDetailData, setBulletinDetailData] = useState([])
+  const [relatedNews, setRelatedNews] = useState([])
   useEffect(() => {
     //fetch
     async function getBulletinData() {
@@ -32,14 +25,15 @@ function News(props) {
       const res = await fetch(req)
       const data = await res.json()
       console.log(data)
-      setBulletinDetailData(data)
+      setBulletinDetailData(data.newsContent)
+      setRelatedNews(data.related)
     }
 
     getBulletinData()
     //getBulletinDetailData()
   }, [])
   let news = bulletinDetailData[0] ? bulletinDetailData[0] : ''
-  console.log(bulletinDetailData)
+  console.log(666, bulletinDetailData)
   //console.log(window.location.pathname)
   // console.log(props.data)
   // if (news !== '') {
@@ -85,7 +79,7 @@ function News(props) {
                 </div>
               </div>
             </div>
-            <p className="py-5">
+            <p className="py-5" style={{ whiteSpace: 'pre-wrap' }}>
               {news == '' ? '' : bulletinDetailData[0].bContent}
             </p>
             <Link to="/bulletin" className="position-absolute btn back_to_list">
@@ -95,25 +89,12 @@ function News(props) {
           <div className="related_news">
             <h2>相關新聞</h2>
             <ul className="d-flex justify-content-between">
-              <Link to="#" className="a">
-                <li>
-                  <div className="related_img"></div>
-                  <div className="related_content">
-                    <div className="related_time">
-                      <div className="time_group d-flex">
-                        <AiOutlineClockCircle className="icon" />
-                        <p>2019.11.1</p>
-                      </div>
-                    </div>
-                    <div className="related_title">
-                      <h4>《萬智牌：競技場》</h4>
-                    </div>
-                  </div>
-                </li>
-              </Link>
+              {relatedNews.map((v, i) => (
+                <RelatedNews related={v} />
+              ))}
+              {/* <RelatedNews />
               <RelatedNews />
-              <RelatedNews />
-              <RelatedNews />
+              <RelatedNews /> */}
             </ul>
           </div>
         </div>

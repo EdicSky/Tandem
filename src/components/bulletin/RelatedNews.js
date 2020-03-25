@@ -12,21 +12,31 @@ import {
   AiOutlineCaretRight,
 } from 'react-icons/ai'
 
-function RelatedNews() {
+function RelatedNews(props) {
+  console.log(444, props.related)
+  let news = props.related ? props.related : ''
+  // if (!props) return <></>
+  console.log(news)
   return (
     <>
       <NavLink to="#" className="a">
         <li>
-          <div className="related_img"></div>
+          <div className="related_img">
+            <img
+              src={`data:image/png;base64,${props.related.bImg}`}
+              alt=""
+              className="object-fit"
+            />
+          </div>
           <div className="related_content">
             <div className="related_time">
               <div className="time_group d-flex">
                 <AiOutlineClockCircle className="icon" />
-                <p>2019.11.1</p>
+                <p>{props.related.bDate}</p>
               </div>
             </div>
             <div className="related_title">
-              <h4>《萬智牌：競技場》</h4>
+              <h6 style={{ whiteSpace: 'pre-wrap' }}>{props.related.bTitle}</h6>
             </div>
           </div>
         </li>

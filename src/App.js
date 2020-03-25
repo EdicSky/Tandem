@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './components/bulletin/ScrollToTop'
 
 import Home from './pages/Home'
 import Activity from './pages/activity/Activity'
@@ -19,36 +20,37 @@ function App() {
     <Router>
       <>
         <Header />
-
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/activity">
-            <Activity />
-          </Route>
-          <Route path="/bulletin">
-            <Bulletin />
-          </Route>
-          <Route path="/news/:newsId">
-            <News />
-          </Route>
-          <Route path="/sales/:salesId">
-            <Sales />
-          </Route>
-          <Route path="/community">
-            <Community />
-          </Route>
-          <Route path="/forum">
-            <Forum />
-          </Route>
-          <Route path="/member">
-            <Member />
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/activity">
+              <Activity />
+            </Route>
+            <Route path="/bulletin">
+              <Bulletin />
+            </Route>
+            <Route path="/news/:newsId">
+              <News />
+            </Route>
+            <Route path="/sales/:salesId">
+              <Sales />
+            </Route>
+            <Route path="/community">
+              <Community />
+            </Route>
+            <Route path="/forum">
+              <Forum />
+            </Route>
+            <Route path="/member">
+              <Member />
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+          </Switch>
+        </ScrollToTop>
         <Footer />
       </>
     </Router>

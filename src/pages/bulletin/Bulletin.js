@@ -116,7 +116,15 @@ function Bulletin(props) {
             <div
               className=" position-relative mobile_input"
               style={{ marginBottom: 80 + 'px' }}
-            ></div>
+            >
+              <AiOutlineSearch className="icon_s position-absolute"></AiOutlineSearch>
+              <input
+                type="text"
+                onKeyPress={handleSearch}
+                placeholder="請輸入搜尋內容"
+                className="form-control news_search"
+              />
+            </div>
             {bulletinData.map((v, i) => (
               <NewsIntroduction ttt={v} />
             ))}

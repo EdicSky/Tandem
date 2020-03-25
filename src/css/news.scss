@@ -63,12 +63,12 @@ $shadow: 0px 0px 4px $gray;
       transition: 0.5s;
       border-radius: 25px;
       .related_img {
-        background-image: url('/news_images/starter_guide.png');
-
-        background-size: contain;
         height: 130px;
         transition: 0.5s;
         border-radius: 25px 25px 0 0;
+        img {
+          border-radius: 25px 25px 0 0;
+        }
       }
       .related_content {
         padding: 20px;
@@ -77,11 +77,21 @@ $shadow: 0px 0px 4px $gray;
     }
   }
 }
+.related_title {
+  h6 {
+    line-height: 25px;
+  }
+}
+
 .related_news li:hover {
   transform: scale(0.9);
 }
+
 .related_news li:hover > .related_img {
   transform: scale(0.8);
+  border-radius: 25px;
+}
+.related_news li:hover .object-fit {
   border-radius: 25px;
 }
 .get_ticket {

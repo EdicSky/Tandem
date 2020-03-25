@@ -2,15 +2,7 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import {
-  AiOutlineClockCircle,
-  AiOutlineFolderOpen,
-  AiOutlineDoubleLeft,
-  AiOutlineDoubleRight,
-  AiOutlineSearch,
-  AiOutlineCaretLeft,
-  AiOutlineCaretRight,
-} from 'react-icons/ai'
+import { AiOutlineClockCircle } from 'react-icons/ai'
 function LatestNews(props) {
   console.log(props.ttt)
   let news = props.ttt ? props.ttt : ''
@@ -29,7 +21,7 @@ function LatestNews(props) {
           />
         </div>
         <div className="latest_news_title">
-          <Link to={`r/${url}`}>
+          <Link to={`/${url}`}>
             <h6>{title}</h6>
           </Link>
           <div className="time_group d-flex">

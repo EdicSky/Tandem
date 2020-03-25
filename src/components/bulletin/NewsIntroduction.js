@@ -2,15 +2,7 @@ import React from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import {
-  AiOutlineClockCircle,
-  AiOutlineFolderOpen,
-  AiOutlineDoubleLeft,
-  AiOutlineDoubleRight,
-  AiOutlineSearch,
-  AiOutlineCaretLeft,
-  AiOutlineCaretRight,
-} from 'react-icons/ai'
+import { AiOutlineClockCircle, AiOutlineFolderOpen } from 'react-icons/ai'
 function NewsIntroduction(props) {
   console.log(props.ttt)
   let news = props.ttt ? props.ttt : ''
