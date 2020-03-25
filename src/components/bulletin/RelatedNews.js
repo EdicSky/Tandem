@@ -19,7 +19,7 @@ function RelatedNews(props) {
   console.log(news)
   return (
     <>
-      <NavLink to="#" className="a">
+      <NavLink to="/sales/S004" className="a">
         <li>
           <div className="related_img">
             <img

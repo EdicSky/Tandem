@@ -98,6 +98,7 @@ p {
   margin-bottom: 50px;
   .intro_img {
     background-color: #000000;
+    overflow: hidden;
   }
   img {
     transition: 0.5s;
@@ -105,6 +106,8 @@ p {
 }
 .news_introduction:hover img {
   opacity: 0.8;
+  transform: scale(1.1);
+  overflow: hidden;
 }
 .news_index_title {
   h5 {

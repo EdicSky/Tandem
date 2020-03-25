@@ -52,14 +52,12 @@ function Bulletin(props) {
     console.log(data.bulletin)
   }
   useEffect(() => {
-    //fetch
     getBulletinData()
-    //getBulletinDetailData()
   }, [])
   useEffect(() => {
     getBulletinData()
   }, [pageNum, search])
-  // console.log(props)
+
   const arrPage = []
   for (let i = 1; i <= totalPages; i++) {
     arrPage.push(i)
