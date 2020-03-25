@@ -222,6 +222,9 @@ function ProductList(props) {
     case '<500':
       pricedisplay = '< NT$500'
       break;
+    case '<1000':
+      pricedisplay = '< NT$1000'
+      break;
     
     
     default:

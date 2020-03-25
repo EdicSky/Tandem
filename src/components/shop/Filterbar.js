@@ -63,6 +63,9 @@ function Filterbar(props) {
             <Link className="dropdown-item" to="#" onClick={()=>{props.setPrice('<500')}}>
               Under NT$500
             </Link>
+            <Link className="dropdown-item" to="#" onClick={()=>{props.setPrice('<1000')}}>
+              Under NT$1000
+            </Link>
             
           </div>
         </div>

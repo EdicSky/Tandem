@@ -20,11 +20,12 @@ function Cart_new() {
   const [discount,setDiscount] = useState(0)//折扣多少錢
   async function getCartFromLocalStorage() {
     setDataLoading(true)
-
+    if(localStorage.getItem('cart') !== null){
     const newCart = localStorage.getItem('cart') || []
     console.log(JSON.parse(newCart))
     //設定資料
     setMycart(JSON.parse(newCart))
+  }
   }
   //一開始就會載入資料
   useEffect(() => {
@@ -87,12 +88,20 @@ function Cart_new() {
     console.log(element)
     setSelectCoupon(!selectCoupon)
     
-    element.classList.toggle('couponActive') //click coupon加上邊框顏色
+    // element.classList.toggle('couponActive') //click coupon加上邊框顏色
+    //=======選擇折價券後出現已使用=========
+    document.querySelector(".s-coupon-used").classList.add('s-coupon-used-show');
     // let couponpic = document.querySelector('.s-coupon-pic img')
-    console.log('扣多少錢',element.dataset.discount)
-    let discountmoney = element.dataset.discount
-    setDiscount(discountmoney)
+    // console.log('扣多少錢',element.dataset.discount)
+    // let discountmoney = element.dataset.discount
+    setDiscount(element.dataset.discount)
     
+  }
+  //取消使用折價券
+  const handleCouponSelect2 =()=>{
+    document.querySelector(".s-coupon-used").classList.remove('s-coupon-used-show');
+    setSelectCoupon(!selectCoupon)
+    setDiscount(0)
   }
   const sum = items => {
     let total = 0
@@ -328,14 +337,23 @@ function Cart_new() {
         <div className="my-2 s-coupon-pic">
           {coupon.map((item,index)=>{
             if (item.sId==couponNo)
-            {return (<img
+            {return (
+              <>
+            <img
               src={item.sCoupon}
               value={item.sId}
               data-discount={item.sMethod}
               className="coupon img-fluid"
               alt="..."
               onClick={(e) => handleCouponSelect(e.target)}
-            />)}
+            />
+            <div className="img-fluid s-coupon-used"
+            onClick={() => handleCouponSelect2()}
+              >已使用
+            </div>
+            </>
+            )
+          }
           })}
           {/* <img
             src={coupon.sCoupon}
@@ -388,12 +406,12 @@ function Cart_new() {
       <div className="d-flex justify-content-center my-3">
         <Link
           type="button"
-          className="btn btn-outline-info mx-2"
+          className="btn btn-outline-info mx-2 s-btn-common"
           to="/productlist"
         >
           繼續購物
         </Link>
-        <Link type="button" className="btn btn-outline-info mx-2" to="/payment">
+        <Link type="button" className="btn btn-outline-info mx-2 s-btn-common" to="/payment">
           下一步，填付款資訊
         </Link>
       </div>

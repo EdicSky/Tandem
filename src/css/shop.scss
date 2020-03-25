@@ -135,6 +135,27 @@ h6 {
   box-shadow: 2px 2px gray;
   border-radius: 15px;
 }
+.s-coupon-used {
+  background-color: gray;
+  position: relative;
+  top: -160px;
+  left: 0;
+  width: 240px;
+  max-height: 160px;
+  opacity: 0.5;
+  font-size: 36px;
+  text-align: center;
+  color: white;
+  line-height: 160px;
+  // z-index: -1;
+  visibility: hidden;
+}
+.s-coupon-used-show {
+  @extend .s-coupon-used;
+  max-height: 160px;
+  // z-index: 99;
+  visibility: visible;
+}
 .post {
   /* width: 70%; */
   height: 150px;

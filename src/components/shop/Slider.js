@@ -7,10 +7,11 @@ function Slider(props) {
   useEffect(() => {
     const background_list = [
       '/images/shop/bigImage/17_Super Mega Baseball 2_0.jpg',
-      '/images/shop/bigImage/1_MONSTER HUNTER_ WORLD_2.jpg',
-      '/images/shop/bigImage/1_MONSTER HUNTER_ WORLD_3.jpg',
-      '/images/shop/bigImage/1_MONSTER HUNTER_ WORLD_4.jpg',
-      '/images/shop/bigImage/1_MONSTER HUNTER_ WORLD_5.jpg',
+      '/images/shop/bigImage/11_Overcooked! 2_14.jpg',
+      '/images/shop/bigImage/7_CODE VEIN_7.jpg',
+      '/images/shop/bigImage/3_Grand Theft Auto V_47.jpg',
+      '/images/shop/bigImage/40_Assassin\'s Creed® Odyssey_2.jpg',
+      '/images/shop/bigImage/MoToGP.jpg'
     ]
     console.log(background_list[0])
     let index = 0
