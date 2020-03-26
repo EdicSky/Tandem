@@ -72,23 +72,37 @@ h6 {
 
 // 以上文字前後分隔線
 .circle {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   background: lightgray;
   color: white;
   border-radius: 50%;
-  h1 {
+  transition: 0.5s;
+
+  h3 {
     position: relative;
-    left: 38%;
-    top: 20%;
+    text-align: center;
+    line-height: 50px;
+  }
+  h6 {
+    position: relative;
+    bottom: -20px;
+    color: #79cee2;
   }
 }
 .circleActive {
   @extend .circle;
+  transform: scale(1.3);
   background: lightblue;
+  transition: transfrom 0.5s;
+  h6 {
+    position: relative;
+    bottom: -20px;
+    color: #79cee2;
+  }
 }
 .line {
-  margin-top: 35px;
+  // margin-top: 35px;
   width: 150px;
   height: 10px;
   background: lightgray;

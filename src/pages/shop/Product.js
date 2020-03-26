@@ -167,6 +167,23 @@ function Product(props) {
   }
   console.log(bigImgarray)
 
+  //瀏覽歷程記錄
+  function addToHistory() {
+    const currentHistory =
+      JSON.parse(localStorage.getItem('browse-history')) || []
+
+    //沒有在history裡就加入
+    if (currentHistory.indexOf(`${productId}`) == -1) {
+      const newHistory = [...currentHistory, productId]
+      localStorage.setItem('browse-history', JSON.stringify(newHistory))
+    }
+
+    // localStorage.setItem('browse-history', productId)
+  }
+  useEffect(() => {
+    addToHistory()
+  }, [])
+
   return (
     <>
       <div className="d-flex flex-wrap container">
