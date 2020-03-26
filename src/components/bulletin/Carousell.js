@@ -3,7 +3,7 @@ import OwlCarousel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import { NavLink } from 'react-router-dom'
-import '../../css/owl.css'
+import '../../css/owl.scss'
 function Carousell() {
   return (
     <>
@@ -28,7 +28,7 @@ function Carousell() {
         </NavLink>
         <NavLink to="#">
           <div>
-            <img className="img" src={'/assets/img/feature_update.jpg'} />
+            <img className="img" src={'/assets/img/zombie.jpg'} />
           </div>
         </NavLink>
         <NavLink to="#">

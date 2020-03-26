@@ -147,7 +147,7 @@ function Bulletin(props) {
               <h3>分類</h3>
               <div className="news">
                 <a onClick={() => handleSearchType('新聞')}>
-                  <h5>新聞公告(5)</h5>
+                  <h5>新聞公告(17)</h5>
                 </a>
               </div>
               <div className="sales">
