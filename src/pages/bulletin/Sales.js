@@ -14,8 +14,6 @@ const MySwal = withReactContent(Swal)
 function Sales(props) {
   const [salesDetailData, setSalesDetailData] = useState([])
   const [hiddenCoupon, setHiddenCoupon] = useState(false)
-  // const SweetAlert = withSwalInstance(swal)
-  // const [getCoupon, setGetCoupon] = useState([])
 
   useEffect(() => {
     //fetch
