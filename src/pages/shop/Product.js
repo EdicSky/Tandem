@@ -14,7 +14,7 @@ import {
   AiOutlineCaretRight,
 } from 'react-icons/ai'
 import '../../css/shop.scss'
-import Swal from 'sweetalert2'//sweetalert2
+import Swal from 'sweetalert2' //sweetalert2
 import $ from 'jquery'
 
 function Product(props) {
@@ -25,15 +25,17 @@ function Product(props) {
   console.log(props)
   const productId = props.match.params.type
   console.log(productId)
-  const [like,setlike] = useState(false)//登錄的人是否有收藏此商品
-  const [defaultPic,setDefaultPic] =useState('')
+  const [like, setlike] = useState('') //記錄此商品被那些mbId收藏
+  const [howmanylike, setHowmanylike] = useState(0) //有多少人收藏
+  const [mbLikeThisProduct, setMbLikeThisProduct] = useState(false)
+  const [defaultPic, setDefaultPic] = useState('')
   const handleDisplay = value => {
     setCofigORcomment(value)
   }
   //  加入購物車,與Productlist.js共用
   async function updateCartToLocalStorage(value) {
     // setDataLoading(true)
-    Swal.fire({html:`商品名稱:${myproduct.itemName}加入購物車`})
+    Swal.fire({ html: `商品名稱:${myproduct.itemName}加入購物車` })
     const currentCart = JSON.parse(localStorage.getItem('cart')) || []
 
     const newCart = [...currentCart, value]
@@ -52,18 +54,17 @@ function Product(props) {
 
     setMyproduct(data.rows[0])
     let picUrl = JSON.stringify(myproduct)
-    
-    console.log('pic',picUrl)
+
+    console.log('pic', picUrl)
     // console.log(typeof(myproduct))
     setDefaultPic(data.rows[0].itemImg)
-    
+
     setlike(data.rows[0].memberFavoriteId)
-    
+
     // console.log(data.rows)
   }
   useEffect(() => {
     getDataFromServer()
-    
   }, [])
 
   console.log('myproduct資訊=', myproduct)
@@ -71,22 +72,25 @@ function Product(props) {
   const path = props.match.path
   console.log('url', props.match)
   //以下，將database儲存的收藏此商品id=[1,2,3,4]轉成length
-  let wholike = {...myproduct}
-  console.log('wholike',Array.from(String(wholike.memberFavoriteId)))
-  console.log(String(String(wholike.memberFavoriteId).replace(/([[]|])/gm,'')))
-  console.log('wholike_toarr',[wholike.memberFavoriteId])
-  let wholike2 = "'" + wholike.memberFavoriteId +"'"
+  let wholike = { ...myproduct }
+  console.log('wholike', Array.from(String(wholike.memberFavoriteId)))
+  console.log(String(String(wholike.memberFavoriteId).replace(/([[]|])/gm, '')))
+  console.log('wholike_toarr', [wholike.memberFavoriteId])
+  let wholike2 = "'" + wholike.memberFavoriteId + "'"
   // let wholike2 = [wholike.memberFavoriteId]
-  
-  wholike2 = wholike2.split(",")
-  console.log('wholike2',wholike2)
+
+  wholike2 = wholike2.split(',')
+  console.log('wholike2', wholike2)
   //以上，將database儲存的收藏此商品id=[1,2,3,4]轉成length
 
   //商品加入收藏
-  async function addToLike(){
+  async function addToLike() {
     const request = new Request('http://localhost:6001/product/addtolike', {
       method: 'POST',
-      body:JSON.stringify({"userId":JSON.parse(localStorage.getItem('LoginUserData')).mbId,"likeproductId":myproduct.itemId}),
+      body: JSON.stringify({
+        userId: JSON.parse(localStorage.getItem('LoginUserData')).mbId,
+        likeproductId: myproduct.itemId,
+      }),
       credentials: 'include',
       headers: new Headers({
         Accept: 'application/json',
@@ -95,58 +99,101 @@ function Product(props) {
     })
     const response = await fetch(request)
     const data = await response.json()
-    
-    console.log('加入收藏',data)
-    if (data.r.affectedRows == 1){
-      
+
+    console.log('加入收藏', data)
+    if (data.r.affectedRows == 1) {
       Swal.fire('商品成功加入收藏!')
     }
   }
-  
+  //從localstorage撈出登入者是否喜歡目前商品
+  useEffect(() => {
+    if (
+      JSON.parse(localStorage.getItem('LoginUserData'))
+        .mbAzen.replace(/([[]|])/gm, '')
+        .split(',')
+        .indexOf(productId) == -1
+    ) {
+      setMbLikeThisProduct(false)
+    } else {
+      setMbLikeThisProduct(true)
+    }
+    let mbId = JSON.parse(localStorage.getItem('LoginUserData')).mbId
+    console.log('like', like)
+    let likedisplay = like.slice(0) //copy like state
+    // console.log('likedisplay',likedisplay)
+    let likedisplay2 = likedisplay.replace('[', '').replace(']', '') //取代"[]""
+    let likedisplay2_arr = likedisplay2.split(',') //轉成arr
+    // console.log('mbId',mbId)
+    // console.log(likedisplay2_arr)
+    if (likedisplay2_arr.indexOf(`${mbId}`) !== -1) {
+      setMbLikeThisProduct(true)
+    }
+    //設定有多少人收藏此商品
+    if (likedisplay2_arr[0] !== '') {
+      setHowmanylike(likedisplay2_arr.length)
+    }
+  }, [like])
+
   //點商品小圖=>展示大圖
-  
+
   function clickTochangePic(e) {
     // console.log('this is',e)
-    let newAttr = e.getAttribute("src");
-    console.log(newAttr)
-    document.querySelector(".s-bigImg img").setAttribute("src",newAttr)
+    let newAttr = e.getAttribute('src')
+    // console.log(newAttr)
+    document.querySelector('.s-bigImg img').setAttribute('src', newAttr)
+    // e.style.border = '1px solid orange'
+    // console.log($(e))
   }
+  //點到的小圖加上邊框
+  useEffect(() => {
+    $('.s-smallImg li img').click(function() {
+      $(this)
+        .css('border', '2px solid orange')
+        .parent('li')
+        .siblings()
+        .children()
+        .css('border', '0px')
+    })
+  }, [])
 
   //處理小圖檔名，組合成大圖檔名
   let bigImgarray = []
   let oldname = String(myproduct.itemImg)
   // oldname.toString()
-  let newname = oldname.split(".")
+  let newname = oldname.split('.')
   // console.log(newname[0])
-  for (let i = 0;i<=3;i++){
-    
-    
-    bigImgarray.push(newname[0] + "_" +i)
-    
+  for (let i = 0; i <= 3; i++) {
+    bigImgarray.push(newname[0] + '_' + i)
   }
   console.log(bigImgarray)
-  
-  
+
   return (
     <>
       <div className="d-flex flex-wrap container">
         <div className="col col-sm-12 col-md-6 my-5">
           <div className="text-center s-bigImg">
-            <img className="img-fluid" src={`/images/shop/small_Img/${myproduct.itemImg}`} alt="" />
+            <img
+              className="img-fluid"
+              src={`/images/shop/small_Img/${myproduct.itemImg}`}
+              alt=""
+            />
           </div>
           <ul className="list-unstyled d-flex justify-content-center s-smallImg mt-3">
-          {bigImgarray.map((img,index)=>{
-            return (
-              <li key={index} onClick={(e)=>clickTochangePic(e.target)}>
-              <img
-                className="img-fluid"
-                src={`/images/shop/bigImage/${img}.jpg`}
-                alt=""
-                
-              />
-            </li>
-            )
-          })}
+            {bigImgarray.map((img, index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={e => clickTochangePic(e.target)}
+                  style={{ margin: '5px' }}
+                >
+                  <img
+                    className="img-fluid mx-1"
+                    src={`/images/shop/bigImage/${img}.jpg`}
+                    alt=""
+                  />
+                </li>
+              )
+            })}
             {/* <li>
               <img
                 className=" img-fluid"
@@ -191,27 +238,32 @@ function Product(props) {
           </div>
 
           <h3>{myproduct.itemName}</h3>
-          <p style={{minHeight:'150px'}}>{myproduct.itemIntro}</p>
+          <p style={{ minHeight: '150px' }}>{myproduct.itemIntro}</p>
           <div className="row">
-            { JSON.parse(localStorage.getItem('LoginUserData')).mbAzen.replace(/([[]|])/gm,'').split(',').indexOf(productId) == -1 ?
-            <button
-              type="button"
-              className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
-              
-              onClick={()=>addToLike()}
-            >
-              <AiOutlineHeart style={{color:'#F9A451',fontSize:'24px'}}/>
-              加入收藏清單
-            </button>:
-            <button
-              type="button"
-              className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
-              style={{backgroundColor:'#79cee2',color:'white'}}
-              
-            >
-              <AiFillHeart style={{color:'#F9A451',fontSize:'24px'}}/>
-              已加入收藏
-            </button>}
+            {!mbLikeThisProduct ? (
+              <button
+                type="button"
+                className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
+                onClick={() => {
+                  addToLike()
+                  setMbLikeThisProduct(true)
+                }}
+              >
+                <AiOutlineHeart
+                  style={{ color: '#F9A451', fontSize: '24px' }}
+                />
+                加入收藏清單
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
+                style={{ backgroundColor: '#79cee2', color: 'white' }}
+              >
+                <AiFillHeart style={{ color: '#F9A451', fontSize: '24px' }} />
+                已加入收藏
+              </button>
+            )}
             <button
               type="button"
               className="btn btn-outline-info mx-2 s-btn-common col-5 col-md-4"
@@ -224,11 +276,13 @@ function Product(props) {
                 })
               }
             >
-              <AiOutlineShoppingCart style={{color:'#F9A451',fontSize:'24px'}}/>
+              <AiOutlineShoppingCart
+                style={{ color: '#F9A451', fontSize: '24px' }}
+              />
               加入購物車
             </button>
           </div>
-          <div className="row h5 m-2">有{wholike2 !== '[]'? wholike2.length:0}人收藏此遊戲</div>
+          <div className="row h5 m-2">有{howmanylike}人收藏此遊戲</div>
           <div className="row mt-2 h6">
             <div className="col-3 ">發行商:</div>
             <div className="col-7 ">{myproduct.vName}</div>
@@ -251,9 +305,23 @@ function Product(props) {
             onClick={() => {
               handleDisplay(1)
             }}
+            style={{ marginBottom: '0px' }}
           >
             建議配備
           </NavLink>
+          {configORcomment == 1 ? (
+            <div
+              style={{
+                borderBottom: '2px solid #79cee2',
+                width: '75%',
+                position: 'relative',
+                left: '12px',
+                marginBottom: '5px',
+              }}
+            ></div>
+          ) : (
+            ''
+          )}
         </li>
         <li className="nav-item">
           <NavLink
@@ -262,13 +330,26 @@ function Product(props) {
             onClick={() => {
               handleDisplay(2)
             }}
+            style={{ marginBottom: '0px' }}
           >
             留言評論
           </NavLink>
+          {configORcomment == 2 ? (
+            <div
+              style={{
+                borderBottom: '2px solid #79cee2',
+                width: '75%',
+                position: 'relative',
+                left: '12px',
+              }}
+            ></div>
+          ) : (
+            ''
+          )}
         </li>
       </ul>
       <div className="">
-        {configORcomment === 1 ? <Config /> : <Comment2 props={myproduct}/>}
+        {configORcomment === 1 ? <Config /> : <Comment2 props={myproduct} />}
       </div>
       <div className="container">{<Recommend />}</div>
       {/* <Switch>

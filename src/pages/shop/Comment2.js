@@ -17,8 +17,13 @@ function Comment2(props) {
   const [rating, setRating] = useState(5)
   const [oldCommentContent, setOldCommentContent] = useState([])
   //   const [parentId,setParentId] = useState(0)//留言父層id
-  const [avator,setAvator] = useState({})//留言大頭照
+  const [avator, setAvator] = useState({}) //留言大頭照
   const handleSubmit = (parentId = 0) => {
+    if (JSON.parse(localStorage.getItem('LoginUserData')) == null) {
+      //需登入才能留言
+      Swal.fire({ html: '請先登入!' })
+      return
+    }
     console.log('click')
     const userCommentContent = {
       name: username,
@@ -26,12 +31,19 @@ function Comment2(props) {
       rating: rating,
       itemId: props.match.params.type,
       parentId: parentId,
-      memberId: JSON.parse(localStorage.getItem('LoginUserData')).mbId
+      memberId: JSON.parse(localStorage.getItem('LoginUserData')).mbId,
     }
     console.log(userCommentContent)
     props.userCommentAsync(userCommentContent, () => {
-      Swal.fire('成功留言')
-      window.location.reload()
+      Swal.fire({
+        text: '成功留言',
+        showCancelButton: false,
+        confirmButtonText: 'ok!',
+      }).then(result => {
+        if (result.value) {
+          window.location.reload()
+        }
+      })
     })
   }
 
@@ -71,10 +83,10 @@ function Comment2(props) {
     // targetElement.style('display','block')
     // console.log(targetElement)
   }
-  
+
   // //要怎麼抓到大頭照圖片?
   // async function getMemberInfo(value){
-    
+
   //   console.log(value)
   //   const request = new Request('http://localhost:3300/product/getmemberinfo', {
   //     method: 'POST',
@@ -85,10 +97,10 @@ function Comment2(props) {
   //       'Content-Type': 'application/json',
   //     }),
   //   })
-    
+
   //   const response = await fetch(request)
   //   const data = await response.json()
-    
+
   //   console.log('大頭照',JSON.stringify(data.r[0].mbAva))
   //   // console.log(JSON.parse(data))
   //   let avator2 = JSON.stringify(data.r[0].mbAva)
@@ -96,7 +108,6 @@ function Comment2(props) {
   //   setAvator({'26':avator2})
   //   // return avator2
 
-    
   // }
 
   const comment = (
@@ -108,7 +119,7 @@ function Comment2(props) {
           <div className="card my-2">
             <div className="card-body">
               <div className="row">
-                <div className="col-md-2">
+                <div className="col-5 col-md-2">
                   <img
                     src={
                       JSON.parse(localStorage.getItem('LoginUserData')).mbAva
@@ -117,16 +128,16 @@ function Comment2(props) {
                   />
                   <p className="text-secondary text-center"></p>
                 </div>
-                <div className="col-md-10">
-                  <p>
-                    <strong>
+                <div className="col-7 col-md-10">
+                  <p className="row">
+                    <strong className="col-10 py-2">
                       <input
                         type="text"
                         placeholder="請輸入暱稱"
                         onChange={e => setUsername(e.target.value)}
                       ></input>
                     </strong>
-                    <span className="float-right">
+                    <span className="float-right mx-2 py-2">
                       <span>請給評分: </span>
                       <input
                         type="number"
@@ -144,7 +155,7 @@ function Comment2(props) {
                   <div className="clearfix"></div>
                   <form>
                     <textarea
-                      className="col-md-10 p mt-2"
+                      className="form-control col-md-10 p mt-2"
                       placeholder="請留言..."
                       onChange={e => setCommentContent(e.target.value)}
                     ></textarea>
@@ -265,7 +276,7 @@ function Comment2(props) {
             <div className="card my-2" key={value}>
               <div className="card-body">
                 <div className="row">
-                  <div className="col-md-2">
+                  <div className="col-5 col-md-2">
                     <img
                       // src="https://image.ibb.co/jw55Ex/def_face.jpg"
                       src={msg.mbAva}
@@ -275,13 +286,13 @@ function Comment2(props) {
                       {msg.created_at}
                     </p>
                   </div>
-                  <div className="col-md-10">
-                    <p>
-                      <a className="float-left" href="#">
+                  <div className="col-7 col-md-10">
+                    <p className="row">
+                      <a className="float-left col-10 py-2" href="#">
                         <strong>{msg.name}</strong>
                       </a>
 
-                      <span className="float-right">
+                      <span className="float-right mx-2 py-2">
                         {msg.rating}
                         <AiTwotoneStar
                           className="text-warning"
@@ -317,7 +328,7 @@ function Comment2(props) {
                               src={innermsg.mbAva}
                               className="img img-rounded img-fluid"
                             />
-                            
+
                             <p className="text-secondary text-center">
                               {innermsg.created_at}
                             </p>

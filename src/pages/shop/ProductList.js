@@ -166,7 +166,7 @@ function ProductList(props) {
     case 'itemPrice DESC':
       orderbydisplay = '價錢高至低'
       break;
-    case 'itemPrice DESC':
+    case 'itemPrice ASC':
       orderbydisplay = '價錢低至高'
       break;
     case 'itemDate ASC':
@@ -226,6 +226,30 @@ function ProductList(props) {
       pricedisplay = '< NT$1000'
       break;
     
+    
+    default:
+    }
+  //顯示遊戲類型
+  let typedisplay;
+  switch (type){
+    case 5:
+      typedisplay = "運動"
+      break;
+    case 1:
+      typedisplay = '休閒'
+      break;
+    case 3:
+      typedisplay = '血腥'
+      break;
+    case 4:
+      typedisplay = "冒險"
+      break;
+    case 2:
+      typedisplay = '動作'
+      break;
+    case 6:
+      typedisplay = '競速'
+      break;
     
     default:
     }
@@ -393,7 +417,7 @@ function ProductList(props) {
       <div className="d-flex container">
         {type !== 0 ? (
           <div className="s-filterClearBtn">
-            類型{type}
+            類型: {typedisplay}
             <button onClick={() => setType(0)}>
               <AiOutlineCloseCircle />
             </button>

@@ -314,7 +314,7 @@ function Cart_new() {
                   </tr>
                 </>
               )
-            }):''}
+            }):<div style={{height:'200px',textAlign:'center'}}>您還沒有把商品加入購物車</div>}
           </tbody>
         </table>
       </div>
@@ -340,7 +340,7 @@ function Cart_new() {
             {return (
               <>
             <img
-              src={item.sCoupon}
+              src={`data:image/png;base64,${item.sCoupon}`}
               value={item.sId}
               data-discount={item.sMethod}
               className="coupon img-fluid"

@@ -28,6 +28,7 @@ function Payment(props) {
       Swal.fire('請勾選同意服務條款!')
       return
     }
+
     //抓localstorage的商品Id
     let productId = []
 
@@ -73,14 +74,27 @@ function Payment(props) {
       let contentLength = $(this).val().length;
       let maxLength=$(this).attr("maxLength");
       
-     
+      let cardNum=''
       //數字超過4個跳下一格
       if(contentLength==maxLength){
   
   
           $(this).parent().next().find(".card-input").focus()
-         
-      }})
+                   
+      }
+      $(".card-input").each(function(){
+        cardNum+=$(this).val();
+               
+      })
+      // console.log('卡號長度',cardNum.length)
+      if(cardNum.length<16){
+        $("#s-creditcard-alert").html('卡號長度不足')
+      }else{
+        $("#s-creditcard-alert").html('')
+      }
+      
+    })
+     
   },[])
 
   //選擇信用卡付款就出現卡號輸入欄
@@ -158,16 +172,16 @@ function Payment(props) {
             <label className="col-sm-3 col-form-label text-right mb-0">
               付款方式
             </label>
-            <Form>
+            
             <Form.Group controlId="exampleForm.SelectCustom">
-              <Form.Control as="select" custom className="mx-2 " onChange={()=>showcardinput()}>
+              <Form.Control as="select" className="mx-2 " onChange={()=>showcardinput()}>
                 <option></option>
                 <option>信用卡</option>
                 <option>Line Pay</option>
                 
               </Form.Control>
             </Form.Group>
-          </Form>
+          
             {/* <div className="col-sm-5 mx-1">
               
               <label class="form-check ">
@@ -193,20 +207,21 @@ function Payment(props) {
                 id="exampleCheck1"
                 style={{ marginLeft: '-5px', marginRight: '10px' }}
               /> */}
-              <div class="form-group form-row mx-2">
-                <div class="col">
+              <div className="form-group form-row mx-2">
+                <div className="col">
                   <input type="password" className="form-control card-input" id="input1" placeholder="" maxLength="4"/>
                 </div>
-                <div class="col">
+                <div className="col">
                   <input type="password" className="form-control card-input" id="input2" placeholder="" maxLength="4"/>
                 </div>
-                <div class="col">
+                <div className="col">
                   <input type="password" className="form-control card-input" id="input3" placeholder="" maxLength="4"/>
                 </div>
-                <div class="col">
+                <div className="col">
                   <input type="text" className="form-control card-input" id="input4" placeholder="" maxLength="4"/>
                 </div>
               </div>
+              <span id="s-creditcard-alert" style={{fontSize:'12px',color:'red'}}></span>
             </div>
           </div>
           
