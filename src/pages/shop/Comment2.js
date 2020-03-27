@@ -76,7 +76,7 @@ function Comment2(props) {
     console.log(element)
     // console.log('card-body',element.closest('.card-body').querySelector('.s-newreply').style.visibility = 'visible')
     element.closest('.card-body').querySelector('.s-newreply').style.maxHeight =
-      '200px'
+      '300px'
     element.closest('.card-body').querySelector('.s-newreply').style.border =
       '1px solid grey'
     // element.closest('.card-body').closest('.s-newreply').visibility('show')
@@ -322,7 +322,7 @@ function Comment2(props) {
                     <div className="card card-inner">
                       <div className="card-body">
                         <div className="row">
-                          <div className="col-md-2">
+                          <div className="col-5 col-md-2">
                             <img
                               // src="https://image.ibb.co/jw55Ex/def_face.jpg"
                               src={innermsg.mbAva}
@@ -333,11 +333,13 @@ function Comment2(props) {
                               {innermsg.created_at}
                             </p>
                           </div>
-                          <div className="col-md-10">
+                          <div className="col-7 col-md-10">
                             <>
-                              <p>
+                              <p className="row">
                                 <a href="#">
-                                  <strong>{innermsg.name}</strong>
+                                  <strong className="col-10 py-2">
+                                    {innermsg.name}
+                                  </strong>
                                 </a>
                               </p>
 
@@ -367,7 +369,7 @@ function Comment2(props) {
                   >
                     <div className="card-body">
                       <div className="row">
-                        <div className="col-md-2">
+                        <div className="col-5 col-md-2">
                           <img
                             src={
                               JSON.parse(localStorage.getItem('LoginUserData'))
@@ -377,16 +379,16 @@ function Comment2(props) {
                           />
                           <p className="text-secondary text-center"></p>
                         </div>
-                        <div className="col-md-10">
-                          <p>
-                            <strong>
+                        <div className="col-7 col-md-10">
+                          <p className="row">
+                            <strong className="col-10 py-2">
                               <input
                                 type="text"
                                 placeholder="請輸入暱稱"
                                 onChange={e => setUsername(e.target.value)}
                               ></input>
                             </strong>
-                            <span className="float-right">
+                            <span className="float-right mx-2 py-2">
                               <span>請給評分: </span>
                               <input
                                 type="number"
@@ -406,7 +408,7 @@ function Comment2(props) {
                           <div className="clearfix"></div>
                           <form>
                             <textarea
-                              className="col-md-10 p mt-2"
+                              className="col-md-10 p mt-2 form-control"
                               placeholder="請留言..."
                               onChange={e => setCommentContent(e.target.value)}
                             ></textarea>

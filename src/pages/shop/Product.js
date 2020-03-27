@@ -12,10 +12,13 @@ import {
   AiOutlineArrowRight,
   AiOutlineCaretLeft,
   AiOutlineCaretRight,
+  AiOutlineArrowsAlt,
 } from 'react-icons/ai'
 import '../../css/shop.scss'
 import Swal from 'sweetalert2' //sweetalert2
 import $ from 'jquery'
+import Lightbox from 'react-image-lightbox' //lightbox
+import 'react-image-lightbox/style.css' //lightbox
 
 function Product(props) {
   const [myproduct, setMyproduct] = useState([])
@@ -29,6 +32,8 @@ function Product(props) {
   const [howmanylike, setHowmanylike] = useState(0) //有多少人收藏
   const [mbLikeThisProduct, setMbLikeThisProduct] = useState(false)
   const [defaultPic, setDefaultPic] = useState('')
+  const [photoIndex, setPhotoIndex] = useState(0) //lightbox
+  const [isOpen, setIsOpen] = useState(false) //lightbox
   const handleDisplay = value => {
     setCofigORcomment(value)
   }
@@ -190,17 +195,54 @@ function Product(props) {
   useEffect(() => {
     addToHistory()
   }, [])
-
+  //設定lightbox大圖array，將原本bigImgarray加上路徑
+  let images = []
+  bigImgarray.forEach(function(pic) {
+    images.push(`/images/shop/bigImage/` + pic + `.jpg`)
+  })
   return (
     <>
+      <div>
+        {isOpen && (
+          <Lightbox
+            mainSrc={images[photoIndex]}
+            nextSrc={images[(photoIndex + 1) % images.length]}
+            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            onCloseRequest={() => setIsOpen(false)}
+            onMovePrevRequest={() =>
+              setPhotoIndex((photoIndex + images.length - 1) % images.length)
+            }
+            onMoveNextRequest={() =>
+              setPhotoIndex((photoIndex + 1) % images.length)
+            }
+          />
+        )}
+      </div>
       <div className="d-flex flex-wrap container">
         <div className="col col-sm-12 col-md-6 my-5">
-          <div className="text-center s-bigImg">
+          <div
+            className="text-center s-bigImg"
+            style={{ position: 'relative' }}
+          >
             <img
               className="img-fluid"
               src={`/images/shop/small_Img/${myproduct.itemImg}`}
               alt=""
             />
+            <button
+              type="button"
+              style={{
+                position: 'absolute',
+                right: '0px',
+                backgroundColor: 'transparent',
+                border: '0px',
+              }}
+              onClick={() => setIsOpen(true)}
+            >
+              <AiOutlineArrowsAlt
+                style={{ color: 'white', fontSize: '24px' }}
+              />
+            </button>
           </div>
           <ul className="list-unstyled d-flex justify-content-center s-smallImg mt-3">
             {bigImgarray.map((img, index) => {
