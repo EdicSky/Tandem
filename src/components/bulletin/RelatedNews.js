@@ -15,7 +15,7 @@ import {
 function RelatedNews(props) {
   console.log(444, props.related)
   let news = props.related ? props.related : ''
-  // if (!props) return <></>
+
   console.log(news)
   return (
     <>

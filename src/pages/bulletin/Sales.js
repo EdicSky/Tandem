@@ -51,7 +51,6 @@ function Sales(props) {
     }
 
     getSalesData()
-    //getBulletinDetailData()
   }, [])
 
   function getCoupon() {
@@ -93,36 +92,7 @@ function Sales(props) {
         footer: '<a href="/member">回到登入頁面</a>',
       })
     }
-
-    // const res = await fetch(req)
-    // const d = JSON.parse(localStorage.getItem('LoginUserData'))
-    // console.log(d.mbId)
-    //console.log(data)
-    // setGetCoupon(data)
   }
-
-  // useEffect(() => {
-  //   async function getCoupon() {
-  //     const req = new Request(
-  //       `http://localhost:6001/bulletin${window.location.pathname}`,
-  //       {
-  //         method: 'GET',
-  //         headers: new Headers({
-  //           Accept: 'application/json',
-  //           'Content-Type': 'application/json',
-  //         }),
-  //       }
-  //     )
-
-  //     const res = await fetch(req)
-  //     const data = await res.json()
-  //     const d = JSON.parse(localStorage.getItem('LoginUserData'))
-  //     console.log(d.mbId)
-  //     //console.log(data)
-  //     setGetCoupon(data)
-  //   }
-  //   getCoupon()
-  // }, [])
 
   let sales = salesDetailData[0] ? salesDetailData[0] : ''
   return (

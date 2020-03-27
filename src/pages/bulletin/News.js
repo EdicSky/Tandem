@@ -30,23 +30,10 @@ function News(props) {
     }
 
     getBulletinData()
-    //getBulletinDetailData()
   }, [])
   let news = bulletinDetailData[0] ? bulletinDetailData[0] : ''
   console.log(666, bulletinDetailData)
-  //console.log(window.location.pathname)
-  // console.log(props.data)
-  // if (news !== '') {
-  //   var newsEach = bulletinDetailData[0]
-  //   console.log(newsEach.bTitle)
-  // }
-  // console.log(bulletinDetailData[0].bTitle)
-  // let news = props.ttt ? props.ttt : ''
-  // let title = news.bTitle
-  // let content = news.bContent
-  // let img = news.bImg
-  // let bId = news.bId
-  // if (news == '') return <></>
+
   return (
     <>
       <div className="wrapper">
@@ -92,9 +79,6 @@ function News(props) {
               {relatedNews.map((v, i) => (
                 <RelatedNews related={v} />
               ))}
-              {/* <RelatedNews />
-              <RelatedNews />
-              <RelatedNews /> */}
             </ul>
           </div>
         </div>

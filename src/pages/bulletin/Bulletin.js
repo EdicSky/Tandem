@@ -8,7 +8,7 @@ import $ from 'jquery'
 import Carousell from '../../components/bulletin/Carousell'
 
 import '../../css/newsIndex.scss'
-//import '../../css/slider.css'
+
 import {
   AiOutlineSearch,
   AiOutlineCaretLeft,
@@ -17,7 +17,7 @@ import {
 
 function Bulletin(props) {
   const [bulletinData, setBulletinData] = useState([])
-  const [bulletinDetailData, setBulletinDetailData] = useState([])
+
   const [search, setSearch] = useState('')
   const [pageNum, setPagenum] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
@@ -83,22 +83,6 @@ function Bulletin(props) {
       <div className="container">
         <section className="carousell_wrapper d-flex justify-content-between">
           <Carousell />
-          {/* <Link to="#" className="carousell_control_left">
-                <AiOutlineDoubleLeft />
-              </Link>
-              <div className="carousell">
-                <ul>
-                  <li>
-                    <img src={'news_images/hades.jpg'} alt="" />
-                  </li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-              </div>
-              <Link to="#" className="carousell_control_right">
-                <AiOutlineDoubleRight />
-              </Link> */}
         </section>
         <div className="category d-flex">
           <p className="category_title">分類:</p>
