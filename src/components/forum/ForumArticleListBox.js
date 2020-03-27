@@ -6,16 +6,7 @@ import { withRouter, Switch, Route, Link } from 'react-router-dom'
 // import { bindActionCreators } from 'redux'
 // import { getArticleData } from '../../actions/articleActions'
 // import { NavLink } from 'react-bootstrap'
-import {
-  AiOutlineGithub,
-  AiOutlineHighlight,
-  AiOutlineSolution,
-  AiOutlineUser,
-  AiOutlineFile,
-  AiOutlineMessage,
-  AiOutlineLeft,
-  AiOutlineRight,
-} from 'react-icons/ai'
+import { AiOutlineUser, AiOutlineFile, AiOutlineMessage } from 'react-icons/ai'
 import ArticleTag from '../../components/forum/ArticleTag'
 import '../../css/forum.scss'
 

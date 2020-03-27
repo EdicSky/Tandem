@@ -6,21 +6,13 @@ import { withRouter, Switch, Route, Link } from 'react-router-dom'
 // import { bindActionCreators } from 'redux'
 // import { getArticleData } from '../../actions/articleActions'
 // import { NavLink } from 'react-bootstrap'
-import {
-  AiOutlineGithub,
-  AiOutlineHighlight,
-  AiOutlineSolution,
-  AiOutlineUser,
-  AiOutlineFile,
-  AiOutlineMessage,
-  AiOutlineLeft,
-  AiOutlineRight,
-} from 'react-icons/ai'
+import { AiOutlineFile } from 'react-icons/ai'
+import ArticleTag from '../../components/forum/ArticleTag'
 import $ from 'jquery'
 import '../../css/forum.scss'
 
 function ForumLatestLeftBox(props) {
-  // console.log('left', props)
+  console.log('left', props)
   const [article, setArticle] = useState([])
 
   function handleOnClick() {
@@ -34,12 +26,13 @@ function ForumLatestLeftBox(props) {
       <div class="f-latest-left-box-article " onClick={handleOnClick}>
         <div class="f-latest-left-box-article-img">
           <img
-            src="./images/forum/post-1-sm.jpg"
+            src={`../../images/forum/article${props.data.articleId}.jpg`}
+            // src="./images/forum/post-1-sm.jpg"
             alt="Smell magic in the air. Or maybe barbecue"
           />
         </div>
         <img
-          src="./images/forum/post-1.jpg"
+          // src="./images/forum/post-1.jpg"
           alt="Smell magic in the air. Or maybe barbecue"
           class="f-latest-left-box-article-fullimg"
         />
@@ -53,9 +46,10 @@ function ForumLatestLeftBox(props) {
         <a href="#" class="f-latest-left-box-article-url">
           Read More
         </a>
-        <div class="d-flex f-latest-left-box-article-date">
+        <div class="d-flex justify-content-between f-latest-left-box-article-date">
+          <ArticleTag tagName={props.tagName} />
           <AiOutlineFile />
-          <p>{props.data.created_at}</p>
+          <p>{props.data.updated_at}</p>
         </div>
       </div>
     </>

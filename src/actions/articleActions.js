@@ -4,9 +4,9 @@ export const showArticle = data => {
 }
 
 //留言
-//   export const showComment = date => {
-//     return { type: 'SHOW_COMMENT', data }
-//   }
+export const showComment = data => {
+  return { type: 'SHOW_COMMENT', data }
+}
 
 //講座
 //   export const showPartner = data => {
@@ -24,6 +24,20 @@ export const getArticleData = () => {
     const data = await res.json()
     console.log('文章列表', data)
     dispatch(showArticle(data))
+  }
+}
+
+//要資料--留言
+export const getCommentData = () => {
+  return async dispatch => {
+    const req = new Request('http://localhost:6001/article_comments', {
+      method: 'GET',
+      credentials: 'include',
+    })
+    const res = await fetch(req)
+    const data = await res.json()
+    console.log('文章列表', data)
+    dispatch(showComment(data))
   }
 }
 

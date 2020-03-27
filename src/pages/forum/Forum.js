@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getArticleData } from '../../actions/articleActions'
 import { NavLink } from 'react-bootstrap'
-import ForumLatestBox from '../../components/forum/ForumLatestBox'
 import ForumLatestLeftBox from '../../components/forum/ForumLatestLeftBox'
 import ForumLatestRightBox from '../../components/forum/ForumLatestRightBox'
 import ForumHotPostBox from '../../components/forum/ForumHotPostBox'
@@ -34,30 +33,15 @@ function Forum(props) {
   const [tagName, setTagname] = useState('')
   const [className, setClassname] = useState('')
   const [indexOfLastArtical, setIndexOfLastArtical] = useState(0)
+  // const [content, setContent] = useState([])
 
   useEffect(() => {
     console.log('dddd', props)
     props.getArticleData()
   }, [])
 
+  console.log('tag', tagName)
   // console.log('內容', props.article)
-
-  // $(document).ready(function() {
-  //   var width = $('.f-latest-right-box-info').width()
-  //   var toggle = true
-  //   $('.f-latest-left-box-article').click(function() {
-  //     if (toggle) {
-  //       $('.f-latest-right-box-info')
-  //         .stop()
-  //         .animate({ left: 0 }, 1000)
-  //     } else {
-  //       $('.f-latest-right-box-info')
-  //         .stop()
-  //         .animate({ left: -width }, 1000)
-  //     }
-  //     toggle = !toggle
-  //   })
-  // })
 
   function changeTagName(newTagName) {
     setTagname(newTagName)
@@ -70,6 +54,45 @@ function Forum(props) {
   function changeIndexOfLastArtical(index) {
     setIndexOfLastArtical(index)
   }
+
+  // useEffect(() => {
+  //   const content =
+  //     props.article &&
+  //     props.article.map((value, index) => {
+  //       if (tagName) {
+  //         if (props.article[index].articleCategoryId === tagName) {
+  //           return (
+  //             <ForumLatestLeftBox
+  //               key={index}
+  //               data={props.article[index]}
+  //               tagName={tagName}
+  //               index={index}
+  //               changeIndex={num => {
+  //                 changeIndexOfLastArtical(num)
+  //               }}
+  //             />
+  //           )
+  //         }
+  //       } else {
+  //         return (
+  //           <ForumLatestLeftBox
+  //             key={index}
+  //             data={props.article[index]}
+  //             tagName={props.article[index].articleCategoryId}
+  //             index={index}
+  //             changeIndex={num => {
+  //               changeIndexOfLastArtical(num)
+  //             }}
+  //           />
+  //         )
+  //       }
+  //     })
+  //   const newcontent = content.splice(0, 9)
+  //   console.log('newcontent', newcontent)
+  //   setContent(newcontent)
+  //   console.log('content', content)
+  // }, [tagName])
+
   return (
     <>
       <div class="container">
@@ -176,19 +199,51 @@ function Forum(props) {
                 tabindex="0"
                 style={{ right: '-17px' }}
               >
+                {/* {content} */}
                 {props.article &&
                   props.article.map((value, index) => {
-                    return (
-                      <ForumLatestLeftBox
-                        key={index}
-                        data={props.article[index]}
-                        index={index}
-                        changeIndex={num => {
-                          changeIndexOfLastArtical(num)
-                        }}
-                      />
-                    )
+                    if (tagName) {
+                      if (props.article[index].articleCategoryId === tagName) {
+                        return (
+                          <ForumLatestLeftBox
+                            key={index}
+                            data={props.article[index]}
+                            tagName={tagName}
+                            index={index}
+                            changeIndex={num => {
+                              changeIndexOfLastArtical(num)
+                            }}
+                          />
+                        )
+                      }
+                    } else {
+                      return (
+                        <ForumLatestLeftBox
+                          key={index}
+                          data={props.article[index]}
+                          tagName={props.article[index].articleCategoryId}
+                          index={index}
+                          changeIndex={num => {
+                            changeIndexOfLastArtical(num)
+                          }}
+                        />
+                      )
+                    }
                   })}
+
+                {/* {props.article &&
+                   props.article.map((value, index) => {
+                     return (
+                       <ForumLatestLeftBox
+                         key={index}
+                         data={props.article[index]}
+                         index={index}
+                         changeIndex={num => {
+                           changeIndexOfLastArtical(num)
+                         }}
+                       />
+                     )
+                   })} */}
               </div>
               <div class="f-nano-pane">
                 <div
@@ -207,54 +262,11 @@ function Forum(props) {
                   <ForumLatestRightBox
                     key={indexOfLastArtical}
                     data={props.article[indexOfLastArtical]}
+                    tagName={tagName}
                   />
                 )
               }
             })}
-          {/* <div class=" f-latest-right-box-info">
-            <div class="f-nano f-latest-scrollbar">
-              <div
-                class="f-nano-content"
-                tabindex="0"
-                style={{ right: '-17px' }}
-              >
-                <div class=" f-latest-left-box-article-image">
-                  <img
-                    src="./images/forum/post-1.jpg"
-                    alt="Smell magic in the air. Or maybe barbecue"
-                  />
-                  <span class=" f-latest-left-box-article-category">
-                    <span class="f-index-bg-5">程式設計</span>
-                  </span>
-                </div>
-                <h3 class=" f-latest-left-box-article-title">
-                  Smell magic in the air. Or maybe barbecue
-                </h3>
-                <div class=" f-latest-left-box-article-text">
-                  <p>
-                    With what mingled joy and sorrow do I take up the pen to
-                    write to my dearest friend! Oh, what a change between to-day
-                    and yesterday! Now I am friendless and alone...
-                  </p>
-                </div>
-                <div class="d-flex justify-content-between f-right-side">
-                  <a href="#" class=" f-latest-left-box-article-more">
-                    Read More
-                  </a>
-                  <div class="d-flex f-latest-right-box-article-date f-right-side-article">
-                    <AiOutlineFile />
-                    Sep 18, 2018
-                  </div>
-                </div>
-              </div>
-              <div class="f-nano-pane">
-                <div
-                  class="f-nano-slider"
-                  style={{ height: '365px', transform: 'translate(0px, 0px)' }}
-                ></div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         {/* 熱門文章  */}
@@ -270,188 +282,28 @@ function Forum(props) {
           <div class="row">
             {props.article &&
               props.article.map((value, index) => {
-                if (tagName) {
-                  if (props.article[index].articleCategoryId === tagName) {
+                if (index < 8) {
+                  if (tagName) {
+                    if (props.article[index].articleCategoryId === tagName) {
+                      return (
+                        <ForumHotPostBox
+                          key={index}
+                          data={props.article[index]}
+                          tagName={tagName}
+                        />
+                      )
+                    }
+                  } else {
                     return (
                       <ForumHotPostBox
                         key={index}
                         data={props.article[index]}
-                        tagName={tagName}
+                        tagName={props.article[index].articleCategoryId}
                       />
                     )
                   }
-                } else {
-                  return (
-                    <ForumHotPostBox
-                      key={index}
-                      data={props.article[index]}
-                      tagName={props.article[index].articleCategoryId}
-                    />
-                  )
                 }
               })}
-
-            {/* <div class="col-md-6 col-lg-3">
-              <div class="f-hot-post">
-                <a href="#" class="f-hot-post-img">
-                  <img
-                    src="./images/forum/post-5-mid.jpg"
-                    alt="He made his passenger captain of one"
-                  />
-                  <span class="f-hot-post-comments-count">94</span>
-                  <span class="f-hot-post-category">
-                    <span class="f-index-bg-5">程式設計</span>
-                  </span>
-                </a>
-                <div class="f-gap"></div>
-                <h2 class="f-hot-post-title f-index-h4">
-                  <a href="#">He made his passenger captain of one</a>
-                </h2>
-                <div class="f-hot-post-text">
-                  <p>
-                    Just then her head struck against the roof of the hall: in
-                    fact she was now more than nine feet high, and she at once
-                    took up the little golden key and hurried off to the garden
-                    door...
-                  </p>
-                </div>
-                <div class="f-gap"></div>
-                <div class="d-flex justify-content-between">
-                  <a
-                    href="#"
-                    class="f-index-btn f-index-btn-rounded f-index-btn-color f-index-btn-hover"
-                  >
-                    Read More
-                  </a>
-                  <div class="f-hot-post-date">
-                    <AiOutlineFile />
-                    Jul 23, 2018
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-              <div class="f-hot-post">
-                <a href="#" class="f-hot-post-img">
-                  <img
-                    src="./images/forum/post-6-mid.jpg"
-                    alt="At first, for some time, I was not able to answer"
-                  />
-                  <span class="f-hot-post-comments-count">87</span>
-                  <span class="f-hot-post-category">
-                    <span class="f-index-bg-5">程式設計</span>
-                  </span>
-                </a>
-                <div class="f-gap"></div>
-                <h2 class="f-hot-post-title f-index-h4">
-                  <a href="#">
-                    At first, for some time, I was not able to answer
-                  </a>
-                </h2>
-                <div class="f-hot-post-text">
-                  <p>
-                    This little wandering journey, without settled place of
-                    abode, had been so unpleasant to me, that my own house, as I
-                    called it to myself, was a perfect settlement to me compared
-                    to that...
-                  </p>
-                </div>
-                <div class="f-gap"></div>
-                <div class="d-flex justify-content-between">
-                  <a
-                    href="#"
-                    class="f-index-btn f-index-btn-rounded f-index-btn-color f-index-btn-hover"
-                  >
-                    Read More
-                  </a>
-                  <div class="f-hot-post-date">
-                    <AiOutlineFile />
-                    Jul 3, 2018
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-              <div class="f-hot-post">
-                <a href="#" class="f-hot-post-img">
-                  <img
-                    src="./images/forum/post-7-mid.jpg"
-                    alt="At length one of them called out in a clear"
-                  />
-                  <span class="f-hot-post-comments-count">75</span>
-                  <span class="f-hot-post-category">
-                    <span class="f-index-bg-6">原畫創作</span>
-                  </span>
-                </a>
-                <div class="f-gap"></div>
-                <h2 class="f-hot-post-title f-index-h4">
-                  <a href="#">At length one of them called out in a clear</a>
-                </h2>
-                <div class="f-hot-post-text">
-                  <p>
-                    TJust then her head struck against the roof of the hall: in
-                    fact she was now more than nine feet high, and she at once
-                    took up the little golden key and hurried off to the garden
-                    door...
-                  </p>
-                </div>
-                <div class="f-gap"></div>
-                <div class="d-flex justify-content-between">
-                  <a
-                    href="#"
-                    class="f-index-btn f-index-btn-rounded f-index-btn-color f-index-btn-hover"
-                  >
-                    Read More
-                  </a>
-                  <div class="f-hot-post-date">
-                    <AiOutlineFile />
-                    Jul 3, 2018
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-              <div class="f-hot-post">
-                <a href="#" class="f-hot-post-img">
-                  <img
-                    src="./images/forum/post-8-mid.jpg"
-                    alt="For good, too though, in consequence"
-                  />
-                  <span class="f-hot-post-comments-count">64</span>
-                  <span class="f-hot-post-category">
-                    <span class="f-index-bg-6">原畫創作</span>
-                  </span>
-                </a>
-                <div class="f-gap"></div>
-                <h2 class="f-hot-post-title h4">
-                  <a href="#">For good, too though, in consequence</a>
-                </h2>
-                <div class="f-hot-post-text">
-                  <p>
-                    This little wandering journey, without settled place of
-                    abode, had been so unpleasant to me, that my own house, as I
-                    called it to myself, was a perfect settlement to me compared
-                    to that...
-                  </p>
-                </div>
-                <div class="f-gap"></div>
-                <div class="d-flex justify-content-between">
-                  <a
-                    href="#"
-                    class="f-index-btn f-index-btn-rounded f-index-btn-color f-index-btn-hover"
-                  >
-                    Read More
-                  </a>
-                  <div class="f-hot-post-date float-right">
-                    <AiOutlineFile />
-                    Jul 3, 2018
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
 
@@ -478,6 +330,7 @@ function Forum(props) {
                   role="tab"
                   data-toggle="tab"
                   aria-selected="true"
+                  onClick={() => changeClassName('')}
                 >
                   全部文章
                 </a>
@@ -618,209 +471,7 @@ function Forum(props) {
                   }
                 })}
 
-              {/* <div class="f-hot-post">
-                <div class="row f-vertical-gap">
-                  <div class="col-lg-3 col-md-5">
-                    <a href="" class="f-hot-post-img">
-                      <img
-                        src="./images/forum/post-7-mid-square.jpg"
-                        alt="At length one of them called out in a clear"
-                      />
-                      <span class="f-hot-post-category">
-                        <span class="f-index-bg-5">程式設計</span>
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-lg-9 col-md-7">
-                    <h2 class="f-hot-post-title h4">
-                      <a href="#">
-                        At length one of them called out in a clear
-                      </a>
-                    </h2>
-                    <div class="f-hot-post-date mt-10 mb-10 d-flex">
-                      <AiOutlineUser />
-                      <a href="#">Wolfenstein</a>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineFile />
-                      <span>Jul 3, 2018</span>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineMessage />
-                      <a href="#">12 comments</a>
-                    </div>
-                    <div class="f-hot-post-text">
-                      <p>
-                        TJust then her head struck against the roof of the hall:
-                        in fact she was now more than nine feet high, and she at
-                        once took up the little golden key and hurried off to
-                        the garden door...
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="f-hot-post">
-                <div class="row f-vertical-gap">
-                  <div class="col-lg-3 col-md-5">
-                    <a href="#" class="f-hot-post-img">
-                      <img
-                        src="./images/forum/post-9-mid-square.jpg"
-                        alt="He made his passenger captain of one"
-                      />
-                      <span class="f-hot-post-category">
-                        <span class="f-index-bg-5">程式設計</span>
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-lg-9 col-md-7">
-                    <h2 class="f-hot-post-title h4">
-                      <a href="#">He made his passenger captain of one</a>
-                    </h2>
-                    <div class="f-hot-post-date mt-10 mb-10 d-flex">
-                      <AiOutlineUser />
-                      <a href="#">Wolfenstein</a>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineFile />
-                      <span>Jul 3, 2018</span>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineMessage />
-                      <a href="#">12 comments</a>
-                    </div>
-                    <div class="f-hot-post-text">
-                      <p>
-                        Just then her head struck against the roof of the hall:
-                        in fact she was now more than nine feet high, and she at
-                        once took up the little golden key and hurried off to
-                        the garden door...
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="f-hot-post">
-                <div class="row f-vertical-gap">
-                  <div class="col-lg-3 col-md-5">
-                    <a href="" class="f-hot-post-img">
-                      <img
-                        src="./images/forum/post-7-mid-square.jpg"
-                        alt="At length one of them called out in a clear"
-                      />
-                      <span class="f-hot-post-category">
-                        <span class="f-index-bg-5">程式設計</span>
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-lg-9 col-md-7">
-                    <h2 class="f-hot-post-title h4">
-                      <a href="#">
-                        At length one of them called out in a clear
-                      </a>
-                    </h2>
-                    <div class="f-hot-post-date mt-10 mb-10 d-flex">
-                      <AiOutlineUser />
-                      <a href="#">Wolfenstein</a>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineFile />
-                      <span>Jul 3, 2018</span>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineMessage />
-                      <a href="#">12 comments</a>
-                    </div>
-                    <div class="f-hot-post-text">
-                      <p>
-                        TJust then her head struck against the roof of the hall:
-                        in fact she was now more than nine feet high, and she at
-                        once took up the little golden key and hurried off to
-                        the garden door...
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="f-hot-post">
-                <div class="row f-vertical-gap">
-                  <div class="col-lg-3 col-md-5">
-                    <a href="" class="f-hot-post-img">
-                      <img
-                        src="./images/forum/post-7-mid-square.jpg"
-                        alt="At length one of them called out in a clear"
-                      />
-                      <span class="f-hot-post-category">
-                        <span class="f-index-bg-5">程式設計</span>
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-lg-9 col-md-7">
-                    <h2 class="f-hot-post-title h4">
-                      <a href="#">
-                        At length one of them called out in a clear
-                      </a>
-                    </h2>
-                    <div class="f-hot-post-date mt-10 mb-10 d-flex">
-                      <AiOutlineUser />
-                      <a href="#">Wolfenstein</a>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineFile />
-                      <span>Jul 3, 2018</span>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineMessage />
-                      <a href="#">12 comments</a>
-                    </div>
-                    <div class="f-hot-post-text">
-                      <p>
-                        TJust then her head struck against the roof of the hall:
-                        in fact she was now more than nine feet high, and she at
-                        once took up the little golden key and hurried off to
-                        the garden door...
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
-              {/* <div class="f-hot-post">
-                <div class="row f-vertical-gap">
-                  <div class="col-lg-3 col-md-5">
-                    <a href="" class="f-hot-post-img">
-                      <img
-                        src="./images/forum/post-7-mid-square.jpg"
-                        alt="At length one of them called out in a clear"
-                      />
-                      <span class="f-hot-post-category">
-                        <span class="f-index-bg-5">程式設計</span>
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-lg-9 col-md-7">
-                    <h2 class="f-hot-post-title h4">
-                      <a href="#">
-                        At length one of them called out in a clear
-                      </a>
-                    </h2>
-                    <div class="f-hot-post-date mt-10 mb-10 d-flex">
-                      <AiOutlineUser />
-                      <a href="#">Wolfenstein</a>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineFile />
-                      <span>Jul 3, 2018</span>
-                      <div class="f-gap-article-list"></div>
-                      <AiOutlineMessage />
-                      <a href="#">12 comments</a>
-                    </div>
-                    <div class="f-hot-post-text">
-                      <p>
-                        TJust then her head struck against the roof of the hall:
-                        in fact she was now more than nine feet high, and she at
-                        once took up the little golden key and hurried off to
-                        the garden door...
-                      </p>
-                    </div>
-                  </div>
-                </div>               
-              </div> */}
-
+              {/* 分頁按鈕 */}
               <div class="f-gap-2"></div>
               <div className="pagination">
                 <ul className="d-flex">
@@ -835,34 +486,6 @@ function Forum(props) {
                   </li>
                 </ul>
               </div>
-
-              {/* 分頁按鈕 */}
-              {/* <div class="f-pagenumber f-pagenumber-center">
-                <a href="#" class="f-category-icon">
-                  <AiOutlineLeft />
-                </a>
-                <ul class="d-flex ">
-                  <li class="nav-item" href="#">
-                    1
-                  </li>
-                  <li class="nav-item" href="#">
-                    2
-                  </li>
-                  <li class="nav-item" href="#">
-                    3
-                  </li>
-                  <li class="nav-item" href="#">
-                    4
-                  </li>
-                  <li class="nav-item">...</li>
-                  <li class="nav-item" href="#">
-                    14
-                  </li>
-                </ul>
-                <a href="#" class="f-category-icon">
-                  <AiOutlineRight />
-                </a>
-              </div> */}
 
               <div class="f-gap"></div>
             </div>

@@ -13,7 +13,7 @@ function Header() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container">
-          <NavLink className="" href="/">
+          <NavLink className="" href="/home">
             <img src={logo} className="logosize" alt="Logo" />
           </NavLink>
           <div

@@ -36,6 +36,24 @@ function ArticleTag(props) {
           <span class="f-index-bg-3">廠商徵才</span>
         </span>
       )}
+
+      {props.articleCategoryId === '1' && (
+        <span class="f-latest-left-box-article-category">
+          <span class="f-index-bg-5">程式設計</span>
+        </span>
+      )}
+
+      {props.articleCategoryId === '2' && (
+        <span class="f-latest-left-box-article-category">
+          <span class="f-index-bg-6">原畫創作</span>
+        </span>
+      )}
+
+      {props.articleCategoryId === '3' && (
+        <span class="f-latest-left-box-article-category">
+          <span class="f-index-bg-3">廠商徵才</span>
+        </span>
+      )}
     </>
   )
 }

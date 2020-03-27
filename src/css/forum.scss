@@ -1,4 +1,7 @@
 $main_color: #79cee2;
+$btn_color: #79cee2;
+$bg_btn_color: #fff;
+$bdr_color: #79cee2;
 
 .f-gap {
   display: block;
@@ -300,6 +303,9 @@ $main_color: #79cee2;
   margin-right: 6px;
   font-size: 22px;
 }
+.f-latest-left-box-article-date {
+  float: right;
+}
 .f-latest-left-box-article-date svg {
   font-size: 200%;
   margin-right: 10px;
@@ -374,6 +380,11 @@ $main_color: #79cee2;
   margin-left: -20px;
   background-position: center center;
   background-size: cover;
+}
+.f-latest-left-box-article-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
 }
 .f-latest-left-box
   .f-latest-right-box-info
@@ -979,12 +990,12 @@ $main_color: #79cee2;
 
 .f-hot-post-date svg {
   font-size: 18px;
-  margin-right: 8px;
+  margin: 3px 8px 0 0;
   color: #f9a451;
 }
 
 .f-hot-post-date span {
-  margin-top: -3px;
+  margin-top: -1px;
 }
 
 /* .f-hot-post-date span ~ span,
@@ -996,7 +1007,7 @@ $main_color: #79cee2;
 .f-hot-post-date a {
   color: inherit;
   text-decoration: none;
-  margin-top: -3px;
+  margin-top: -1px;
 }
 .f-hot-post-date a.hover,
 .f-hot-post-date a:active,
@@ -1098,43 +1109,7 @@ $main_color: #79cee2;
   font-weight: 600;
   color: #79cee2;
 }
-/* .f-pagenumber .f-pagi-next,
-.nk-pagination .nk-pagination-prev {
-  position: relative;
-  color: inherit;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-}
-.nk-pagination .nk-pagination-next.disabled,
-.nk-pagination .nk-pagination-prev.disabled {
-  pointer-events: none;
-  cursor: default;
-  opacity: 0.2;
-}
-.nk-pagination .nk-pagination-next .nk-icon-arrow-left,
-.nk-pagination .nk-pagination-next .nk-icon-arrow-right,
-.nk-pagination .nk-pagination-prev .nk-icon-arrow-left,
-.nk-pagination .nk-pagination-prev .nk-icon-arrow-right {
-  position: absolute;
-  top: 33px;
-}
-.nk-pagination .nk-pagination-next .nk-icon-arrow-right,
-.nk-pagination .nk-pagination-prev .nk-icon-arrow-right {
-  right: 0;
-}
-.nk-pagination .nk-pagination-next .nk-icon-arrow-left,
-.nk-pagination .nk-pagination-prev .nk-icon-arrow-left {
-  left: 0;
-}
-.nk-pagination .nk-pagination-prev {
-  padding-right: 14px;
-  text-align: left;
-}
-.nk-pagination .nk-pagination-next {
-  padding-left: 14px;
-  text-align: right;
-} */
+
 .f-pagenumber a {
   color: inherit;
   text-decoration: none;
@@ -1299,112 +1274,12 @@ $main_color: #79cee2;
   white-space: pre;
 }
 
-/* .f-blockquote {
-  position: relative;
-  margin: 20px 0;
-  margin-top: 33px;
-  font-style: italic;
-  z-index: 1;
-}
-.f-blockquote .f-blockquote-icon {
-  display: table;
-  margin-bottom: 20px;
-}
-.f-blockquote .f-blockquote-icon > span {
-  display: table-cell;
-  height: 0;
-  padding-right: 25px;
+.f-article-detail-content {
+  border: solid 1px #adb6bd;
+  box-shadow: 0px 0px 10px #adb6bd;
+  padding: 30px;
   margin-bottom: 50px;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 0;
-  color: #f9a451;
-  vertical-align: top;
-  cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
-.f-blockquote .f-blockquote-icon::after,
-.f-blockquote .f-blockquote-icon::before {
-  content: '';
-  display: table-cell;
-  width: 100%;
-  vertical-align: top;
-  border-bottom: 2px solid #adb6bd;
-  -webkit-transform: translateY(-18px);
-  -ms-transform: translateY(-18px);
-  transform: translateY(-18px);
-}
-.f-blockquote .f-blockquote-icon::before {
-  width: 50px;
-  min-width: 50px;
-}
-.f-blockquote .f-blockquote-author {
-  margin-top: 25px;
-  text-align: right;
-}
-.f-blockquote .f-blockquote-author > span {
-  display: table-cell;
-  padding-right: 30px;
-  padding-left: 30px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #f9a451;
-  white-space: nowrap;
-}
-.f-blockquote .f-blockquote-author::after,
-.f-blockquote .f-blockquote-author::before {
-  content: '';
-  display: table-cell;
-  width: 100%;
-  border-bottom: 2px solid #adb6bd;
-  -webkit-transform: translateY(-10px);
-  -ms-transform: translateY(-10px);
-  transform: translateY(-10px);
-}
-.f-blockquote .f-blockquote-author::after {
-  width: 50px;
-  min-width: 50px;
-}
-.f-blockquote > a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.f-video {
-  position: relative;
-  display: block;
-  width: 100%;
-  padding-top: 56.25%;
-  cursor: pointer;
-  background-position: 50% 50%;
-  background-size: cover;
-  border-radius: 4px;
-}
-.f-video > iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.f-video > .f-video-plain-toggle {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  cursor: pointer;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
-.f-video > .f-video-plain-toggle .f-video-icon {
-  text-decoration: none;
-} */
 
 .f-comments .f-comment::after {
   content: '';
@@ -1460,6 +1335,27 @@ $main_color: #79cee2;
   color: #e2361f;
 }
 
+.f-relative-post-title {
+  color: #79cee2;
+  font-size: 16px;
+  margin: 0 0 10px -10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.f-relative-post-title > a {
+  color: inherit;
+  text-decoration: none;
+  padding-left: 15px;
+  -webkit-transition: 0.15s color;
+  -o-transition: 0.15s color;
+  transition: 0.15s color;
+}
+.f-relative-post-title > a.hover,
+.f-relaive-post-title > a:hover {
+  color: #f9a451;
+}
+
 /* ========================= */
 p {
   font-size: 16px;
@@ -1469,10 +1365,35 @@ p {
   margin-top: 6px;
 }
 
-#f-post-dropdown {
+.btn-primary {
   color: #79cee2;
   background-color: #fff;
   border-color: #79cee2;
+  // $btn_color: #79cee2;
+  // $bg_btn_color: #fff;
+  // $bdr_color: #79cee2;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #79cee2;
+  border-color: #79cee2;
+  // $btn_color: #79cee2;
+  // $bg_btn_color: #fff;
+  // $bdr_color: #79cee2;
+}
+
+.btn-primary:active {
+  color: #fff;
+  background-color: #79cee2;
+  border-color: #79cee2;
+  // $btn_color: #79cee2;
+  // $bg_btn_color: #fff;
+  // $bdr_color: #79cee2;
+}
+
+.f-post-image-zone {
+  margin: 50px 0 20px 305px;
 }
 
 /* ==========================分頁按鈕=========================== */

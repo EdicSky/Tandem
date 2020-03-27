@@ -6,23 +6,16 @@ import { withRouter, Switch, Route, Link } from 'react-router-dom'
 // import { bindActionCreators } from 'redux'
 // import { getArticleData } from '../../actions/articleActions'
 // import { NavLink } from 'react-bootstrap'
-import {
-  AiOutlineGithub,
-  AiOutlineHighlight,
-  AiOutlineSolution,
-  AiOutlineUser,
-  AiOutlineFile,
-  AiOutlineMessage,
-  AiOutlineLeft,
-  AiOutlineRight,
-} from 'react-icons/ai'
+import { AiOutlineFile } from 'react-icons/ai'
+import ArticleTag from '../../components/forum/ArticleTag'
 import $ from 'jquery'
 import '../../css/forum.scss'
 
 function ForumLatestRightBox(props) {
   console.log('right', props)
+
   $(function() {
-    var len = 250 // 超過50個字以"..."取代
+    var len = 250 // 超過250個字以"..."取代
     $('.f-latest-right-box-article-text').each(function(i) {
       if ($(this).text().length > len) {
         $(this).attr('title', $(this).text())
@@ -42,12 +35,14 @@ function ForumLatestRightBox(props) {
           <div class="f-nano-content" tabindex="0" style={{ right: '-17px' }}>
             <div class=" f-latest-left-box-article-image">
               <img
-                src="./images/forum/post-1.jpg"
+                src={`../../images/forum/article${props.data.articleId}.jpg`}
+                // src="./images/forum/post-1.jpg"
                 alt="Smell magic in the air. Or maybe barbecue"
               />
-              <span class=" f-latest-left-box-article-category">
+              <ArticleTag tagName={props.data.articleCategoryId} />
+              {/* <span class=" f-latest-left-box-article-category">
                 <span class="f-index-bg-5">程式設計</span>
-              </span>
+              </span> */}
             </div>
             <div class=" f-latest-right-box-article-title">
               <p>{props.data.articleName}</p>
@@ -81,4 +76,4 @@ function ForumLatestRightBox(props) {
   )
 }
 
-export default ForumLatestRightBox
+export default withRouter(ForumLatestRightBox)

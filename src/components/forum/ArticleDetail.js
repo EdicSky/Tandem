@@ -7,14 +7,6 @@ import { withRouter, Switch, Route } from 'react-router-dom'
 // import { getArticleData } from '../../actions/articleActions'
 // import { NavLink } from 'react-bootstrap'
 import {
-  AiOutlineGithub,
-  AiOutlineHighlight,
-  AiOutlineSolution,
-  AiOutlineUser,
-  AiOutlineFile,
-  AiOutlineMessage,
-  AiOutlineLeft,
-  AiOutlineRight,
   AiOutlineEdit,
   AiOutlineDelete,
   AiOutlineGoogle,
@@ -76,8 +68,7 @@ function ArticleDetail(props) {
             width="35"
           />{' '}
           by <a href="#">{article.articleAuthor}</a> in Sep 5, 2018
-          <div class="f-hot-post-category">
-            <ArticleTag tagName={props.tagName} />
+          <span class="f-hot-post-category">
             {/* {props.article &&
               props.article.map((value, index) => {
                   if (props.articleId.articleCategoryId === tagName) {
@@ -94,12 +85,13 @@ function ArticleDetail(props) {
             {/* <span class="f-index-bg-5">程式設計</span>
             <span class="f-index-bg-6">原畫創作</span> */}
             <span>
+              <ArticleTag tagName={article.articleCategoryId} />
               <AiOutlineEdit />
             </span>
             <span>
               <AiOutlineDelete />
             </span>
-          </div>
+          </span>
         </div>
 
         <div class="f-gap-1"></div>

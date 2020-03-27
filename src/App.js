@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
+import LandingPage from './pages/LandingPage'
 import Home from './pages/Home'
 import Activity from './pages/activity/Activity'
 import Bulletin from './pages/bulletin/Bulletin'
@@ -19,10 +20,13 @@ function App() {
     <Router>
       <>
         <Route exact path="/">
-          <Home />
+          <LandingPage />
         </Route>
         <Header />
         <Switch>
+          <Route exact path="/home">
+            <Home />
+          </Route>
           <Route path="/activity">
             <Activity />
           </Route>

@@ -6,16 +6,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getArticleDetail } from '../../actions/articleActions'
 import ArticleDetail from '../../components/forum/ArticleDetail'
-import {
-  AiOutlineRight,
-  AiOutlineEdit,
-  AiOutlineDelete,
-  AiOutlineFile,
-  AiOutlineGoogle,
-  AiOutlineFacebook,
-  AiOutlineTwitter,
-  AiOutlineLinkedin,
-} from 'react-icons/ai'
+import ArticleComments from '../../components/forum/ArticleComments'
+import ArticleRelative from '../../components/forum/ArticleRelative'
+import { AiOutlineRight } from 'react-icons/ai'
 import ArticleTag from '../../components/forum/ArticleTag'
 import '../../css/forum.scss'
 import $ from 'jquery'
@@ -27,6 +20,7 @@ function Article(props) {
 
   const [article, setArticle] = useState([])
   const [tagName, setTagname] = useState('')
+  const [comment, setComment] = useState([])
   const articleId = props.match.params.articleId
     ? props.match.params.articleId
     : ''
@@ -38,11 +32,12 @@ function Article(props) {
   } else {
     showCategory = '廠商徵才'
   }
-  console.log('AC', article.articleCategoryId)
-  console.log('SC', showCategory)
-  console.log('ID', articleId)
+  // console.log('AC', article.articleCategoryId)
+  // console.log('SC', showCategory)
+  // console.log('ID', articleId)
   const Swal = require('sweetalert2')
 
+  //文章
   async function getDetailFromServer(articleId) {
     const request = new Request('http://localhost:6001/articles/' + articleId, {
       method: 'GET',
@@ -59,7 +54,29 @@ function Article(props) {
     getDetailFromServer(articleId)
   }, [])
 
-  console.log('內容2', article)
+  //留言
+  async function getCommentData() {
+    const request = new Request('http://localhost:6001/article_comments/', {
+      method: 'GET',
+      credentials: 'include',
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('留言', data)
+    setComment(data[0])
+  }
+
+  useEffect(() => {
+    console.log('dddd', props)
+    getCommentData()
+  }, [])
+
+  // useEffect(() => {
+  //   console.log('dddd', props)
+  //   props.getCommentData()
+  // }, [])
+
+  // console.log('內容2', article)
 
   function post() {
     Swal.fire({
@@ -118,8 +135,8 @@ function Article(props) {
 
         {/* 文章內容 */}
         <div class="row f-vertical-gap">
-          <div class="col-lg-12">
-            <div class="f-hot-post f-hot-post-single">
+          <div class="col-lg-12 f-article-detail-content">
+            <div class="">
               <ArticleDetail />
 
               {/* {props.article &&
@@ -146,7 +163,8 @@ function Article(props) {
                 })} */}
 
               {/* 留言內容 */}
-              <div class="f-gap-3"></div>
+              <ArticleComments />
+              {/* <div class="f-gap-3"></div>
               <div id="comments"></div>
               <h3 class="f-latest-title">
                 <span>
@@ -231,10 +249,10 @@ function Article(props) {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* 留言回應 */}
-              <div class="f-gap-3"></div>
+              {/* <div class="f-gap-3"></div>
               <h3 class="f-latest-title">
                 <span>
                   <span class="f-category-text">留言</span> 回覆
@@ -291,9 +309,10 @@ function Article(props) {
                     留言
                   </button>
                 </form>
-              </div>
+              </div> */}
 
-              {/* 相關文章 */}
+              <ArticleRelative />
+              {/* 相關文章
               <div class="f-gap-3"></div>
               <h3 class="f-latest-title">
                 <span>
@@ -351,7 +370,7 @@ function Article(props) {
                         alt="We found a witch! May we burn her?"
                       />
                       <span class="f-hot-post-comments-count">13</span>
-                      <span class="f-hot-post-category">
+                      <span class="">
                         <span class="f-index-bg-5">程式設計</span>
                       </span>
                     </a>
@@ -362,7 +381,7 @@ function Article(props) {
                     </h2>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

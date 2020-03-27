@@ -24,6 +24,17 @@ export const getArticleDetail = (state = [], action) => {
   }
 }
 
+//全部留言
+export const getCommentData = (state = [], action) => {
+  switch (action.type) {
+    case 'SHOW_COMMENT':
+      console.log('reducer', action.data)
+      return action.data
+    default:
+      return state
+  }
+}
+
 const allReducers = combineReducers({
   getArticleData,
   // getArticleDetail,

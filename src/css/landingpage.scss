@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// =====FullPage設定================================================
+h1 {
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  margin: 0;
+  margin-top: 50px;
+}
+
+h1 img {
+  position: relative;
+  margin-top: -100px;
+}
+
+.s1 {
+  background: url('./home1.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  h1 {
+    // margin-top: -500px;
+    font-size: 4rem;
+  }
+}
+
+.s2 {
+  background: url('./home2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  h1 {
+    text-align: left;
+    font-size: 4rem;
+    margin-left: 2rem;
+  }
+}
+.s3 {
+  background: url('./home3.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  h1 {
+    font-size: 4rem;
+  }
+}
+.s4 {
+  background: url('./home4.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  h1 {
+    text-align: right;
+    font-size: 4rem;
+    margin-right: 2em;
+  }
+}
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  size: 300%;
+  background-color: #fff;
+}
+
+.fp-slidesNav.fp-bottom {
+  margin-left: 5em !important;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  background: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.hooks-main {
+  width: 100%;
+  height: 100%;
+  background: lightblue;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.b1,
+.b2,
+.b3 {
+  position: absolute;
+  will-change: transform;
+  border-radius: 50%;
+  background: lightcoral;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  opacity: 0.6;
+}
+
+.b1 {
+  width: 170px;
+  height: 170px;
+}
+
+.b2 {
+  width: 350px;
+  height: 350px;
+}
+
+.b3 {
+  width: 200px;
+  height: 200px;
+}
+
+.b1::after,
+.b2::after,
+.b3::after {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.b2::after {
+  top: 70px;
+  left: 70px;
+  width: 70px;
+  height: 70px;
+}
+
+.b3::after {
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+}
+
+.hooks-filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: url('#goo');
+  overflow: hidden;
+}
+
+// =====Home Section設定================================================
+
+// .f-btn {
+//   font-size: 36px;
+//   font-weight: 400;
+//   color: #79cee2;
+//   text-transform: uppercase;
+//   text-decoration: none;
+//   text-align: center;
+//   border: 5 solid #79cee2;
+//   padding: 10px 20px;
+//   border-radius: 9px;
+//   margin: auto;
+//   transition: all 0.5s;
+// }
+// .f-btn:hover {
+//   color: #f9a451;
+//   border: 3 solid #79cee2;
+//   text-decoration: none;
+// }
+
+.gradient-border {
+  --borderWidth: 3px;
+  background: #dbdbdb;
+  //   background: rgba(0, 0, 0, 0.01);
+  position: relative;
+  border-radius: 45px;
+  //   opacity: 0.1;
+  //   z-index: 1;
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  /* background:linear-gradient(60deg,#f79533,#f37055,#ef4e7b,#a166ab,#5073b8,#1098ad,#07b39b,#6fba82); */
+  background-image: linear-gradient(60deg, #ffffff, #818181, #000000);
+  /* border-radius:var(--borderWidth);  */
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+  border-radius: 50px;
+}
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.vertical-center {
+  /* min-height: 100%;  Fallback for browsers do NOT support vh unit */
+  /* min-height: 100vh; These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  //   background-color: #fcfaf2;
+  //   opacity: 0;
+  width: 180px;
+  height: 60px;
+  margin: 50px auto;
+  //   z-index: 2;
+  //   border: 3px solid transparent;
+  //   border-image: linear-gradient(to right, green, lightgreen);
+  //   border-image-slice: 1;
+  //   padding: 15px;
+  //   border-radius: 45px;
+  //   animation: transition 3s ease alternate infinite;
+}
+
+.gradient1 {
+  color: #f35626;
+  background-image: linear-gradient(92deg, #f35626 0%, #feab3a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hue 3s infinite linear;
+  z-index: 3;
+}
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(-360deg);
+  }
+}
+
+.border-cover {
+  --borderWidth: 3px;
+  background: transparent;
+  position: absolute;
+  border-radius: 40px;
+  //   opacity: 0.1;
+  z-index: 1;
+}
