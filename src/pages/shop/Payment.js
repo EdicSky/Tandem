@@ -335,14 +335,14 @@ function Payment(props) {
       <div className="d-flex justify-content-center my-3">
         <Link
           type="button"
-          className="btn btn-outline-info mx-2"
+          className="btn btn-outline-info s-btn-common mx-2"
           to="/cart_new"
         >
           上一頁
         </Link>
         <button
           type="submit"
-          className="btn btn-outline-info mx-2"
+          className="btn btn-outline-info s-btn-common mx-2"
           onClick={() => submitPayment()}
         >
           進行結帳

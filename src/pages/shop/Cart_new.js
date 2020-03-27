@@ -276,13 +276,17 @@ function Cart_new(props) {
   //  加入購物車,與Productlist.js共用
   async function updateCartToLocalStorage(value) {
     // setDataLoading(true)
-    Swal.fire({ html: `加入購物車` })
+    Swal.fire({ html: `成功加入購物車` })
     const currentCart = JSON.parse(localStorage.getItem('cart')) || []
-
-    const newCart = [...currentCart, value]
-    localStorage.setItem('cart', JSON.stringify(newCart))
-    //設定資料
-    setMycart(newCart)
+    let arr = []
+    currentCart.forEach(element => {
+      arr.push(element.id == value.id)
+    })
+    if (arr.indexOf(true) == -1) {
+      const newCart = [...currentCart, value]
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      setMycart(newCart)
+    }
   }
   const historydisplay = (
     <>
@@ -308,24 +312,26 @@ function Cart_new(props) {
                   // zIndex: 2,
                 }}
               >
-                <AiOutlineShoppingCart
-                  style={{
-                    color: '#F9A451',
-                    fontSize: '24px',
-                    // position: 'relative',
-                    // bottom: '5px',
-                    zIndex: 10,
-                    opacity: 1,
-                  }}
-                  onClick={() => {
-                    updateCartToLocalStorage({
-                      id: item.itemId,
-                      name: item.itemName,
-                      amount: 1,
-                      price: item.itemPrice,
-                    })
-                  }}
-                />
+                <Link className="d-flex justify-content-center">
+                  <AiOutlineShoppingCart
+                    style={{
+                      color: '#F9A451',
+                      fontSize: '24px',
+                      // position: 'relative',
+                      // bottom: '5px',
+                      zIndex: 10,
+                      opacity: 1,
+                    }}
+                    onClick={() => {
+                      updateCartToLocalStorage({
+                        id: item.itemId,
+                        name: item.itemName,
+                        amount: 1,
+                        price: item.itemPrice,
+                      })
+                    }}
+                  />
+                </Link>
               </div>
             </div>
           )
