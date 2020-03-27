@@ -153,11 +153,11 @@ function Payment(props) {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-3 col-form-label text-right mb-0">
+            <label className="col-sm-3 col-form-label text-right mb-0 ">
               付款方式
             </label>
 
-            <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Group controlId="exampleForm.SelectCustom" className="pl-2">
               <Form.Control
                 as="select"
                 className="mx-2 "
@@ -187,7 +187,7 @@ function Payment(props) {
               <label className="col-sm-3 col-form-label text-right">
                 信用卡號
               </label>
-              <div className="col-sm-6 p-0">
+              <div className="col-sm-6 pl-2">
                 {/* <input
                 type="text"
                 className="form-check-input h5 "
@@ -285,7 +285,7 @@ function Payment(props) {
 
               <input
                 type="text"
-                className="form-control-sm col-1 s-safetycode"
+                className="form-control-sm col-1 s-safetycode mt-1"
                 id="exampleInputPassword1"
                 placeholder=""
                 pattern="\d{3}"
@@ -314,15 +314,15 @@ function Payment(props) {
             </div>
           </div>
           <div className="d-flex justify-content-center">
-            <label className="form-check col-5">
+            <label className="s-form-check col-5">
               <input
                 type="checkbox"
-                className="form-check-input"
+                className="s-form-check-input"
                 id="agreement"
               />
               <span className="s-checkbox"></span>
               <label
-                className="form-check-label p "
+                className="s-form-check-label p "
                 style={{ position: 'relative', left: '70px' }}
               >
                 勾選同意服務條款

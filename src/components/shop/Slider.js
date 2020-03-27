@@ -10,8 +10,8 @@ function Slider(props) {
       '/images/shop/bigImage/11_Overcooked! 2_14.jpg',
       '/images/shop/bigImage/7_CODE VEIN_7.jpg',
       '/images/shop/bigImage/3_Grand Theft Auto V_47.jpg',
-      '/images/shop/bigImage/40_Assassin\'s Creed® Odyssey_2.jpg',
-      '/images/shop/bigImage/MoToGP.jpg'
+      "/images/shop/bigImage/40_Assassin's Creed® Odyssey_2.jpg",
+      '/images/shop/bigImage/MoToGP.jpg',
     ]
     console.log(background_list[0])
     let index = 0
@@ -29,7 +29,7 @@ function Slider(props) {
         // console.log($(this).parent().children().find('.sbox-s'))
         // console.log('sbox-s mouseenter')
         console.log(index)
-        $('.box').css(
+        $('.s-slider-box').css(
           'background-image',
           'url("' + background_list[index] + '")'
         )
@@ -40,54 +40,51 @@ function Slider(props) {
           opacity: '50%',
           transform: 'scale(0.8)',
         })
-        $('.box').css(
+        $('.s-slider-box').css(
           'background-image',
           "url('/images/shop/bigImage/1_MONSTER HUNTER_ WORLD_0.jpg')"
         )
       })
     // $('.sbox').mouseleave(function() {
     //   $('.sbox-s').css({ transform: 'scale(1)' })
-      
+
     // })
-    $('.box').mouseleave(function() {
+    $('.s-slider-box').mouseleave(function() {
       $('.sbox-s').css({ transform: 'scale(1)', opacity: '100%' })
-      
     })
   }, [])
   // console.log('目前樣式',props.type)
   return (
     <>
-      <div className="box d-flex h5">
+      <div className="s-slider-box d-flex h5">
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-            <Link onClick={()=>props.handletype(5)} >運動</Link>
-            
+            <Link onClick={() => props.handletype(5)}>運動</Link>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(1)} >休閒</Link>
+            <Link onClick={() => props.handletype(1)}>休閒</Link>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(3)} >血腥</Link>
+            <Link onClick={() => props.handletype(3)}>血腥</Link>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(4)} >冒險</Link>
+            <Link onClick={() => props.handletype(4)}>冒險</Link>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(2)} >動作</Link>
+            <Link onClick={() => props.handletype(2)}>動作</Link>
           </div>
         </div>
         <div className="p-0 col col-lg-4 col-sm-6 flex-grow-1">
           <div className="sbox-s position-relative">
-          <Link onClick={()=>props.handletype(6)} >競速</Link>
-            
+            <Link onClick={() => props.handletype(6)}>競速</Link>
           </div>
         </div>
       </div>

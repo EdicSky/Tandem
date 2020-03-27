@@ -397,17 +397,17 @@ function Cart_new(props) {
       <PayProgressbar />
       {/* <h3 className="text-center mt-3 h4 s-cart-title">購物清單</h3> */}
       <div className="d-flex">
-        <div className="shoppingList col col-8">
+        <div className="s-shoppingList col col-8">
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="columnWidth1 h6">
+                <th scope="col" className="s-columnWidth1 h6">
                   商品名稱
                 </th>
                 <th scope="col" className="h6">
                   單價
                 </th>
-                <th scope="col" className="columnWidth2 h6">
+                <th scope="col" className="s-columnWidth2 h6">
                   操作
                 </th>
               </tr>
@@ -420,7 +420,7 @@ function Cart_new(props) {
                   return (
                     <>
                       <tr key={index}>
-                        <td className="columnWidth1">
+                        <td className="s-columnWidth1">
                           <Link to={`/product/${value.itemId}`}>
                             <img
                               src={`/images/shop/small_img/${value.itemImg}`}

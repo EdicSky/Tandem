@@ -10,24 +10,28 @@ function PayProgressbar(props) {
       >
         <div
           className={
-            props.location.pathname == '/cart_new' ? 'circleActive' : 'circle'
+            props.location.pathname == '/cart_new'
+              ? 's-circleActive'
+              : 's-circle'
           }
         >
           <h3>1</h3>
           {/* <h6>檢視購物車</h6> */}
         </div>
-        <div className="line"></div>
+        <div className="s-line"></div>
         <div
           className={
-            props.location.pathname == '/payment' ? 'circleActive' : 'circle'
+            props.location.pathname == '/payment'
+              ? 's-circleActive'
+              : 's-circle'
           }
         >
           <h3>2</h3>
         </div>
-        <div className="line"></div>
+        <div className="s-line"></div>
         <div
           className={
-            props.location.pathname == '/order' ? 'circleActive' : 'circle'
+            props.location.pathname == '/order' ? 's-circleActive' : 's-circle'
           }
         >
           <h3>3</h3>
