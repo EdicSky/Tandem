@@ -19,7 +19,7 @@ function Footer() {
           </div>
           <div>
             <div className="footer_row">
-              <ul class="footer_nav">
+              <ul className="footer_nav">
                 <li>
                   <NavLink href="#">關於TANDEM</NavLink>
                 </li>
@@ -38,7 +38,7 @@ function Footer() {
               </ul>
             </div>
             <div className="footer_row">
-              <ul class="footer_icon">
+              <ul className="footer_icon">
                 <li>
                   <NavLink>
                     <AiFillFacebook />
@@ -67,7 +67,7 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <p class="footer_copyright">
+          <p className="footer_copyright">
             <small>
               Copyright <span lang="en">©</span> TANDEM, Inc.
             </small>
